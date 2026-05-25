@@ -1,0 +1,153 @@
+/* ============================================================
+   TheGlocalPM — Senior PM Portfolio
+   Shared design system: Neo-Logic Brutalism
+   ============================================================ */
+
+:root {
+  --neutral-black: #1A1A1A;
+  --background: #fbf8ff;
+  --surface-cream: #fdf7ff;
+  --surface-container: #eeecf8;
+  --surface-container-low: #f4f2fe;
+  --surface-container-high: #e9e7f2;
+  --surface-variant: #e3e1ed;
+  --outline: #757686;
+  --outline-variant: #c5c5d7;
+  --on-surface: #1a1b23;
+  --on-surface-variant: #454654;
+
+  --primary: #5B6EF5;
+  --primary-fixed: #dfe0ff;
+  --primary-fixed-dim: #bcc2ff;
+  --primary-container: #5366ed;
+  --on-primary: #ffffff;
+  --on-primary-container: #fffbff;
+
+  --secondary: #ab3500;
+  --secondary-container: #fe6a34;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #5d1900;
+
+  --tertiary-fixed: #ffdcc6;
+  --tertiary-fixed-dim: #ffb784;
+
+  --coral: #FF6B35;
+  --brand-purple: #8069BF;
+  --accent-yellow: #ffdf93;
+  --accent-rose: #ffdad6;
+  --error-red: #ba1a1a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: var(--neutral-black);
+  background-color: var(--background);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* === Neo-Brutalist Shadows ============================================= */
+.neo-shadow    { box-shadow: 4px 4px 0px 0px var(--neutral-black); }
+.neo-shadow-lg { box-shadow: 8px 8px 0px 0px var(--neutral-black); }
+
+.neo-shadow-hover:hover {
+  box-shadow: 0px 0px 0px 0px var(--neutral-black);
+  transform: translate(4px, 4px);
+}
+.neo-shadow-lg-hover:hover {
+  box-shadow: 0px 0px 0px 0px var(--neutral-black);
+  transform: translate(8px, 8px);
+}
+.neo-click:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px var(--neutral-black);
+}
+.neo-click-lg:active {
+  transform: translate(8px, 8px);
+  box-shadow: 0px 0px 0px 0px var(--neutral-black);
+}
+
+/* === Tilts ============================================================= */
+.tilt-1         { transform: rotate(-1deg); }
+.tilt-1-reverse { transform: rotate(1deg); }
+.hover-untilt:hover { transform: rotate(0deg); transition: transform .3s ease; }
+
+/* === Tilted Underlines ================================================ */
+.tilted-underline { position: relative; display: inline-block; z-index: 1; }
+.tilted-underline::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%; height: 12px;
+  background: var(--coral);
+  z-index: -1;
+  transform: rotate(-1deg);
+}
+.tilted-underline-yellow::after { background: var(--accent-yellow); }
+.tilted-underline-purple::after { background: var(--brand-purple); }
+.tilted-underline-blue::after   { background: var(--primary); }
+.tilted-underline-orange::after { background: var(--secondary-container); }
+
+/* === Hero highlight — fat highlighter mark behind a headline =========
+   Matches the original Stitch ".hero-underline" treatment (Agent Lab). */
+.hero-highlight { position: relative; display: inline-block; z-index: 1; }
+.hero-highlight::after {
+  content: '';
+  position: absolute;
+  left: -5%; bottom: 0;
+  width: 110%; height: 20px;
+  background: var(--brand-purple);
+  z-index: -1;
+  transform: rotate(-2deg);
+  opacity: .8;
+}
+.hero-highlight-coral::after  { background: var(--coral); }
+.hero-highlight-yellow::after { background: var(--accent-yellow); }
+.hero-highlight-blue::after   { background: var(--primary); }
+.hero-highlight-orange::after { background: var(--secondary-container); }
+
+/* === Grid pattern background ========================================== */
+.bg-grid-pattern {
+  background-image: radial-gradient(var(--neutral-black) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: .05;
+}
+.bg-grid-dots {
+  background-image: radial-gradient(var(--outline-variant) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* === Grayscale image hover ============================================ */
+.grayscale-img { filter: grayscale(100%); transition: filter .7s ease; }
+.grayscale-img:hover, .group:hover .grayscale-img { filter: grayscale(0%); }
+
+/* === Mobile nav drawer ================================================ */
+#mobile-menu {
+  transform: translateY(-20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .25s ease, opacity .25s ease;
+}
+#mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* === Hide scrollbar but keep scrolling for marquees =================== */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* === Print-friendly resume modal ===================================== */
+@media print {
+  header, footer, .no-print { display: none !important; }
+}

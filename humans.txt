@@ -1,0 +1,14 @@
+/* TEAM */
+Senior Product Manager: Ali Mahmoud
+Contact: ali@theglocalpm.com
+LinkedIn: https://www.linkedin.com/in/alimahmoud1986/
+Booking: https://cal.com/alim-datajar/coffeechat
+From: Remote / Global
+
+/* SITE */
+Brand: TheGlocalPM
+Tagline: Build with chaos, lead with logic.
+Last update: 2026-05-22
+Language: English
+Standards: HTML5, schema.org JSON-LD, Open Graph, llms.txt
+Components: vanilla HTML, Tailwind CSS, vanilla JS, Cal.com embed

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://theglocalpm.com/</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://theglocalpm.com/assets/portraits/ali-smiling.png</image:loc>
+      <image:title>Ali Mahmoud — TheGlocalPM</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/case-studies.html</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/case-study.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://theglocalpm.com/assets/case-studies/gethalal-case.png</image:loc>
+      <image:title>GetHalal — Halal meat delivery marketplace, Berlin</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/case-study-everstox.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/case-study-flightright.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/case-study-freight-intel.html</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://theglocalpm.com/assets/case-studies/freight-intl/screen-1.png</image:loc>
+      <image:title>Freight Intel — AI margin intelligence dashboard</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://theglocalpm.com/assets/case-studies/freight-intl/screen-2.png</image:loc>
+      <image:title>Freight Intel — cost erosion waterfall</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://theglocalpm.com/assets/case-studies/freight-intl/screen-3.png</image:loc>
+      <image:title>Freight Intel — crisis scenario matrix</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/skills.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/point-of-view.html</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/blog-qcommerce-subscriptions-vs-discounts.html</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://theglocalpm.com/assets/blog/subs-habits/qcommerce_subscription_loyalty_signals.png</image:loc>
+      <image:title>Q-commerce subscription &amp; loyalty signals — Brick Meets Click / Mercatus 2025</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://theglocalpm.com/assets/blog/subs-habits/grocery_promo_pressure_europe_2026.png</image:loc>
+      <image:title>European grocery promotion pressure — McKinsey 2026</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/blog-inventory-intelligence.html</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://theglocalpm.com/assets/blog/Inventory-intel/inventory_distortion_vs_improvement.png</image:loc>
+      <image:title>Retail inventory distortion vs. improvements — IHL Group</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://theglocalpm.com/assets/blog/Inventory-intel/ai_forecasting_adoption_gap.png</image:loc>
+      <image:title>AI forecasting adoption gap — Gartner 2024</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/blog-future-of-ai-in-pm.html</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/blog-scaling-marketplace-growth.html</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/blog-building-with-empathy.html</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/toolkit.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/agent-lab.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
