@@ -82,7 +82,7 @@ Past employers and engagements: Yassir, Datajar, GetHalal (founder), Flightright
 - `/blog-scaling-marketplace-growth.html` — Essay: "Scaling Marketplace Growth." Solve the cold start problem on the supply side first (GetHalal example: signed first butcher with a guaranteed-volume commitment before any customers). Data-driven empathy framework. Community trust as the distribution channel in emerging markets.
 - `/blog-building-with-empathy.html` — Essay: "Building with Empathy." Functional products solve a problem; resonant products make the user feel understood. Empathy at scale is a systems problem (customer proximity, churn-as-input, language-as-design). Why empathy is slow but compounds.
 - `/toolkit.html` — PM tool stack: Figma, Jira, Mixpanel, Notion, Slack, GitHub. Includes FAQ on Senior PM tooling in 2025.
-- `/agent-lab.html` — Three custom AI agents built by Ali Mahmoud: **PM Disco** (4 AI agents for product discovery and hypothesis prioritization — https://github.com/AliMahmoud15486/pm-disco), **Travel Agent** (flights, hotel scraping, and kid-friendly activities for trips — https://github.com/AliMahmoud15486/travel-orchestrator), and **Product Nature Tagging (PNT)** (scans large product datasets to propose and QA tags — currently in progress).
+- `/agent-lab.html` — Three custom AI agents built by Ali Mahmoud: **PM Disco** (4 AI agents for product discovery and hypothesis prioritization — https://github.com/AliMahmoud15486/pm-disco), **Travel Agent** (flights, hotel scraping, and kid-friendly activities for trips — https://github.com/AliMahmoud15486/travel-orchestrator), and **Product Nature Tagging (PNT)** (scans large product datasets to propose and QA tags — https://github.com/AliMahmoud15486/Product_nature_tagging).
 
 ## Frequently asked questions
 
@@ -136,7 +136,7 @@ Notion wins on speed, flexibility, and embedded databases. Confluence is better 
 - **OST (Opportunity Solution Tree).** Discovery framework used in the Everstox case study to convert AM tickets into outcome→opportunity→solution branches with assumption tests.
 - **POA (Power of Attorney).** Legal step in the Flightright funnel; the A/B test deliberately placed fee transparency immediately after this high-commitment moment.
 - **PM Disco.** 4 AI agents for product discovery and prioritized hypothesis generation. Open source: https://github.com/AliMahmoud15486/pm-disco.
-- **PNT (Product Nature Tagging).** AI agents that scan large product datasets to propose tags based on product nature and utilization, with QA on results. Currently in progress.
+- **PNT (Product Nature Tagging).** AI agents that scan large product datasets to propose tags based on product nature and utilization, with QA on results. Open source: https://github.com/AliMahmoud15486/Product_nature_tagging.
 - **Travel Agent.** AI agents that find flights, hotel bookings via scraping, and kid-friendly activities for trips. Open source: https://github.com/AliMahmoud15486/travel-orchestrator.
 - **TheGlocalPM.** Brand name. "Glocal" = global + local, reflecting Ali's cross-market product experience.
 

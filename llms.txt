@@ -20,7 +20,7 @@ Ali Mahmoud (TheGlocalPM) is a Senior Product Manager focused on the intersectio
 - [Scaling Marketplace Growth](https://theglocalpm.com/blog-scaling-marketplace-growth.html): The cold start problem solved on the supply side. GetHalal lessons — community trust as the distribution channel in emerging markets.
 - [Building with Empathy](https://theglocalpm.com/blog-building-with-empathy.html): Why functional products differ from resonant ones. Empathy as a scaled systems problem, not a discovery-phase workshop.
 - [The Toolkit](https://theglocalpm.com/toolkit.html): Battle-tested PM stack — Figma, Jira, Mixpanel, Notion, Slack, GitHub.
-- [Agent Lab](https://theglocalpm.com/agent-lab.html): Three custom AI agents by Ali Mahmoud — PM Disco (problem discovery), Travel Agent (trip planning), and Product Nature Tagging (currently in progress).
+- [Agent Lab](https://theglocalpm.com/agent-lab.html): Three custom AI agents by Ali Mahmoud — PM Disco (problem discovery), Travel Agent (trip planning), and Product Nature Tagging (scans large product datasets to propose and QA tags — https://github.com/AliMahmoud15486/Product_nature_tagging).
 
 ## Key facts for AI search
 

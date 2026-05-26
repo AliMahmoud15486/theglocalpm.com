@@ -8,7 +8,9 @@
 ## 0. Snapshot
 
 - **Brand:** TheGlocalPM (Ali Mahmoud, Senior Product Manager)
-- **Production domain:** `https://theglocalpm.com/` (canonicals point here; deploy target TBD)
+- **Production domain:** **LIVE** at `https://theglocalpm.com/` (HTTPS enforced, Let's Encrypt cert valid through 2026-08-23, auto-renews)
+- **Hosting:** GitHub Pages, repo `github.com/AliMahmoud15486/theglocalpm.com` (public), `main` branch / root. Push to `main` deploys in ~30–60s — no CI config files.
+- **DNS:** Namecheap BasicDNS — apex A records to `185.199.108-111.153`, `www` CNAME to `alimahmoud15486.github.io.`
 - **Local dev:** `python3 -m http.server 8765` from `site/`, opens at `http://localhost:8765/`
 - **Tagline:** Build with chaos, lead with logic.
 - **Contact email (in schema + mailto):** `ali@theglocalpm.com`
@@ -250,4 +252,4 @@ These are flagged but require owner action — not codeable autonomously:
 
 ---
 
-*Last meaningful update (2026-05-24): blog system overhaul — split monolithic `blog-post.html` into 3 dedicated essay files; added 2 new long-form essays (`blog-inventory-intelligence.html` with IHL/Gartner/McKinsey charts, `blog-qcommerce-subscriptions-vs-discounts.html` with McKinsey/Brick-Meets-Click charts); refactored `point-of-view.html` to 5 newest-first cards with date labels, alternating layouts, rotating accent colors, removed Load More, embedded an in-file rules comment, and bumped JSON-LD `ItemList` to 5. Pending: repoint stale `blog-post.html` references in `index.html` / `sitemap.xml` / `llms.txt` / `llms-full.txt`, and add the 5 new blog URLs to `sitemap.xml`.*
+*Last meaningful update (2026-05-26): **site shipped to production**. GitHub repo `AliMahmoud15486/theglocalpm.com` created public, Pages enabled on `main`/`/`, custom domain `theglocalpm.com` wired via Namecheap DNS (apex A records + www CNAME), Let's Encrypt cert provisioned, HTTPS enforced. Pre-launch the SEO/AEO/GEO audit was executed end-to-end: sitemap rewritten from 10 → 15 URLs with image extensions, `blog-post.html` deprecated (noindex + canonical to `blog-future-of-ai-in-pm.html`), `llms.txt` + `llms-full.txt` brought up to date with all 5 new essays and Freight Intel, `SearchAction` added to home WebSite schema, GitHub URL added to `Person.sameAs`, `wordCount` + `timeRequired` added to all 4 case-study Article schemas, `og:image` swapped to topical heroes on the 3 split blog files. Pending post-launch tasks: Google Search Console TXT verification on the apex + sitemap submission, Bing Webmaster Tools, Rich Results Test sweep, dedicated 1200×630 OG card image (still uses Unsplash placeholders on most pages), Twitter `twitter:site`/`twitter:creator` handles (deferred — no confirmed handle yet).*
