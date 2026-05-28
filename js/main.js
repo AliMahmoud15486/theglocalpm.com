@@ -37,6 +37,10 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 (function () {
   'use strict';
 
+  function fireGAEvent(eventName, params) {
+    if (typeof gtag === 'function') gtag('event', eventName, params);
+  }
+
   function ready(fn) {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
@@ -188,7 +192,10 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     // handler bound via the [data-cal-link] data attribute.
     document.addEventListener('click', function (e) {
       const el = e.target.closest('[data-cal-link]');
-      if (el) e.preventDefault();
+      if (el) {
+        e.preventDefault();
+        fireGAEvent('cta_click', { cta_name: 'book_a_call' });
+      }
     }, true);
 
     // Mobile menu toggle
@@ -208,6 +215,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     function openResume() {
       const m = document.getElementById('resume-modal');
       if (!m) return;
+      fireGAEvent('cta_click', { cta_name: 'open_resume' });
       m.classList.remove('hidden');
       m.classList.add('flex');
       document.body.style.overflow = 'hidden';
@@ -226,6 +234,20 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeResume();
+    });
+
+    // GA: nav topic clicks (Agent Lab, The Toolkit, Case Studies, Point of View)
+    const GA_NAV_TOPICS = {
+      'agent-lab.html':    'agent_lab',
+      'toolkit.html':      'the_toolkit',
+      'case-studies.html': 'case_studies',
+      'point-of-view.html':'point_of_view',
+    };
+    document.addEventListener('click', function (e) {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const topic = GA_NAV_TOPICS[link.getAttribute('href')];
+      if (topic) fireGAEvent('nav_topic_click', { topic });
     });
 
     // Press-down animation for elements with .neo-shadow that opt in
