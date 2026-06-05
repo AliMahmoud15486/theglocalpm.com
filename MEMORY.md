@@ -121,7 +121,7 @@ site/
 - **GEO summary block** — "In Short / Best For / Proof in Numbers" three-card row, citation-ready
 - **What I Do** — 6 cards: AI Product Management · Product Strategy & Vision · Emerging Market Products · Product Discovery & User Research · Data & Analytics · 0-to-1 & GTM Execution
 - **Proof of Impact** — single GetHalal card (image: `assets/case-studies/gethalal-case.png`) with reduced height (10% smaller from original), CTA "View All Case Studies →"
-- **Agent Lab teaser** — 3 cards (PM Disco / Travel Agent / PNT), with GET AGENT links to GitHub and IN PROGRESS disabled button for PNT, CTA "View All Agents →"
+- **Agent Lab teaser** — 3 cards (PM Disco / Travel Agent / PNT), each with a `Get Agent` link to its GitHub repo (`pm-disco`, `travel-orchestrator`, `Product_nature_tagging`). CTA "View All Agents →"
 - **Toolkit teaser** — 3 download cards (Emerging Market PM Playbook · AI Product Discovery Canvas · 0-to-1 Launch Checklist), CTA "View All Tools →"
 - **Point of View teaser** — single essay card, CTA "View All Essays →"
 - **Office Hours** — Cal.com booking + portrait
@@ -135,7 +135,7 @@ site/
 - **`case-study-flightright.html`** — still using the **older 3-column hero / Problem-Process-Proof / Bento template**. Pending rewrite (see §4)
 
 ### Other pages
-- **`agent-lab.html`** — 3-card grid (PM Disco GitHub link / Travel Agent GitHub link / PNT disabled), subtitle "AI agents built to solve real product and operational problems — from discovery to execution"
+- **`agent-lab.html`** — 3-card grid, all three cards link to their GitHub repos (PM Disco → `pm-disco`, Travel Agent → `travel-orchestrator`, PNT → `Product_nature_tagging`). JSON-LD `SoftwareApplication` entries each carry a `url` field. Subtitle: "AI agents built to solve real product and operational problems — from discovery to execution"
 - **`toolkit.html`** — 6-tool stack (Figma · Jira · Mixpanel · Notion · Slack · GitHub) + 3-Q FAQ
 - **`skills.html`** — 6 skill cards + "What does a Senior PM do?" lede + 2-Q FAQ. **Disabled in navbar**, page still serves
 - **`point-of-view.html`** — 5 essay cards, newest-first, alternating image-left / image-right layouts; per-card category badge + (for non-featured cards) "Month YYYY" date label below the badge; Load More button removed; embedded HTML comment documents the rules for adding new posts (naming, routing, date label, order, alternation, JSON-LD upkeep)
@@ -190,7 +190,7 @@ site/
 - **Blog post JSON-LD**: each new post requires its own `BlogPosting` + `BreadcrumbList` in `<head>`. The `point-of-view.html` `ItemList` must also be updated: bump `numberOfItems`, add a new `ListItem` at position 1, renumber the rest.
 - **Internal-linking pattern**: each case study deep dive has a "Read next" section linking to the other two case studies. Each blog post's "Read Next" links to the two next-most-recent posts (not itself, not the older tail).
 - **CTAs below sections**: standard pattern is `mt-12 md:mt-16 text-center` with muted helper line + outlined button. Helper text is `text-on-surface-variant` (dark sections) or `text-white/80` (purple/dark sections)
-- **Disabled button style**: `bg-surface-container-high border-outline-variant text-outline opacity-50 cursor-not-allowed` (used for PNT "Coming Soon" and Skills "SOON" pill)
+- **Disabled button style**: `bg-surface-container-high border-outline-variant text-outline opacity-50 cursor-not-allowed` (currently used only for the Skills "SOON" nav pill; PNT used this style until 2026-05-26 when it was activated and switched to a regular `Get Agent` link)
 - **Schema-content parity**: when visible content changes, also update the matching JSON-LD on the same page (Google penalizes drift)
 - **AEO mirror**: every FAQ section on a page has visible `<details>` markup matching the `FAQPage` JSON-LD 1:1
 
@@ -252,4 +252,4 @@ These are flagged but require owner action — not codeable autonomously:
 
 ---
 
-*Last meaningful update (2026-05-26): **site shipped to production**. GitHub repo `AliMahmoud15486/theglocalpm.com` created public, Pages enabled on `main`/`/`, custom domain `theglocalpm.com` wired via Namecheap DNS (apex A records + www CNAME), Let's Encrypt cert provisioned, HTTPS enforced. Pre-launch the SEO/AEO/GEO audit was executed end-to-end: sitemap rewritten from 10 → 15 URLs with image extensions, `blog-post.html` deprecated (noindex + canonical to `blog-future-of-ai-in-pm.html`), `llms.txt` + `llms-full.txt` brought up to date with all 5 new essays and Freight Intel, `SearchAction` added to home WebSite schema, GitHub URL added to `Person.sameAs`, `wordCount` + `timeRequired` added to all 4 case-study Article schemas, `og:image` swapped to topical heroes on the 3 split blog files. Pending post-launch tasks: Google Search Console TXT verification on the apex + sitemap submission, Bing Webmaster Tools, Rich Results Test sweep, dedicated 1200×630 OG card image (still uses Unsplash placeholders on most pages), Twitter `twitter:site`/`twitter:creator` handles (deferred — no confirmed handle yet).*
+*Last meaningful update (2026-05-26): **site shipped to production**. GitHub repo `AliMahmoud15486/theglocalpm.com` created public, Pages enabled on `main`/`/`, custom domain `theglocalpm.com` wired via Namecheap DNS (apex A records + www CNAME), Let's Encrypt cert provisioned, HTTPS enforced. Pre-launch the SEO/AEO/GEO audit was executed end-to-end: sitemap rewritten from 10 → 15 URLs with image extensions, `blog-post.html` deprecated (noindex + canonical to `blog-future-of-ai-in-pm.html`), `llms.txt` + `llms-full.txt` brought up to date with all 5 new essays and Freight Intel, `SearchAction` added to home WebSite schema, GitHub URL added to `Person.sameAs`, `wordCount` + `timeRequired` added to all 4 case-study Article schemas, `og:image` swapped to topical heroes on the 3 split blog files. Post-launch hotfix (commit `7c73680`): activated Product Nature Tagging (PNT) — both Agent Lab CTAs (home + `agent-lab.html`) now link to `github.com/AliMahmoud15486/Product_nature_tagging`; JSON-LD `SoftwareApplication` for PNT gained the `url` field and lost "Coming soon"; `llms.txt` + `llms-full.txt` references updated. Pending post-launch tasks: Google Search Console TXT verification on the apex + sitemap submission, Bing Webmaster Tools, Rich Results Test sweep, dedicated 1200×630 OG card image (still uses Unsplash placeholders on most pages), Twitter `twitter:site`/`twitter:creator` handles (deferred — no confirmed handle yet).*
