@@ -81,9 +81,16 @@
 
   <url>
     <loc>https://theglocalpm.com/point-of-view.html</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://theglocalpm.com/blog-evals-pm-quality-gate.html</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>

@@ -100,11 +100,22 @@ f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){retu
     {
       "@type": "ItemList",
       "name": "Essays",
-      "numberOfItems": 5,
+      "numberOfItems": 6,
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
+          "item": {
+            "@type": "BlogPosting",
+            "headline": "Evals: The Product Manager's New Quality Gate",
+            "url": "https://theglocalpm.com/blog-evals-pm-quality-gate.html",
+            "description": "In AI products, quality is probabilistic. Evals are how a PM defines 'good,' measures it, and holds the line — the modern replacement for acceptance criteria, and the single most important craft to master.",
+            "author": { "@type": "Person", "name": "Ali Mahmoud" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
           "item": {
             "@type": "BlogPosting",
             "headline": "The Retention Problem in Quick Commerce: Why Subscriptions Beat Discounts",
@@ -115,7 +126,7 @@ f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){retu
         },
         {
           "@type": "ListItem",
-          "position": 2,
+          "position": 3,
           "item": {
             "@type": "BlogPosting",
             "headline": "Why the Next E-Commerce Advantage Is Inventory Intelligence, Not Storefront UX",
@@ -126,7 +137,7 @@ f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){retu
         },
         {
           "@type": "ListItem",
-          "position": 3,
+          "position": 4,
           "item": {
             "@type": "BlogPosting",
             "headline": "The Future of AI in Product Management",
@@ -137,7 +148,7 @@ f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){retu
         },
         {
           "@type": "ListItem",
-          "position": 4,
+          "position": 5,
           "item": {
             "@type": "BlogPosting",
             "headline": "Scaling Marketplace Growth",
@@ -148,7 +159,7 @@ f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){retu
         },
         {
           "@type": "ListItem",
-          "position": 5,
+          "position": 6,
           "item": {
             "@type": "BlogPosting",
             "headline": "Building with Empathy",
@@ -218,7 +229,25 @@ f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){retu
        numberOfItems reflects the new count.
   -->
   <div class="flex flex-col gap-8 md:gap-lg">
-    <!-- Card 1 (featured / newest) -->
+    <!-- Card 1 (featured / newest) — Evals -->
+    <a href="blog-evals-pm-quality-gate.html" class="block bg-tertiary-fixed border-4 border-[#1A1A1A] rounded-xl p-6 flex flex-col md:flex-row-reverse gap-6 md:gap-lg neo-shadow-lg transition-transform duration-300 hover:-translate-y-2 tilt-1 hover-untilt">
+      <div class="w-full md:w-1/2 lg:w-2/5 shrink-0 overflow-hidden rounded-lg border-4 border-[#1A1A1A] bg-[#1A1A1A] flex flex-col items-center justify-center gap-3 h-[260px] text-center px-6"
+           style="background-image: radial-gradient(rgba(255,255,255,0.09) 1.5px, transparent 1.5px); background-size: 22px 22px;">
+        <span class="material-symbols-outlined text-white text-6xl" style="font-variation-settings:'FILL' 1;">fact_check</span>
+        <span class="text-white font-black text-4xl tracking-tight">EVALS</span>
+        <span class="text-white/70 font-bold text-[11px] uppercase tracking-widest">The PM's quality gate</span>
+      </div>
+      <div class="flex flex-col justify-center gap-3">
+        <span class="text-secondary-container font-bold text-xs tracking-widest uppercase">AI Craft</span>
+        <h2 class="text-2xl md:text-3xl font-extrabold">Evals: The Product Manager's Quality Gate</h2>
+        <p class="text-on-surface-variant">AI products ship behaviours you can't fully predict. Evals are how a PM defines "good," measures it, and holds the line — the single most important craft to master now.</p>
+        <span class="inline-flex items-center gap-1 text-secondary-container font-bold text-sm border-b-4 border-secondary-container w-max pb-1">
+          Read Essay <span class="material-symbols-outlined">arrow_forward</span>
+        </span>
+      </div>
+    </a>
+
+    <!-- Card 2 — Q-Commerce -->
     <a href="blog-qcommerce-subscriptions-vs-discounts.html" class="block bg-secondary-fixed border-4 border-[#1A1A1A] rounded-xl p-6 flex flex-col md:flex-row gap-6 md:gap-lg neo-shadow-lg transition-transform duration-300 hover:-translate-y-2 tilt-1-reverse hover-untilt">
       <div class="w-full md:w-1/2 lg:w-2/5 shrink-0 overflow-hidden rounded-lg border-4 border-[#1A1A1A]">
         <img class="grayscale-img w-full h-[260px] object-cover"
