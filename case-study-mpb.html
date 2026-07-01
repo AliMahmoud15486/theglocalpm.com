@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <!-- FullStory -->
+  <script>
+window['_fs_host'] = 'fullstory.com';
+window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
+window['_fs_org'] = 'o-24PHZJ-na1';
+window['_fs_namespace'] = 'FS';
+!function(m,n,e,t,l,o,g,y){var s,f,a=function(h){
+return!(h in m)||(m.console&&m.console.log&&m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].'),!1)}(e)
+;function p(b){var h,d=[];function j(){h&&(d.forEach((function(b){var d;try{d=b[h[0]]&&b[h[0]](h[1])}catch(h){return void(b[3]&&b[3](h))}
+d&&d.then?d.then(b[2],b[3]):b[2]&&b[2](d)})),d.length=0)}function r(b){return function(d){h||(h=[b,d],j())}}return b(r(0),r(1)),{
+then:function(b,h){return p((function(r,i){d.push([b,h,r,i]),j()}))}}}a&&(g=m[e]=function(){var b=function(b,d,j,r){function i(i,c){
+h(b,d,j,i,c,r)}r=r||2;var c,u=/Async$/;return u.test(b)?(b=b.replace(u,""),"function"==typeof Promise?new Promise(i):p(i)):h(b,d,j,c,c,r)}
+;function h(h,d,j,r,i,c){return b._api?b._api(h,d,j,r,i,c):(b.q&&b.q.push([h,d,j,r,i,c]),null)}return b.q=[],b}(),y=function(b){function h(h){
+"function"==typeof h[4]&&h[4](new Error(b))}var d=g.q;if(d){for(var j=0;j<d.length;j++)h(d[j]);d.length=0,d.push=h}},function(){
+(o=n.createElement(t)).async=!0,o.crossOrigin="anonymous",o.src="https://"+l,o.onerror=function(){y("Error loading "+l)}
+;var b=n.getElementsByTagName(t)[0];b&&b.parentNode?b.parentNode.insertBefore(o,b):n.head.appendChild(o)}(),function(){function b(){}
+function h(b,h,d){g(b,h,d,1)}function d(b,d,j){h("setProperties",{type:b,properties:d},j)}function j(b,h){d("user",b,h)}function r(b,h,d){j({
+uid:b},d),h&&j(h,d)}g.identify=r,g.setUserVars=j,g.identifyAccount=b,g.clearUserCookie=b,g.setVars=d,g.event=function(b,d,j){h("trackEvent",{
+name:b,properties:d},j)},g.anonymize=function(){r(!1)},g.shutdown=function(){h("shutdown")},g.restart=function(){h("restart")},
+g.log=function(b,d){h("log",{level:b,msg:d})},g.consent=function(b){h("setIdentity",{consent:!arguments.length||b})}}(),s="fetch",
+f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){return g._w[s].apply(this,arguments)}),g._v="2.0.0")
+}(window,document,window._fs_namespace,"script",window._fs_script);
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4HB5H5CNK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-X4HB5H5CNK');
+  </script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MPB — Warehouse Throughput Discovery &amp; 3 Shipped AI Agents | Case Study | TheGlocalPM</title>
+<meta name="description" content="A self-initiated, 11-day product discovery for MPB's warehouse operations: named an invisible throughput constraint (the 'Listing Leg'), framed four strategic bets, and shipped three working AI-agent prototypes on n8n + Claude + Bolt.new. 5–8% NSM lift/quarter modeled; ~€1.5–3M annual margin add." />
+<meta name="keywords" content="MPB case study, product discovery, warehouse operations, AI product management, n8n, Claude, Ragehooks, smart pricing AI, AI grading co-pilot, Opportunity Solution Tree, North Star Metric, recommerce, marketplace operations, lean LLM" />
+<meta name="author" content="Ali Mahmoud" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="theme-color" content="#5B6EF5" />
+<link rel="canonical" href="https://theglocalpm.com/case-study-mpb.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="TheGlocalPM" />
+<meta property="og:title" content="MPB — From an Invisible Warehouse Constraint to 3 Shipped AI Agents" />
+<meta property="og:description" content="A problem-first, 11-day product discovery for the operational engine behind MPB's growth — plus three working AI-agent prototypes built end-to-end on the JD's own tool stack." />
+<meta property="og:url" content="https://theglocalpm.com/case-study-mpb.html" />
+<meta property="og:image" content="https://theglocalpm.com/assets/portraits/ali-smiling.png" />
+<meta property="og:image:alt" content="MPB warehouse throughput discovery — case study by Ali Mahmoud" />
+<meta property="og:locale" content="en_US" />
+<meta property="article:author" content="Ali Mahmoud" />
+<meta property="article:section" content="Case Study" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="MPB — Warehouse Throughput Discovery &amp; 3 Shipped AI Agents" />
+<meta name="twitter:description" content="Named the invisible 'Listing Leg', framed four strategic bets, and shipped three working AI agents on n8n + Claude." />
+<meta name="twitter:image" content="https://theglocalpm.com/assets/portraits/ali-smiling.png" />
+<link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+<link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="TheGlocalPM" />
+<link rel="manifest" href="assets/favicon/site.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js?v=2"></script>
+<link rel="stylesheet" href="css/styles.css?v=2" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://theglocalpm.com/case-study-mpb.html#article",
+      "headline": "MPB — Making an Invisible Warehouse Constraint Visible, then Shipping the AI Agents to Fix It",
+      "alternativeHeadline": "An 11-day product discovery + three working AI-agent prototypes",
+      "description": "A self-initiated, problem-first product discovery for MPB's warehouse operations. Names the invisible 'Listing Leg' between graded and live-on-site, frames four strategic bets against a single throughput constraint, and ships three working AI-agent prototypes (Ragehooks, Smart Pricing AI, AI Grading Co-pilot) on n8n + Claude + Bolt.new. Models a 5–8% NSM lift per quarter and ~€1.5–3M annual margin add, with a ~90% cost reframe from waterfall ML to lean LLM.",
+      "image": "https://theglocalpm.com/assets/portraits/ali-smiling.png",
+      "author": { "@type": "Person", "@id": "https://theglocalpm.com/#person", "name": "Ali Mahmoud", "url": "https://theglocalpm.com/" },
+      "publisher": { "@type": "Organization", "name": "TheGlocalPM", "url": "https://theglocalpm.com/", "logo": { "@type": "ImageObject", "url": "https://theglocalpm.com/assets/logos/theglocalpm.png" } },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://theglocalpm.com/case-study-mpb.html" },
+      "articleSection": "Case Study",
+      "keywords": "MPB, product discovery, warehouse operations, AI product management, n8n, Claude, Ragehooks, smart pricing, AI grading co-pilot, North Star Metric, recommerce, lean LLM",
+      "wordCount": 1400,
+      "timeRequired": "PT8M",
+      "about": [
+        { "@type": "Thing", "name": "Product Discovery" },
+        { "@type": "Thing", "name": "Warehouse Operations" },
+        { "@type": "Thing", "name": "AI Product Management" },
+        { "@type": "Thing", "name": "Marketplace Operations" },
+        { "@type": "Thing", "name": "Large Language Models" }
+      ],
+      "inLanguage": "en"
+    },
+    {
+      "@type": "ItemList",
+      "name": "AI-agent prototypes built for the MPB discovery",
+      "numberOfItems": 3,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "Ragehooks", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "url": "https://alimahmoud15486.github.io/mpb-ragehook-prototype/", "description": "n8n + Claude + Jira workflow that turns a FullStory frustration event into an enriched, prioritised Jira ticket in seconds." } },
+        { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "Smart Pricing AI", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "url": "https://alimahmoud15486.github.io/mpb-pricing-ai-prototype/", "description": "n8n + Claude structured-output agent that widens the pricing auto-approve band by scoring each item approve / review / decline with reasoning and confidence." } },
+        { "@type": "ListItem", "position": 3, "item": { "@type": "SoftwareApplication", "name": "AI Grading Co-pilot", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "url": "https://github.com/AliMahmoud15486/mpb-grading-copilot-prototype", "description": "Bolt.new + Claude Vision multimodal defect-detection co-pilot that runs post-submission — AI as co-pilot, never autograder." } }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theglocalpm.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://theglocalpm.com/case-studies.html" },
+        { "@type": "ListItem", "position": 3, "name": "MPB", "item": "https://theglocalpm.com/case-study-mpb.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-page="case-studies" class="bg-background">
+<div id="site-header"><noscript>
+  <header role="banner" class="bg-white border-b-4 border-[#1A1A1A] p-4">
+    <a href="index.html" class="font-extrabold">TheGlocalPM — Ali Mahmoud, Senior Product Manager</a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Work</a> ·
+      <a href="case-studies.html">Case Studies</a> ·
+      <a href="agent-lab.html">Agent Lab</a> ·
+      <a href="skills.html">Skills</a> ·
+      <a href="toolkit.html">The Toolkit</a> ·
+      <a href="point-of-view.html">Point of View</a> ·
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener">Book a call</a>
+    </nav>
+  </header>
+</noscript></div>
+
+<main class="relative pt-32">
+  <div class="absolute inset-0 bg-grid-pattern pointer-events-none"></div>
+
+  <!-- Back link -->
+  <div class="max-w-[1280px] mx-auto px-margin mb-6">
+    <a href="case-studies.html" class="inline-flex items-center gap-2 font-bold text-sm uppercase tracking-wider hover:text-coral transition-colors">
+      <span class="material-symbols-outlined">arrow_back</span> All Case Studies
+    </a>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <section class="max-w-4xl mx-auto px-margin mb-xl">
+    <span class="inline-block bg-[#1A1A1A] text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Case Study · Product Discovery &amp; AI</span>
+    <h1 class="text-5xl md:text-[80px] font-extrabold leading-[1.05] mb-6">
+      MPB — From an invisible warehouse constraint to <span class="tilted-underline tilted-underline-blue">3 shipped AI agents</span>
+    </h1>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-3xl">
+      A self-initiated, 11-day product discovery for the operational engine behind MPB's growth — Logistics, Warehouse Management, and the warehouse Operative app. It names the hidden "Listing Leg" no SLA measures, frames four strategic bets against a single throughput constraint, and backs them with three working AI-agent prototypes built end-to-end on the role's own tool stack.
+    </p>
+  </section>
+
+  <!-- ============ METRICS ROW (4 cards) ============ -->
+  <section class="max-w-[1280px] mx-auto px-margin mb-xl">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      <div class="bg-accent-yellow border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2">NSM Lift</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">5–8%</div>
+        <div class="text-xs font-bold opacity-80">Per quarter, from closing the Listing Leg alone (Little's Law)</div>
+      </div>
+      <div class="bg-accent-rose border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1-reverse">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2">Annual Margin Add</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">€1.5–3M</div>
+        <div class="text-xs font-bold opacity-80">Steady state across the four strategic bets</div>
+      </div>
+      <div class="bg-primary-fixed border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2">AI Agents Shipped</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">3</div>
+        <div class="text-xs font-bold opacity-80">n8n + Claude + Bolt.new — built end-to-end by me</div>
+      </div>
+      <div class="bg-brand-purple text-white border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1-reverse">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2 opacity-90">Cost Reframe</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">~90% ↓</div>
+        <div class="text-xs font-bold opacity-90">€1–1.4M → €70–130K via a lean-LLM approach</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 1: OVERVIEW ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl">
+    <span class="inline-block bg-primary text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Overview</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      Growth that is operationally constrained, not demand-constrained
+    </h2>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-6">
+      MPB is the largest global platform for used photography and videography equipment — a vertically-integrated managed marketplace that buys, inspects, grades, photographs, warranties and resells used kit in-house. It recirculated <strong>615,000 items</strong> in FY25 (+9% YoY) against a used-camera market growing ~5.3% — taking share at roughly 3.7 points a year, with five market tailwinds firing at once.
+    </p>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed">
+      That framing carries the whole thesis: <strong>demand is not the constraint — the warehouse is</strong>. In a Model-A managed marketplace, scaling recirculation means scaling operations. The single highest-leverage bottleneck — the <strong>Listing Leg</strong> between "Specialist-graded" and "live-on-site" — is not measured publicly, sits in no SLA, and is owned by no PM today. Closing it by even two days is modeled at a <strong>5–8% lift to the North Star per quarter, with zero acquisition spend.</strong> This case study is the discovery that made the constraint visible and the three AI agents that prove it can be shipped.
+    </p>
+
+    <!-- Callout -->
+    <div class="bg-primary-fixed border-4 border-primary p-6 md:p-8 neo-shadow-lg rounded-lg tilt-1-reverse mt-10">
+      <div class="flex items-start gap-4">
+        <span class="material-symbols-outlined text-4xl text-primary flex-shrink-0" style="font-variation-settings:'FILL' 1;">visibility</span>
+        <div>
+          <p class="font-bold uppercase text-xs tracking-widest mb-3 text-primary">The one-line mandate</p>
+          <p class="text-lg md:text-xl font-bold leading-snug">
+            Make the throughput constraint visible, then pull the gearbox conversion lever that turns demand-tailwind into recirculated items. Naming the constraint is the first step to managing it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 2: METHODOLOGY ============ -->
+  <section class="bg-surface-cream py-xl">
+    <div class="max-w-4xl mx-auto px-margin">
+      <span class="inline-block bg-secondary-container text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">The Approach</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+        A structured, <span class="tilted-underline tilted-underline-orange">problem-first</span> discovery
+      </h2>
+      <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-8">
+        Eleven days of modular discovery, each step producing a named artifact — North Star → competition → market → process maps → FullStory simulation → funnel analysis → problem framing → OST &amp; prioritisation → hypothesis workshop → business cases → prototypes. Every cost and impact estimate carries a confidence flag (🟢 high / 🟡 medium / 🔴 needs Day-1 data), and every 🔴 is logged as a measurement priority rather than hidden.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">North Star: Items Recirculated</h3>
+          <p class="text-base md:text-lg text-on-surface-variant leading-relaxed">MPB's own published metric — two-sided, mission-aligned, and a leading indicator of margin. The PM-Logistics sub-NSM is <strong>Kit Throughput</strong>: items completing <em>intake → live → first purchase</em>, subject to a return-rate guardrail.</p>
+        </div>
+        <div class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">6 simulated stakeholder agents</h3>
+          <p class="text-base md:text-lg text-on-surface-variant leading-relaxed">The hypothesis workshop was run with six independent agents — CPO, Head of Ops, Head of Data, Head of CS, Senior Specialist, Eng Lead — each proposing hypotheses blind. Convergence is therefore genuine agreement, not author bias.</p>
+        </div>
+        <div class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Real seller-flow observation</h3>
+          <p class="text-base md:text-lg text-on-surface-variant leading-relaxed">A full trade-in on mpb.com (DE) surfaced the "PAID — done" seller view versus the warehouse view — and six concrete UX defects invisible in any public material.</p>
+        </div>
+        <div class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">One primary interview</h3>
+          <p class="text-base md:text-lg text-on-surface-variant leading-relaxed">A conversation with a Lead PM at Vestiaire Collective (adjacent luxury recommerce) validated several framings and productively challenged one — kept honest against a real operator's view.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 3: THE PROBLEM ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl">
+    <span class="inline-block bg-error-red text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">The Problem</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      The <span class="tilted-underline">throughput blind spot</span>
+    </h2>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-8">
+      The seller journey ends at "PAID — transaction closed." Everything that actually converts a bought item into a recirculation event happens after that, invisible to sellers and to every published SLA. Three compounding drains sit inside that blind spot.
+    </p>
+
+    <ol class="space-y-5">
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-error-red leading-none">01</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">The Listing Leg</h3>
+          <p class="text-base md:text-lg leading-relaxed">The gap between graded and live-on-site. Conversion here is ~95–97% — the bottleneck is <strong>time, not conversion</strong>, concentrated in the manual pricing-approval path and an Operative-App-to-WMS handover, not in photography or (templated) copy.</p>
+        </div>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-secondary-container leading-none">02</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">The Returns Loop</h3>
+          <p class="text-base md:text-lg leading-relaxed">A returned item is a <strong>second full Listing Leg</strong> — re-grade, re-photograph, re-list (6–19 days each). At industry-typical 5–10% return rates, that is an estimated <strong>200K–800K item-days of trapped inventory a year</strong> MPB likely doesn't measure today.</p>
+        </div>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-brand-purple leading-none">03</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Misgrading at intake</h3>
+          <p class="text-base md:text-lg leading-relaxed">Every misgrade feeds both the reject path and the returns path — the single most expensive quality leak. Reducing it 15–25% is modeled at <strong>~€500K–€1M in annual savings</strong>, before any NSM effect.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 4: THE FOUR BETS ============ -->
+  <section class="bg-surface-cream py-xl">
+    <div class="max-w-4xl mx-auto px-margin">
+      <span class="inline-block bg-coral text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">The Strategy</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+        Four <span class="tilted-underline">orthogonal bets</span>, one constraint
+      </h2>
+      <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-10">
+        Thirteen problem statements were scored on five dimensions (NSM impact, evidence confidence, PM direct ownership, stakeholder alignment, effort) and resolved into four strategic bets — each addressing a <em>different shape</em> of the throughput problem, so they compound rather than overlap.
+      </p>
+
+      <div class="overflow-x-auto border-4 border-[#1A1A1A] rounded-2xl neo-shadow-lg">
+        <table class="w-full text-left border-collapse min-w-[640px]">
+          <thead class="bg-[#1A1A1A] text-white">
+            <tr>
+              <th class="px-5 md:px-6 py-4 font-bold uppercase text-xs tracking-widest">Bet</th>
+              <th class="px-5 md:px-6 py-4 font-bold uppercase text-xs tracking-widest">What it fixes</th>
+              <th class="px-5 md:px-6 py-4 font-bold uppercase text-xs tracking-widest">Year-1 spend</th>
+              <th class="px-5 md:px-6 py-4 font-bold uppercase text-xs tracking-widest">Likely impact</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr class="border-t-2 border-[#1A1A1A]">
+              <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">🥇 Misgrading (P3.1)</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">Cost-loop quality — reject + return reduction</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">Process + rubric</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">15–25% reduction; ~€500K–€1M/yr</td>
+            </tr>
+            <tr class="border-t-2 border-[#1A1A1A] bg-surface-cream">
+              <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">🥈 Kit-idle-time (P1.1)</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">Capacity engine — compress the Listing Leg</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">Workflow + thresholds</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">5–8% NSM / quarter</td>
+            </tr>
+            <tr class="border-t-2 border-[#1A1A1A]">
+              <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">🥉 Ragehooks (P5)</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">Organisational speed — insight-to-action latency</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">€1–2K + n8n</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">Meta — accelerates every other bet</td>
+            </tr>
+            <tr class="border-t-2 border-[#1A1A1A] bg-surface-cream">
+              <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">🏅 AI-assisted intake (P2.1)</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">Capability foundation — remove the per-Specialist ceiling</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">€40–80K</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">3–7% NSM / quarter (Year-1 ramp)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm md:text-base text-on-surface-variant leading-relaxed mt-4">
+        Combined Year-1 investment ~€70–130K · combined likely NSM impact 10–15% per quarter additive by year-end · ~€1.5–3M annual margin add at steady state.
+      </p>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 5: THE PROTOTYPES ============ -->
+  <section class="max-w-[1280px] mx-auto px-margin py-xl">
+    <div class="max-w-4xl">
+      <span class="inline-block bg-brand-purple text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">The Proof — Working AI Agents</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+        Three prototypes, three <span class="tilted-underline tilted-underline-purple">LLM patterns</span>
+      </h2>
+      <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-10">
+        Each strategic bet is the lean-LLM business case made real — built end-to-end on the role's own stack (n8n + Claude + Bolt.new), deliberately spanning three different LLM patterns to demonstrate range: text enrichment, structured-output decisioning, and multimodal vision.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+
+      <!-- Prototype 1: Ragehooks -->
+      <article class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 md:p-7 flex flex-col">
+        <div class="flex items-center justify-between mb-4">
+          <span class="bg-primary-fixed border-2 border-[#1A1A1A] px-3 py-1 rounded-full font-bold text-xs uppercase">Text enrichment</span>
+          <span class="text-3xl">⚡</span>
+        </div>
+        <h3 class="text-2xl font-extrabold mb-1">Ragehooks</h3>
+        <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-3">n8n · Claude · Jira</p>
+        <p class="text-base leading-relaxed mb-4 flex-grow">A FullStory frustration event fires a webhook; Claude enriches it with a summary, priority and recommended action; a fully-contextualised Jira ticket appears within seconds. Insight-to-action latency drops from <strong>days to minutes</strong> — the unanimous workshop vote, and 3–5 dev-days in production.</p>
+        <div class="flex flex-wrap gap-3 mt-auto">
+          <a href="https://alimahmoud15486.github.io/mpb-ragehook-prototype/" target="_blank" rel="noopener noreferrer" class="inline-block bg-[#1A1A1A] text-white px-5 py-2 font-bold text-xs uppercase neo-shadow neo-click transition-all rounded">Live Demo ↗</a>
+          <a href="https://github.com/AliMahmoud15486/mpb-ragehook-prototype" target="_blank" rel="noopener noreferrer" class="inline-block bg-white border-2 border-[#1A1A1A] px-5 py-2 font-bold text-xs uppercase neo-shadow neo-click transition-all rounded">View Code</a>
+        </div>
+      </article>
+
+      <!-- Prototype 2: Smart Pricing AI -->
+      <article class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 md:p-7 flex flex-col">
+        <div class="flex items-center justify-between mb-4">
+          <span class="bg-accent-yellow border-2 border-[#1A1A1A] px-3 py-1 rounded-full font-bold text-xs uppercase">Structured output</span>
+          <span class="text-3xl">💶</span>
+        </div>
+        <h3 class="text-2xl font-extrabold mb-1">Smart Pricing AI</h3>
+        <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-3">n8n · Claude structured output</p>
+        <p class="text-base leading-relaxed mb-4 flex-grow">The pricing manual-review queue is the biggest Listing-Leg sub-component. This agent scores each item <strong>approve / review / decline</strong> against a rubric with few-shot examples, returning reasoning and confidence — widening the auto-approve band from ~60% rules-based toward ~85% AI-augmented, all in shadow mode.</p>
+        <div class="flex flex-wrap gap-3 mt-auto">
+          <a href="https://alimahmoud15486.github.io/mpb-pricing-ai-prototype/" target="_blank" rel="noopener noreferrer" class="inline-block bg-[#1A1A1A] text-white px-5 py-2 font-bold text-xs uppercase neo-shadow neo-click transition-all rounded">Live Demo ↗</a>
+          <a href="https://github.com/AliMahmoud15486/mpb-pricing-ai-prototype" target="_blank" rel="noopener noreferrer" class="inline-block bg-white border-2 border-[#1A1A1A] px-5 py-2 font-bold text-xs uppercase neo-shadow neo-click transition-all rounded">View Code</a>
+        </div>
+      </article>
+
+      <!-- Prototype 3: AI Grading Co-pilot -->
+      <article class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 md:p-7 flex flex-col">
+        <div class="flex items-center justify-between mb-4">
+          <span class="bg-accent-rose border-2 border-[#1A1A1A] px-3 py-1 rounded-full font-bold text-xs uppercase">Multimodal vision</span>
+          <span class="text-3xl">📷</span>
+        </div>
+        <h3 class="text-2xl font-extrabold mb-1">AI Grading Co-pilot</h3>
+        <p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-3">Bolt.new · Claude Vision · n8n</p>
+        <p class="text-base leading-relaxed mb-4 flex-grow">Claude Vision inspects item photos for defects and compares against the Specialist's grade — but only <strong>after submission</strong>, surfacing a quiet confirmation on agreement or an amber "here's what I saw" panel on disagreement. Locks the workshop's design principle: <strong>AI as co-pilot, never autograder.</strong></p>
+        <div class="flex flex-wrap gap-3 mt-auto">
+          <a href="https://github.com/AliMahmoud15486/mpb-grading-copilot-prototype" target="_blank" rel="noopener noreferrer" class="inline-block bg-[#1A1A1A] text-white px-5 py-2 font-bold text-xs uppercase neo-shadow neo-click transition-all rounded">Code + Build Guide ↗</a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="bg-primary-fixed border-4 border-primary p-6 md:p-8 neo-shadow-lg rounded-lg tilt-1-reverse mt-10 max-w-4xl">
+      <div class="flex items-start gap-4">
+        <span class="material-symbols-outlined text-4xl text-primary flex-shrink-0" style="font-variation-settings:'FILL' 1;">bolt</span>
+        <div>
+          <p class="font-bold uppercase text-xs tracking-widest mb-3 text-primary">Why they compound</p>
+          <p class="text-lg md:text-xl font-bold leading-snug">
+            Ragehooks accelerates iteration on the other two; the Grading Co-pilot generates the labelled data that tunes Smart Pricing; Smart Pricing widens the Listing-Leg band that P1.1 depends on. Three agents, one loop — each with shadow-mode validation, so the worst case is "sunk cost, no operational harm."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 6: THE REFRAME ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl">
+    <span class="inline-block bg-secondary-container text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">The Reframe</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      From waterfall ML to <span class="tilted-underline tilted-underline-orange">lean LLM</span>
+    </h2>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-8">
+      The original business cases assumed traditional Eng + ML team builds — a combined ~€1–1.4M in Year 1. Reframing around foundation LLMs with prompting (no model training; the LLM <em>is</em> the model) cut that to <strong>~€70–130K for equal expected NSM impact</strong> — a ~90% reduction. It ships in weeks not months, carries far lower commit risk, stays A/B-validatable, and is PM-led rather than Eng-bottlenecked. The upgrade to custom ML only triggers <em>if</em> vision accuracy plateaus or API costs exceed on-prem TCO.
+    </p>
+
+    <div class="overflow-hidden border-4 border-[#1A1A1A] rounded-2xl neo-shadow-lg">
+      <table class="w-full text-left border-collapse">
+        <thead class="bg-[#1A1A1A] text-white">
+          <tr>
+            <th class="px-5 md:px-6 py-4 font-bold uppercase text-xs tracking-widest">Business case</th>
+            <th class="px-5 md:px-6 py-4 font-bold uppercase text-xs tracking-widest">Investment</th>
+            <th class="px-5 md:px-6 py-4 font-bold uppercase text-xs tracking-widest">Payback</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-t-2 border-[#1A1A1A]">
+            <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">Ragehooks (H-5.1)</td>
+            <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">~€1–2K + €25/mo</td>
+            <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">&lt; 1 month · 🟢 low risk</td>
+          </tr>
+          <tr class="border-t-2 border-[#1A1A1A] bg-surface-cream">
+            <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">Smart Pricing AI (H-2.1.3)</td>
+            <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">~€30–50K Year 1</td>
+            <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">1–3 months · 🟡 medium</td>
+          </tr>
+          <tr class="border-t-2 border-[#1A1A1A]">
+            <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">AI Grading Co-pilot (H-3.1.2)</td>
+            <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">~€40–80K Year 1</td>
+            <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">4–8 months · 🟡 tenure-defining</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 7: CLOSING ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl">
+    <span class="inline-block bg-[#1A1A1A] text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Conclusion</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      Discovery rigor, <span class="tilted-underline">plus the proof I can ship</span>
+    </h2>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed">
+      Most product cases pitch the <em>what</em>. This one pairs a defensible operating thesis — <strong>MPB's growth is constrained by warehouse throughput, not demand</strong> — with three working AI agents that demonstrate the <em>how</em>, built on the exact tools the role names. It is honest about its unknowns: every low-confidence estimate is a documented Day-1 measurement priority, not a hidden assumption. The discovery makes the constraint visible; the agents show it can be closed in weeks, not quarters.
+    </p>
+  </section>
+
+  <!-- ============ TAGS ============ -->
+  <section class="max-w-4xl mx-auto px-margin pb-xl">
+    <div class="border-t-4 border-[#1A1A1A] pt-8">
+      <p class="font-bold uppercase text-xs tracking-widest mb-4 text-on-surface-variant">Topics covered</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Product Discovery</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Warehouse Operations</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Marketplace</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">AI Product Management</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">n8n</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Claude</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Opportunity Solution Tree</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">North Star Metric</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Lean LLM</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Read next -->
+  <section class="max-w-[1280px] mx-auto px-margin pb-xl">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-8 inline-block">
+      <span class="tilted-underline">Read next</span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="case-study-freight-intel.html" class="block bg-surface-cream border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow neo-shadow-hover transition-all group">
+        <span class="font-bold text-xs uppercase tracking-widest text-coral">AI · Logistics</span>
+        <h3 class="text-2xl font-bold mt-2 mb-2">Freight Intel — AI Margin Intelligence</h3>
+        <p class="text-on-surface-variant">Translating macro global events into SKU-level margin decisions in minutes. 3–7% margin recovery, 50+ data points automated, time-to-action cut from days to minutes.</p>
+      </a>
+      <a href="case-study.html" class="block bg-surface-cream border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow neo-shadow-hover transition-all group">
+        <span class="font-bold text-xs uppercase tracking-widest text-coral">Marketplace · B2C</span>
+        <h3 class="text-2xl font-bold mt-2 mb-2">GetHalal — 200€ to ~1M€ raise</h3>
+        <p class="text-on-surface-variant">Bootstrapped Halal meat delivery for 500K underserved Berlin consumers during COVID-19. 250K€ GMV in year 1, 151% customer growth.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-[#1A1A1A] text-white py-xl">
+    <div class="max-w-[1280px] mx-auto px-margin text-center">
+      <h2 class="text-4xl md:text-[80px] font-extrabold mb-6 leading-[1.05]">Ready to build the future?</h2>
+      <p class="text-lg md:text-xl text-surface-variant mb-10 max-w-xl mx-auto">
+        Let's collaborate on your next high-impact product. I bring execution-focused discovery and AI-augmented delivery to complex operational problems.
+      </p>
+      <div class="flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
+        <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener"
+           data-cal-link="alim-datajar/coffeechat"
+           data-cal-namespace="coffeechat"
+           data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}'
+           class="bg-primary text-white font-bold uppercase px-8 md:px-xl py-4 md:py-lg border-4 border-white neo-shadow-lg neo-click-lg transition-all hover:bg-coral rounded-lg">
+          Book a Strategy Call
+        </a>
+        <a href="agent-lab.html" class="bg-transparent text-white font-bold uppercase px-8 md:px-xl py-4 md:py-lg border-4 border-white hover:bg-white hover:text-[#1A1A1A] transition-all rounded-lg">
+          See the Agent Lab
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"><noscript>
+  <footer role="contentinfo" class="bg-coral text-white p-6 text-center border-t-4 border-[#1A1A1A]">
+    <nav aria-label="Footer links">
+      <a href="point-of-view.html" class="underline mr-3">Newsletter</a>
+      <a href="https://www.linkedin.com/in/alimahmoud1986/" rel="noopener me" class="underline mr-3">LinkedIn</a>
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener" class="underline mr-3">Book a call</a>
+      <a href="mailto:ali@theglocalpm.com" class="underline mr-3">ali@theglocalpm.com</a>
+      <a href="assets/pdfs/Ali_TheGlocalPM_Resume.pdf" download="Ali_TheGlocalPM_Resume.pdf" class="underline">Resume PDF</a>
+    </nav>
+    <p>© 2024–2026 TheGlocalPM • Ali Mahmoud, Senior Product Manager</p>
+  </footer>
+</noscript></div>
+<script src="js/main.js?v=2"></script>
+</body>
+</html>
