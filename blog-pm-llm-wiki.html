@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <!-- FullStory -->
+  <script>
+window['_fs_host'] = 'fullstory.com';
+window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
+window['_fs_org'] = 'o-24PHZJ-na1';
+window['_fs_namespace'] = 'FS';
+!function(m,n,e,t,l,o,g,y){var s,f,a=function(h){
+return!(h in m)||(m.console&&m.console.log&&m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].'),!1)}(e)
+;function p(b){var h,d=[];function j(){h&&(d.forEach((function(b){var d;try{d=b[h[0]]&&b[h[0]](h[1])}catch(h){return void(b[3]&&b[3](h))}
+d&&d.then?d.then(b[2],b[3]):b[2]&&b[2](d)})),d.length=0)}function r(b){return function(d){h||(h=[b,d],j())}}return b(r(0),r(1)),{
+then:function(b,h){return p((function(r,i){d.push([b,h,r,i]),j()}))}}}a&&(g=m[e]=function(){var b=function(b,d,j,r){function i(i,c){
+h(b,d,j,i,c,r)}r=r||2;var c,u=/Async$/;return u.test(b)?(b=b.replace(u,""),"function"==typeof Promise?new Promise(i):p(i)):h(b,d,j,c,c,r)}
+;function h(h,d,j,r,i,c){return b._api?b._api(h,d,j,r,i,c):(b.q&&b.q.push([h,d,j,r,i,c]),null)}return b.q=[],b}(),y=function(b){function h(h){
+"function"==typeof h[4]&&h[4](new Error(b))}var d=g.q;if(d){for(var j=0;j<d.length;j++)h(d[j]);d.length=0,d.push=h}},function(){
+(o=n.createElement(t)).async=!0,o.crossOrigin="anonymous",o.src="https://"+l,o.onerror=function(){y("Error loading "+l)}
+;var b=n.getElementsByTagName(t)[0];b&&b.parentNode?b.parentNode.insertBefore(o,b):n.head.appendChild(o)}(),function(){function b(){}
+function h(b,h,d){g(b,h,d,1)}function d(b,d,j){h("setProperties",{type:b,properties:d},j)}function j(b,h){d("user",b,h)}function r(b,h,d){j({
+uid:b},d),h&&j(h,d)}g.identify=r,g.setUserVars=j,g.identifyAccount=b,g.clearUserCookie=b,g.setVars=d,g.event=function(b,d,j){h("trackEvent",{
+name:b,properties:d},j)},g.anonymize=function(){r(!1)},g.shutdown=function(){h("shutdown")},g.restart=function(){h("restart")},
+g.log=function(b,d){h("log",{level:b,msg:d})},g.consent=function(b){h("setIdentity",{consent:!arguments.length||b})}}(),s="fetch",
+f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){return g._w[s].apply(this,arguments)}),g._v="2.0.0")
+}(window,document,window._fs_namespace,"script",window._fs_script);
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4HB5H5CNK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-X4HB5H5CNK');
+  </script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The PM Wiki: Why I Built an LLM-Maintained Knowledge Base for Product Managers | TheGlocalPM</title>
+<meta name="description" content="Karpathy published the LLM Wiki pattern as a 75-line idea. Engineers forked it; nobody built it for product managers. So I did — open-source, MIT-licensed, no code required." />
+<meta name="keywords" content="LLM wiki, PM knowledge base, Karpathy LLM wiki, AI product management, PRD generation, decision log, assumption register, evidence-based product management, Claude Code, open source PM tools" />
+<meta name="author" content="Ali Mahmoud" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="theme-color" content="#5B6EF5" />
+<link rel="canonical" href="https://theglocalpm.com/blog-pm-llm-wiki.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="TheGlocalPM" />
+<meta property="og:title" content="The PM Wiki: Why I Built an LLM-Maintained Knowledge Base for Product Managers" />
+<meta property="og:description" content="Karpathy published the LLM Wiki pattern as a 75-line idea. Engineers forked it; nobody built it for PMs. So I did — open-source, no code required." />
+<meta property="og:url" content="https://theglocalpm.com/blog-pm-llm-wiki.html" />
+<meta property="og:image" content="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1400&q=80" />
+<meta property="og:image:alt" content="A library of accumulated knowledge — the metaphor behind the PM Wiki" />
+<meta property="og:locale" content="en_US" />
+<meta property="article:published_time" content="2026-07-03T00:00:00Z" />
+<meta property="article:author" content="Ali Mahmoud" />
+<meta property="article:section" content="AI Tooling" />
+<meta property="article:tag" content="LLM Wiki for Product Managers" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The PM Wiki: an LLM-maintained knowledge base for product managers" />
+<meta name="twitter:description" content="Your PRDs stop being documents you write. They become queries against evidence you've already accumulated." />
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1400&q=80" />
+<link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+<link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="TheGlocalPM" />
+<link rel="manifest" href="assets/favicon/site.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js?v=2"></script>
+<link rel="stylesheet" href="css/styles.css?v=2" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://theglocalpm.com/blog-pm-llm-wiki.html#article",
+      "headline": "The PM Wiki: Why I Built an LLM-Maintained Knowledge Base for Product Managers",
+      "alternativeHeadline": "Stop re-deriving your product knowledge. Start compounding it.",
+      "description": "Karpathy published the LLM Wiki pattern as a 75-line idea. Engineers forked it; nobody built it for product managers. So I did — open-source, MIT-licensed, no code required.",
+      "image": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1400&q=80",
+      "datePublished": "2026-07-03",
+      "dateModified": "2026-07-03",
+      "author": { "@type": "Person", "@id": "https://theglocalpm.com/#person", "name": "Ali Mahmoud", "url": "https://theglocalpm.com/" },
+      "publisher": { "@type": "Organization", "name": "TheGlocalPM", "url": "https://theglocalpm.com/", "logo": { "@type": "ImageObject", "url": "https://theglocalpm.com/assets/logos/theglocalpm.png" } },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://theglocalpm.com/blog-pm-llm-wiki.html" },
+      "articleSection": "AI Tooling",
+      "keywords": "LLM wiki, PM knowledge base, Karpathy, AI product management, PRD generation, decision log, assumption register, open source",
+      "timeRequired": "PT7M",
+      "about": [
+        { "@type": "Thing", "name": "AI Product Management" },
+        { "@type": "Thing", "name": "Knowledge Management" },
+        { "@type": "Thing", "name": "Product Discovery" },
+        { "@type": "Thing", "name": "LLM Agents" },
+        { "@type": "Thing", "name": "Open Source" }
+      ],
+      "citation": [
+        { "@type": "CreativeWork", "name": "Andrej Karpathy — LLM Wiki idea file, April 2026", "url": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" },
+        { "@type": "SoftwareSourceCode", "name": "PM-LLM-Wiki (open-source repo)", "url": "https://github.com/AliMahmoud15486/pm-llm-wiki" }
+      ],
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theglocalpm.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Point of View", "item": "https://theglocalpm.com/point-of-view.html" },
+        { "@type": "ListItem", "position": 3, "name": "The PM Wiki — an LLM-Maintained Knowledge Base", "item": "https://theglocalpm.com/blog-pm-llm-wiki.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-page="point-of-view" class="bg-background">
+<div id="site-header"><noscript>
+  <header role="banner" class="bg-white border-b-4 border-[#1A1A1A] p-4">
+    <a href="index.html" class="font-extrabold">TheGlocalPM — Ali Mahmoud, Senior Product Manager</a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Work</a> ·
+      <a href="case-studies.html">Case Studies</a> ·
+      <a href="agent-lab.html">Agent Lab</a> ·
+      <a href="skills.html">Skills</a> ·
+      <a href="toolkit.html">The Toolkit</a> ·
+      <a href="point-of-view.html">Point of View</a> ·
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener">Book a call</a>
+    </nav>
+  </header>
+</noscript></div>
+
+<main class="relative pt-32 pb-xl overflow-hidden">
+  <div class="bg-grid-pattern absolute inset-0 -z-10"></div>
+
+  <!-- Back -->
+  <div class="max-w-4xl mx-auto px-margin mb-6">
+    <a href="point-of-view.html" class="inline-flex items-center gap-2 font-bold text-sm uppercase tracking-wider hover:text-coral transition-colors">
+      <span class="material-symbols-outlined">arrow_back</span> All Essays
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <header class="max-w-4xl mx-auto px-margin mb-lg">
+    <div class="mb-6">
+      <span class="inline-block bg-accent-yellow font-bold text-xs px-3 py-1 border-2 border-[#1A1A1A] rounded-full neo-shadow mb-4 uppercase">AI Tooling</span>
+      <div class="flex items-center gap-3 text-on-surface-variant font-bold text-xs mb-2">
+        <span class="material-symbols-outlined" style="font-size:18px;">calendar_today</span> July 2026
+        <span>•</span>
+        <span class="material-symbols-outlined" style="font-size:18px;">timer</span> 7 min read
+      </div>
+    </div>
+    <h1 class="text-5xl md:text-[80px] font-extrabold leading-[1.05] mb-6">
+      The PM Wiki: Why I Built an <span class="text-primary">LLM-Maintained Knowledge Base</span> for Product Managers
+    </h1>
+    <p class="text-lg md:text-xl text-on-surface-variant max-w-2xl">
+      Stop re-deriving your product knowledge. Start compounding it.
+    </p>
+  </header>
+
+  <!-- Featured illustration -->
+  <div class="max-w-5xl mx-auto px-margin mb-xl">
+    <div class="relative bg-surface-cream border-4 border-[#1A1A1A] neo-shadow-lg rounded-xl overflow-hidden tilt-1-reverse">
+      <img alt="A library of accumulated knowledge — the metaphor behind the PM Wiki" class="w-full h-[320px] md:h-[500px] object-cover grayscale-img"
+           src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1400&q=80" />
+    </div>
+  </div>
+
+  <!-- Article -->
+  <article class="max-w-3xl mx-auto px-margin space-y-6 text-base md:text-lg leading-relaxed">
+    <p class="text-xl font-bold leading-relaxed">
+      In April, Andrej Karpathy published a 75-line idea file he called the "LLM Wiki." Thousands of engineers forked it. Nobody built it for product managers. So I did — and open-sourced it.
+    </p>
+    <p>
+      The pattern is simple to state: instead of asking AI to re-retrieve your documents on every question, an AI agent <strong>maintains</strong> a knowledge wiki — integrating every new source, updating cross-references, flagging contradictions. Knowledge compounds instead of evaporating. Reading it, I kept thinking the same thing: this describes a PM's job better than an engineer's.
+    </p>
+
+    <h2 class="text-3xl font-extrabold mt-12 mb-3 inline-block">
+      <span class="tilted-underline">The loop every PM runs</span>
+    </h2>
+    <p>
+      A customer says something in a call. A metric moves. A stakeholder takes a position. A competitor ships. Six weeks later you're writing a PRD or defending a roadmap, and you're reconstructing all of it from memory, Slack scrollback, and half-remembered decks.
+    </p>
+    <p>
+      Three specific failures hide inside that loop:
+    </p>
+
+    <ol class="space-y-4 list-none p-0 my-8">
+      <li class="bg-surface-cream border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 flex items-start gap-5">
+        <span class="flex-shrink-0 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-extrabold text-lg border-4 border-[#1A1A1A]">1</span>
+        <div>
+          <strong class="block text-lg md:text-xl mb-1">Nothing compounds.</strong>
+          <span>Every document starts from scratch. The synthesis you did for last quarter's review is buried in a deck nobody will open again.</span>
+        </div>
+      </li>
+      <li class="bg-surface-cream border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 flex items-start gap-5">
+        <span class="flex-shrink-0 w-12 h-12 rounded-full bg-secondary-container text-white flex items-center justify-center font-extrabold text-lg border-4 border-[#1A1A1A]">2</span>
+        <div>
+          <strong class="block text-lg md:text-xl mb-1">Evidence and claims get separated.</strong>
+          <span>"Users want X" survives; <em>which</em> users, <em>how many</em>, and <em>what they actually said</em> doesn't. PRDs become plausible-sounding instead of defensible.</span>
+        </div>
+      </li>
+      <li class="bg-surface-cream border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 flex items-start gap-5">
+        <span class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-purple text-white flex items-center justify-center font-extrabold text-lg border-4 border-[#1A1A1A]">3</span>
+        <div>
+          <strong class="block text-lg md:text-xl mb-1">Decision amnesia.</strong>
+          <span>"Why did we choose X over Y?" gets asked forever, and the rationale — the options weighed, the evidence, what would change our mind — lives nowhere.</span>
+        </div>
+      </li>
+    </ol>
+
+    <p>
+      We already know the two standard fixes, and we know why they fail. Traditional wikis — Confluence, Notion — die because maintenance grows faster than value. RAG-style "chat with your docs" tools don't accumulate; they re-retrieve fragments per question. The fix is an agent that <strong>maintains</strong> the knowledge base — because for an LLM, the cost of updating fifteen cross-referenced pages is near zero.
+    </p>
+
+    <h2 class="text-3xl font-extrabold mt-12 mb-3 inline-block">
+      <span class="tilted-underline tilted-underline-blue">The PM version: four things, tracked forever</span>
+    </h2>
+    <p>
+      The engineering forks of Karpathy's idea track codebases and papers. The PM version needed its own entity model — the PM-shaped one. I kept it deliberately minimal: four entity types, each with a job.
+    </p>
+    <ul class="space-y-3 list-none p-0 my-8">
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-4">
+        <strong class="block mb-1">Problem pages.</strong>
+        <span>One per pain point, stated in the user's language — who has it, severity, a running mention count, and the evidence chain: every source that supports (or contradicts) it. Every claim links to who said it, when, and in what words.</span>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-4">
+        <strong class="block mb-1">A decision log.</strong>
+        <span>Context, options considered with the evidence for each, rationale, decider — and <em>reversal conditions</em>: the observable facts that would reopen the decision. Never deleted; superseded decisions link forward.</span>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-4">
+        <strong class="block mb-1">An assumption register.</strong>
+        <span>Every load-bearing belief, with a status — untested / validated / weakening / invalidated — and a dated history of every status flip with the source that caused it. This is your risk register.</span>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-4">
+        <strong class="block mb-1">An open-questions queue.</strong>
+        <span>Every contradiction and evidence gap the weekly health check finds becomes a tagged research question: ask users, check data, ask a stakeholder, run an experiment. Your next interview script generates itself from this queue.</span>
+      </li>
+    </ul>
+    <p>
+      Personas, competitors, metrics, and bets emerge later — from evidence, not from an empty template. That restraint is the point: the schema stays small enough that the agent can hold the whole system honest.
+    </p>
+
+    <h2 class="text-3xl font-extrabold mt-12 mb-3 inline-block">
+      <span class="tilted-underline tilted-underline-purple">Deliverables become queries</span>
+    </h2>
+    <p>
+      The division of labor is strict. Sources — interview transcripts, feedback digests, analytics readouts, meeting notes, competitor intel — are immutable; you curate what goes in. The wiki is the compounding artifact the agent maintains: every ingest updates cross-references, bumps evidence counts, and flags contradictions, so Thursday's synthesis already includes Tuesday's interview. Outputs are generated on demand.
+    </p>
+    <p>
+      And that last layer is where the payoff lands. A PRD or stakeholder brief that used to take days of re-gathering context is generated in minutes from evidence that's already synthesized, cross-referenced, and cited. "Why did we choose X over Y?" is answered in seconds, forever, with the original options, evidence, and reversal conditions attached.
+    </p>
+
+    <div class="bg-brand-purple bg-opacity-10 border-4 border-[#1A1A1A] p-6 neo-shadow rounded-lg my-12 tilt-1">
+      <span class="material-symbols-outlined text-brand-purple" style="font-size:40px;">format_quote</span>
+      <blockquote class="text-xl md:text-2xl font-bold italic">
+        "PRDs and stakeholder briefs stop being documents you write. They become queries against evidence you've already accumulated."
+      </blockquote>
+      <cite class="block mt-3 font-bold text-xs text-on-surface-variant">— TheGlocalPM</cite>
+    </div>
+
+    <h2 class="text-3xl font-extrabold mt-12 mb-3 inline-block">
+      <span class="tilted-underline">The pressure test</span>
+    </h2>
+    <p>
+      Before publishing, I pressure-tested the system the only way that counts: I handed the rulebook to a completely fresh AI agent with a one-line prompt and no other context. It checked a decision's reversal conditions before touching it, refused to change an assumption's status without my approval, and generated a fully-cited PRD from the worked example. The rulebook held.
+    </p>
+    <p>
+      That matters because the schema — one file of rules, conventions, and workflows — is the real product. It's what turns a generic chatbot into a disciplined wiki maintainer. The repo ships it as a copy-paste template, alongside a full worked example (a fictional fitness app with a churn problem) and a quick-start guide any PM can follow in about fifteen minutes. No code involved anywhere: if you can use a chat tool and a folder, you can run this.
+    </p>
+
+    <h2 class="text-3xl font-extrabold mt-12 mb-3 inline-block">
+      <span class="tilted-underline tilted-underline-blue">The honest cost</span>
+    </h2>
+    <p>
+      The system isn't free. It costs roughly thirty focused minutes a week: feeding in the sources you decide matter, and running a weekly health check where the agent surfaces contradictions, weakening assumptions, and gaps. The agent does the bookkeeping that kills every Confluence wiki; you keep the judgment. That trade — bookkeeping to the machine, judgment to the human — is exactly the shape I think AI-augmented product work should take, and it's the same argument I made in <a href="blog-future-of-ai-in-pm.html" class="underline decoration-coral decoration-4 underline-offset-4 font-bold">The Future of AI in Product Management</a>: the PM's job shifts from coordinator to orchestrator.
+    </p>
+
+    <div class="border-y-4 border-[#1A1A1A] py-8 my-12">
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-4 inline-block">
+        <span class="tilted-underline tilted-underline-purple">Clone it, fork it, run it</span>
+      </h2>
+      <p>
+        Everything is free and open source under MIT: the schema, the entity model, the rituals, and the worked example. To the best of my knowledge it's the first open-source instantiation of the LLM Wiki pattern purpose-built for product management — and PM work is arguably the best fit for the pattern anywhere.
+      </p>
+      <p class="mt-4">
+        Credit where it belongs: the pattern is <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener noreferrer" class="underline decoration-coral decoration-4 underline-offset-4 font-bold">Andrej Karpathy's</a>. The PM instantiation is my contribution back.
+      </p>
+      <p class="mt-6">
+        <a href="https://github.com/AliMahmoud15486/pm-llm-wiki" target="_blank" rel="noopener noreferrer" class="inline-block bg-[#1A1A1A] text-white px-6 py-3 border-4 border-[#1A1A1A] neo-shadow neo-click font-bold rounded hover:bg-coral transition-colors">
+          Get the PM Wiki on GitHub →
+        </a>
+      </p>
+    </div>
+  </article>
+
+  <!-- Author -->
+  <section class="max-w-3xl mx-auto px-margin mt-xl">
+    <div class="bg-surface-cream border-4 border-[#1A1A1A] neo-shadow rounded-xl p-6 flex flex-col md:flex-row items-center gap-6">
+      <div class="w-32 h-32 flex-shrink-0 border-4 border-[#1A1A1A] rounded-lg overflow-hidden">
+        <img alt="Ali — TheGlocalPM" class="w-full h-full object-cover"
+             src="assets/portraits/ali-smiling.png" />
+      </div>
+      <div class="text-center md:text-left">
+        <h4 class="text-2xl font-bold mb-1">Ali Mahmoud · Lead Product Manager</h4>
+        <p class="text-on-surface-variant mb-4"><a href="https://theglocalpm.com/" class="underline">theglocalpm.com</a> — Senior Product Leader exploring the intersection of human intuition, AI, and operational systems that actually ship.</p>
+        <div class="flex justify-center md:justify-start gap-3">
+          <a href="https://www.linkedin.com/in/alimahmoud1986/" target="_blank" rel="noopener" class="bg-primary text-white px-3 py-1 border-2 border-[#1A1A1A] font-bold text-xs neo-shadow neo-click flex items-center gap-1 rounded">
+            <span class="material-symbols-outlined" style="font-size:18px;">link</span> LinkedIn
+          </a>
+          <a href="mailto:ali@theglocalpm.com" class="bg-white text-[#1A1A1A] px-3 py-1 border-2 border-[#1A1A1A] font-bold text-xs neo-shadow neo-click flex items-center gap-1 rounded" aria-label="Email Ali at TheGlocalPM">
+            <span class="material-symbols-outlined" style="font-size:18px;">mail</span> Contact
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Read next -->
+  <section class="max-w-7xl mx-auto px-margin mt-xl">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-8 inline-block">
+      <span class="tilted-underline">Read Next</span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="blog-evals-pm-quality-gate.html" class="block bg-surface-cream border-4 border-[#1A1A1A] rounded-xl overflow-hidden neo-shadow neo-shadow-hover transition-all duration-200 group">
+        <div class="h-48 border-b-4 border-[#1A1A1A] overflow-hidden bg-[#1A1A1A] flex flex-col items-center justify-center gap-2 text-center px-6"
+             style="background-image: radial-gradient(rgba(255,255,255,0.09) 1.5px, transparent 1.5px); background-size: 22px 22px;">
+          <span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings:'FILL' 1;">fact_check</span>
+          <span class="text-white font-black text-3xl tracking-tight">EVALS</span>
+          <span class="text-white/70 font-bold text-[11px] uppercase tracking-widest">The PM's quality gate</span>
+        </div>
+        <div class="p-6">
+          <span class="text-primary font-bold text-xs uppercase tracking-wider mb-2 block">AI Craft</span>
+          <h3 class="text-2xl font-bold mb-3">Evals: The Product Manager's Quality Gate</h3>
+          <p class="text-on-surface-variant mb-4">In AI products, quality is probabilistic. Evals are how a PM defines "good," measures it, and holds the line.</p>
+          <span class="inline-flex items-center gap-1 font-bold text-sm group-hover:text-primary transition-colors">
+            Read Essay <span class="material-symbols-outlined">arrow_forward</span>
+          </span>
+        </div>
+      </a>
+      <a href="blog-qcommerce-subscriptions-vs-discounts.html" class="block bg-surface-cream border-4 border-[#1A1A1A] rounded-xl overflow-hidden neo-shadow neo-shadow-hover transition-all duration-200 group">
+        <div class="h-48 border-b-4 border-[#1A1A1A] overflow-hidden">
+          <img class="w-full h-full object-cover grayscale-img" alt=""
+               src="assets/blog/subs-habits/qcommerce_subscription_loyalty_signals.png" />
+        </div>
+        <div class="p-6">
+          <span class="text-primary font-bold text-xs uppercase tracking-wider mb-2 block">Q-Commerce</span>
+          <h3 class="text-2xl font-bold mb-3">The Retention Problem in Quick Commerce: Why Subscriptions Beat Discounts</h3>
+          <p class="text-on-surface-variant mb-4">Quick commerce won on speed. The next battle is habit — and discounts are the wrong weapon.</p>
+          <span class="inline-flex items-center gap-1 font-bold text-sm group-hover:text-primary transition-colors">
+            Read Essay <span class="material-symbols-outlined">arrow_forward</span>
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"><noscript>
+  <footer role="contentinfo" class="bg-coral text-white p-6 text-center border-t-4 border-[#1A1A1A]">
+    <nav aria-label="Footer links">
+      <a href="point-of-view.html" class="underline mr-3">Newsletter</a>
+      <a href="https://www.linkedin.com/in/alimahmoud1986/" rel="noopener me" class="underline mr-3">LinkedIn</a>
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener" class="underline mr-3">Book a call</a>
+      <a href="mailto:ali@theglocalpm.com" class="underline mr-3">ali@theglocalpm.com</a>
+      <a href="assets/pdfs/Ali_TheGlocalPM_Resume.pdf" download="Ali_TheGlocalPM_Resume.pdf" class="underline">Resume PDF</a>
+    </nav>
+    <p>© 2024–2026 TheGlocalPM • Ali Mahmoud, Senior Product Manager</p>
+  </footer>
+</noscript></div>
+<script src="js/main.js?v=2"></script>
+</body>
+</html>
