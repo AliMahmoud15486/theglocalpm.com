@@ -128,6 +128,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="https://cal.com/alim-datajar/coffeechat" rel="noopener" data-cal-link="alim-datajar/coffeechat" data-cal-namespace="coffeechat" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}'>Book a call</a>
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="mailto:ali@theglocalpm.com">Contact</a>
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="assets/pdfs/Ali_TheGlocalPM_Resume.pdf" download="Ali_TheGlocalPM_Resume.pdf">Resume</a>
+    <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="imprint.html">Imprint</a>
   </nav>
   <p class="text-white font-medium">© 2024–${year} TheGlocalPM • Ali Mahmoud, Senior Product Manager • Built with Chaos &amp; Logic</p>
   <div class="flex gap-4" aria-hidden="true">
