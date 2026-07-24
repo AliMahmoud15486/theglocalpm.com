@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <!-- FullStory -->
+  <script>
+window['_fs_host'] = 'fullstory.com';
+window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
+window['_fs_org'] = 'o-24PHZJ-na1';
+window['_fs_namespace'] = 'FS';
+!function(m,n,e,t,l,o,g,y){var s,f,a=function(h){
+return!(h in m)||(m.console&&m.console.log&&m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].'),!1)}(e)
+;function p(b){var h,d=[];function j(){h&&(d.forEach((function(b){var d;try{d=b[h[0]]&&b[h[0]](h[1])}catch(h){return void(b[3]&&b[3](h))}
+d&&d.then?d.then(b[2],b[3]):b[2]&&b[2](d)})),d.length=0)}function r(b){return function(d){h||(h=[b,d],j())}}return b(r(0),r(1)),{
+then:function(b,h){return p((function(r,i){d.push([b,h,r,i]),j()}))}}}a&&(g=m[e]=function(){var b=function(b,d,j,r){function i(i,c){
+h(b,d,j,i,c,r)}r=r||2;var c,u=/Async$/;return u.test(b)?(b=b.replace(u,""),"function"==typeof Promise?new Promise(i):p(i)):h(b,d,j,c,c,r)}
+;function h(h,d,j,r,i,c){return b._api?b._api(h,d,j,r,i,c):(b.q&&b.q.push([h,d,j,r,i,c]),null)}return b.q=[],b}(),y=function(b){function h(h){
+"function"==typeof h[4]&&h[4](new Error(b))}var d=g.q;if(d){for(var j=0;j<d.length;j++)h(d[j]);d.length=0,d.push=h}},function(){
+(o=n.createElement(t)).async=!0,o.crossOrigin="anonymous",o.src="https://"+l,o.onerror=function(){y("Error loading "+l)}
+;var b=n.getElementsByTagName(t)[0];b&&b.parentNode?b.parentNode.insertBefore(o,b):n.head.appendChild(o)}(),function(){function b(){}
+function h(b,h,d){g(b,h,d,1)}function d(b,d,j){h("setProperties",{type:b,properties:d},j)}function j(b,h){d("user",b,h)}function r(b,h,d){j({
+uid:b},d),h&&j(h,d)}g.identify=r,g.setUserVars=j,g.identifyAccount=b,g.clearUserCookie=b,g.setVars=d,g.event=function(b,d,j){h("trackEvent",{
+name:b,properties:d},j)},g.anonymize=function(){r(!1)},g.shutdown=function(){h("shutdown")},g.restart=function(){h("restart")},
+g.log=function(b,d){h("log",{level:b,msg:d})},g.consent=function(b){h("setIdentity",{consent:!arguments.length||b})}}(),s="fetch",
+f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){return g._w[s].apply(this,arguments)}),g._v="2.0.0")
+}(window,document,window._fs_namespace,"script",window._fs_script);
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4HB5H5CNK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-X4HB5H5CNK');
+  </script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Store Data Engine — 697K Products, 397 Stores, ~$31 of LLM Spend | Case Study | TheGlocalPM</title>
+<meta name="description" content="How a solo operator built a production e-commerce market dataset in about a week: 697,299 products scraped from 397 European Shopify stores, ~110K products LLM-enriched for ~$31 via the Anthropic Batch API, +72K more labels propagated free at 97.1% measured precision — and every failure that shaped the pipeline." />
+<meta name="keywords" content="store data engine case study, Shopify scraping, LLM enrichment, Anthropic Batch API, data pipeline, product attributes, price benchmarking, LLM data labelling, rule propagation, AI product management, market data" />
+<meta name="author" content="Ali Mahmoud" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="theme-color" content="#5B6EF5" />
+<link rel="canonical" href="https://theglocalpm.com/case-study-store-data-engine.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="TheGlocalPM" />
+<meta property="og:title" content="Store Data Engine — 697K Products, 397 Stores, ~$31 of LLM Spend" />
+<meta property="og:description" content="A production market dataset built solo in ~1 week: scraped 697,299 products, LLM-enriched ~110K for ~$31, propagated +72K labels free at 97.1% precision. Every design decision exists because the naive version failed first." />
+<meta property="og:url" content="https://theglocalpm.com/case-study-store-data-engine.html" />
+<meta property="og:image" content="https://theglocalpm.com/assets/portraits/ali-smiling.png" />
+<meta property="og:image:alt" content="Store Data Engine — case study by Ali Mahmoud" />
+<meta property="og:locale" content="en_US" />
+<meta property="article:author" content="Ali Mahmoud" />
+<meta property="article:section" content="Case Study" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Store Data Engine — 697K Products, 397 Stores, ~$31 of LLM Spend" />
+<meta name="twitter:description" content="Scraped 697K products solo in a week, enriched ~110K with LLMs for ~$31, propagated +72K labels free at 97.1% measured precision." />
+<meta name="twitter:image" content="https://theglocalpm.com/assets/portraits/ali-smiling.png" />
+<link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+<link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="TheGlocalPM" />
+<link rel="manifest" href="assets/favicon/site.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js?v=2"></script>
+<link rel="stylesheet" href="css/styles.css?v=2" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://theglocalpm.com/case-study-store-data-engine.html#article",
+      "headline": "Store Data Engine — 697,299 Products, 397 Stores, ~$31 of LLM Spend",
+      "alternativeHeadline": "How a solo operator built a production e-commerce market dataset in one week with an AI-native pipeline",
+      "description": "A solo-built, AI-native data pipeline: 697,299 products scraped from 397 European Shopify stores in about a week, mostly unattended; ~110K products enriched with LLM-judged attributes for ~$31 total via the Anthropic Batch API; +72K more labels via free rule propagation at 97.1% held-out precision. Turned a meaningless benchmark (median leather bag €640) into tiered, statistically honest answers. 18 documented production lessons, an audit protocol, and an MIT-licensed public repo.",
+      "image": "https://theglocalpm.com/assets/portraits/ali-smiling.png",
+      "author": { "@type": "Person", "@id": "https://theglocalpm.com/#person", "name": "Ali Mahmoud", "url": "https://theglocalpm.com/" },
+      "publisher": { "@type": "Organization", "name": "TheGlocalPM", "url": "https://theglocalpm.com/", "logo": { "@type": "ImageObject", "url": "https://theglocalpm.com/assets/logos/theglocalpm.png" } },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://theglocalpm.com/case-study-store-data-engine.html" },
+      "articleSection": "Case Study",
+      "keywords": "Shopify scraping, LLM enrichment, Anthropic Batch API, data pipeline, price benchmarking, rule propagation, LLM data labelling, market data, AI product management",
+      "wordCount": 1500,
+      "timeRequired": "PT8M",
+      "about": [
+        { "@type": "Thing", "name": "Data Engineering" },
+        { "@type": "Thing", "name": "Web Scraping" },
+        { "@type": "Thing", "name": "Large Language Models" },
+        { "@type": "Thing", "name": "E-Commerce Analytics" },
+        { "@type": "Thing", "name": "Data Quality" }
+      ],
+      "citation": [
+        { "@type": "SoftwareSourceCode", "name": "Super Scrap LLM Engine (open-source repo)", "url": "https://github.com/AliMahmoud15486/Super-scrap-llm-engine-public" }
+      ],
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theglocalpm.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://theglocalpm.com/case-studies.html" },
+        { "@type": "ListItem", "position": 3, "name": "Store Data Engine", "item": "https://theglocalpm.com/case-study-store-data-engine.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-page="case-studies" class="bg-background">
+<div id="site-header"><noscript>
+  <header role="banner" class="bg-white border-b-4 border-[#1A1A1A] p-4">
+    <a href="index.html" class="font-extrabold">TheGlocalPM — Ali Mahmoud, Senior Product Manager</a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Work</a> ·
+      <a href="case-studies.html">Case Studies</a> ·
+      <a href="agent-lab.html">Agent Lab</a> ·
+      <a href="skills.html">Skills</a> ·
+      <a href="toolkit.html">The Toolkit</a> ·
+      <a href="point-of-view.html">Point of View</a> ·
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener">Book a call</a>
+    </nav>
+  </header>
+</noscript></div>
+
+<main class="relative pt-32">
+  <div class="absolute inset-0 bg-grid-pattern pointer-events-none"></div>
+
+  <!-- Back link -->
+  <div class="max-w-[1280px] mx-auto px-margin mb-6">
+    <a href="case-studies.html" class="inline-flex items-center gap-2 font-bold text-sm uppercase tracking-wider hover:text-coral transition-colors">
+      <span class="material-symbols-outlined">arrow_back</span> All Case Studies
+    </a>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <section class="max-w-4xl mx-auto px-margin mb-xl">
+    <span class="inline-block bg-[#1A1A1A] text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Case Study · Data Engineering &amp; AI</span>
+    <h1 class="text-5xl md:text-[80px] font-extrabold leading-[1.05] mb-6">
+      697,299 products, 397 stores, <span class="tilted-underline tilted-underline-blue">~$31 of LLM spend</span>
+    </h1>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-3xl">
+      How I built a production e-commerce market dataset in about a week, solo and mostly unattended: a five-stage pipeline that scrapes European Shopify catalogs, enriches ~110K products with LLM-judged attributes via the Anthropic Batch API, then mines those answers for +72K more labels at zero cost and 97.1% measured precision. The interesting part isn't the architecture — it's the failures each stage now absorbs.
+    </p>
+
+    <!-- About this project -->
+    <div class="mt-8 bg-surface-cream border-l-8 border-[#1A1A1A] rounded-r-lg p-5 md:p-6 text-sm md:text-base text-on-surface-variant leading-relaxed">
+      <p><strong class="text-on-surface">About this project.</strong> Built for my analytics startup's market-data product, so merchants can ask "what do stores like mine charge for leather bags?" and get a statistically honest answer. The generalized, reusable engine — scraper, enrichment, audit protocol, and all 18 documented production lessons — is extracted into a public, MIT-licensed repo: <a href="https://github.com/AliMahmoud15486/Super-scrap-llm-engine-public" target="_blank" rel="noopener noreferrer" class="underline decoration-coral decoration-4 underline-offset-4 font-bold text-on-surface">Super-scrap-llm-engine</a>. Every rule in it was paid for at least once.</p>
+    </div>
+  </section>
+
+  <!-- ============ METRICS ROW (4 cards) ============ -->
+  <section class="max-w-[1280px] mx-auto px-margin mb-xl">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      <div class="bg-accent-yellow border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2">Products Scraped</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">697K</div>
+        <div class="text-xs font-bold opacity-80">697,299 products in ~1 week, mostly unattended, solo</div>
+      </div>
+      <div class="bg-accent-rose border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1-reverse">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2">Stores Covered</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">397</div>
+        <div class="text-xs font-bold opacity-80">European Shopify stores, of a 504-store target list</div>
+      </div>
+      <div class="bg-primary-fixed border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2">Total LLM Spend</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">~$31</div>
+        <div class="text-xs font-bold opacity-80">~110K products enriched via the Anthropic Batch API</div>
+      </div>
+      <div class="bg-brand-purple text-white border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1-reverse">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2 opacity-90">Propagation Precision</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">97.1%</div>
+        <div class="text-xs font-bold opacity-90">+72K free labels, measured on a held-out split before applying</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 1: THE PROBLEM ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl">
+    <span class="inline-block bg-error-red text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">The Problem</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      A benchmark nobody could <span class="tilted-underline">act on</span>
+    </h2>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-6">
+      The question my market-data product needed to answer sounds simple: <em>"what do stores like mine charge for a leather bag?"</em> Raw catalog data gives you an answer — and it's useless. Pooling couture and high-street into one number produced <strong>"median leather bag: €640"</strong>, a statistic that describes no store a merchant would ever compare themselves against.
+    </p>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed">
+      Making that number honest requires attributes the raw data doesn't carry: what a product is actually made of, what colour it actually is, which price tier the store plays in. At 697K products, no solo operator can label that by hand — and I had no data team, no labelling budget, and a laptop. The constraint set <em>was</em> the brief: build a dataset dense and clean enough for tiered benchmarks, at approximately zero cost.
+    </p>
+
+    <!-- Callout -->
+    <div class="bg-primary-fixed border-4 border-primary p-6 md:p-8 neo-shadow-lg rounded-lg tilt-1-reverse mt-10">
+      <div class="flex items-start gap-4">
+        <span class="material-symbols-outlined text-4xl text-primary flex-shrink-0" style="font-variation-settings:'FILL' 1;">query_stats</span>
+        <div>
+          <p class="font-bold uppercase text-xs tracking-widest mb-3 text-primary">The one-line mandate</p>
+          <p class="text-lg md:text-xl font-bold leading-snug">
+            Turn one meaningless median into segment-honest benchmarks — solo, on a laptop, for the price of a lunch.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 2: THE APPROACH ============ -->
+  <section class="bg-surface-cream py-xl">
+    <div class="max-w-4xl mx-auto px-margin">
+      <span class="inline-block bg-secondary-container text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">The Approach</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+        Five <span class="tilted-underline tilted-underline-orange">deliberately boring</span> stages
+      </h2>
+      <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-10">
+        Each stage is resumable, each validates its input, and each carries provenance — every enriched value is tagged <code class="bg-white border-2 border-[#1A1A1A] px-2 py-0.5 rounded text-sm font-bold">llm</code> or <code class="bg-white border-2 border-[#1A1A1A] px-2 py-0.5 rounded text-sm font-bold">inferred</code>, forever separable and revertible. The design isn't clever; it's scar tissue. Every guarantee below exists because the naive version failed first.
+      </p>
+
+      <!-- Pipeline diagram -->
+      <div class="flex flex-col items-center gap-0">
+        <div class="w-full md:w-4/5 bg-white border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 tilt-1">
+          <div class="flex items-center gap-4">
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-accent-yellow flex items-center justify-center font-extrabold text-lg border-4 border-[#1A1A1A]">1</span>
+            <div>
+              <h3 class="text-xl font-extrabold uppercase tracking-wide">Scrape</h3>
+              <p class="text-sm md:text-base text-on-surface-variant">Public <code class="font-bold">/products.json</code> per store — paced, resumable, and typed so throttling can never be recorded as a dead store.</p>
+            </div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-4xl my-1" aria-hidden="true">south</span>
+        <div class="w-full md:w-4/5 bg-white border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 tilt-1-reverse">
+          <div class="flex items-center gap-4">
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-accent-rose flex items-center justify-center font-extrabold text-lg border-4 border-[#1A1A1A]">2</span>
+            <div>
+              <h3 class="text-xl font-extrabold uppercase tracking-wide">Chunk</h3>
+              <p class="text-sm md:text-base text-on-surface-variant">Round-robin products across stores into small work files, so one giant store can't starve the rest of the corpus.</p>
+            </div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-4xl my-1" aria-hidden="true">south</span>
+        <div class="w-full md:w-4/5 bg-white border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 tilt-1">
+          <div class="flex items-center gap-4">
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center font-extrabold text-lg border-4 border-[#1A1A1A]">3</span>
+            <div>
+              <h3 class="text-xl font-extrabold uppercase tracking-wide">Enrich</h3>
+              <p class="text-sm md:text-base text-on-surface-variant">Anthropic Batch API at 50% off list price — 50-row requests, thinking explicitly disabled, every response validated by key set, never by line count.</p>
+            </div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-4xl my-1" aria-hidden="true">south</span>
+        <div class="w-full md:w-4/5 bg-white border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 tilt-1-reverse">
+          <div class="flex items-center gap-4">
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-accent-yellow flex items-center justify-center font-extrabold text-lg border-4 border-[#1A1A1A]">4</span>
+            <div>
+              <h3 class="text-xl font-extrabold uppercase tracking-wide">Merge</h3>
+              <p class="text-sm md:text-base text-on-surface-variant">Answers join back by key — never by position — with a membership guard so a stale or foreign answer can't land on the wrong product.</p>
+            </div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-4xl my-1" aria-hidden="true">south</span>
+        <div class="w-full md:w-4/5 bg-white border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 tilt-1">
+          <div class="flex items-center gap-4">
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-purple text-white flex items-center justify-center font-extrabold text-lg border-4 border-[#1A1A1A]">5</span>
+            <div>
+              <h3 class="text-xl font-extrabold uppercase tracking-wide">Propagate</h3>
+              <p class="text-sm md:text-base text-on-surface-variant">Mine the LLM answers for rules (brand×type groups, name tokens), score them on a held-out split first, apply only what clears the precision bar — then audit by reading samples against source.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-sm md:text-base text-on-surface-variant leading-relaxed mt-8">
+        The economics of stage 5 are the trick: enrich a stratified ~25% of the corpus with the LLM, then let free, precision-gated rules label the lookalikes. That single $0 step added <strong>+72K labels — more than the paid run itself.</strong> And one negative result was worth as much: colour does <em>not</em> propagate (neighbours predict ~3% of it) — measured in 20 minutes, saving days of wishful engineering.
+      </p>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 3: WHAT BROKE ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl">
+    <span class="inline-block bg-coral text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">What Broke &amp; What It Taught</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      Every rule was <span class="tilted-underline">paid for once</span>
+    </h2>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-8">
+      Eighteen production lessons are documented in the repo's LESSONS.md, numbered and cited throughout the code. These four cost the most and taught the most.
+    </p>
+
+    <ol class="space-y-5">
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-error-red leading-none">01</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">The first full run was a lie</h3>
+          <p class="text-base md:text-lg leading-relaxed">The scraper "completed" with 434 of 504 stores failed — almost all fake. Shopify throttles by IP, and HTTP 429s were being written down as "not a Shopify store": a <strong>transport failure recorded as a business verdict</strong>. The tell was temporal — detection worked for the first 50 stores, then collapsed to ~0%. The fix wasn't retry logic; it was a type system where <code class="font-bold">RateLimited</code> can never reach the failed state. With pacing added and a redundant probe request removed (half of all traffic!), the re-run had zero throttle events.</p>
+        </div>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-secondary-container leading-none">02</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">The machine was the bottleneck, not the API</h3>
+          <p class="text-base md:text-lg leading-relaxed">Overnight throughput collapsed from 38 stores/hr to 5/hr — looking exactly like cumulative rate-limiting. It was the Mac going to sleep. One <code class="font-bold">caffeinate -i</code> restored 100+/hr. I lost hours misdiagnosing the wrong layer of the stack; it's now a startup warning in the CLI, because the cheapest fix is the one the tool tells you about before you run.</p>
+        </div>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-brand-purple leading-none">03</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Sonnet thinks by default — and burns your budget doing it</h3>
+          <p class="text-base md:text-lg leading-relaxed">Omit the <code class="font-bold">thinking</code> parameter and Claude Sonnet runs adaptive reasoning. For bulk classification that means it will happily spend the entire token budget deliberating and emit <strong>zero answers</strong>. Great default for chat; silent killer for batch pipelines. Disabling it explicitly is now encoded in the enrichment code, not in anyone's memory.</p>
+        </div>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-primary leading-none">04</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Big requests silently drop rows</h3>
+          <p class="text-base md:text-lg leading-relaxed">At 250 products per request, the model lost 1:1 row correspondence ~40% of the time — not truncation, just missing rows with a clean <code class="font-bold">end_turn</code>. At 50 rows per request the problem vanished. The durable lesson: <strong>validate by key set, never by line count</strong> — roughly a third of the ~$31 bill was paying twice for this one.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 4: THE ECONOMICS ============ -->
+  <section class="bg-surface-cream py-xl">
+    <div class="max-w-4xl mx-auto px-margin">
+      <span class="inline-block bg-brand-purple text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">The Economics</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+        Three ways to label 110K products — <span class="tilted-underline tilted-underline-purple">two of them wrong</span>
+      </h2>
+      <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-10">
+        The Batch API runs at half list price, ~250 products cost about $0.07 to enrich, and precision-gated propagation costs nothing at all. Stack those three and the cost comparison stops being close.
+      </p>
+
+      <div class="overflow-x-auto border-4 border-[#1A1A1A] rounded-2xl neo-shadow-lg">
+        <table class="w-full text-left border-collapse min-w-[640px]">
+          <thead class="bg-[#1A1A1A] text-white">
+            <tr>
+              <th class="px-5 md:px-6 py-4 font-bold uppercase text-xs tracking-widest">Approach</th>
+              <th class="px-5 md:px-6 py-4 font-bold uppercase text-xs tracking-widest">Cost</th>
+              <th class="px-5 md:px-6 py-4 font-bold uppercase text-xs tracking-widest">Time</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr class="border-t-2 border-[#1A1A1A]">
+              <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">Manual data team labelling</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">~$5–15K</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">Weeks</td>
+            </tr>
+            <tr class="border-t-2 border-[#1A1A1A] bg-surface-cream">
+              <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">Naive per-request LLM calls (thinking on, no batch)</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">~$300–500</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">Days + babysitting</td>
+            </tr>
+            <tr class="border-t-2 border-[#1A1A1A]">
+              <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">This pipeline (batch + propagation)</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed font-extrabold">~$31</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">~1 week, mostly unattended</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm md:text-base text-on-surface-variant leading-relaxed mt-4">
+        Quality wasn't the trade-off: keyword rules for colour measured ~21% wrong (they grabbed upsells, trims, and "black friday" tags), while the audited LLM ran at ~94% precision — verified by reading 50 samples against source text, per the repo's audit protocol.
+      </p>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 5: PROOF ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl">
+    <span class="inline-block bg-primary text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Proof</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      The benchmark, <span class="tilted-underline tilted-underline-blue">before and after</span>
+    </h2>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-8">
+      The same question — "what does a leather bag cost?" — asked of the same corpus, before and after enrichment:
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 tilt-1">
+        <p class="font-bold uppercase text-xs tracking-widest mb-3 text-error-red">Before — raw data</p>
+        <p class="text-3xl md:text-4xl font-black mb-2 leading-tight">"Median leather bag: €640"</p>
+        <p class="text-base text-on-surface-variant leading-relaxed">One number across couture and high-street. Describes no store a merchant would actually compare against — technically correct, commercially meaningless.</p>
+      </div>
+      <div class="bg-primary-fixed border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 tilt-1-reverse">
+        <p class="font-bold uppercase text-xs tracking-widest mb-3 text-primary">After — enriched &amp; tiered</p>
+        <ul class="text-xl md:text-2xl font-black leading-snug space-y-1 mb-2">
+          <li>Mid-tier <span class="text-primary">€82</span> <span class="text-sm font-bold text-on-surface-variant">(n=202)</span></li>
+          <li>Premium <span class="text-primary">€197</span> <span class="text-sm font-bold text-on-surface-variant">(n=116)</span></li>
+          <li>Luxury <span class="text-primary">€440</span> <span class="text-sm font-bold text-on-surface-variant">(n=896)</span></li>
+        </ul>
+        <p class="text-base text-on-surface-variant leading-relaxed">Segment-honest numbers with sample sizes attached — a benchmark a merchant can actually price against.</p>
+      </div>
+    </div>
+
+    <div class="bg-primary-fixed border-4 border-primary p-6 md:p-8 neo-shadow-lg rounded-lg tilt-1-reverse mt-10">
+      <div class="flex items-start gap-4">
+        <span class="material-symbols-outlined text-4xl text-primary flex-shrink-0" style="font-variation-settings:'FILL' 1;">fact_check</span>
+        <div>
+          <p class="font-bold uppercase text-xs tracking-widest mb-3 text-primary">Why the numbers can be trusted</p>
+          <p class="text-lg md:text-xl font-bold leading-snug">
+            Every label carries provenance (llm vs. inferred), propagation was precision-scored on a held-out split before a single row was touched (97.1%), and systematic model errors — brand priors, undocumented inference chains — were found by reading 50 samples against source and turned into explicit prompt rules. Audit samples, not aggregates: no dashboard would have caught them.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAGS ============ -->
+  <section class="max-w-4xl mx-auto px-margin pb-xl">
+    <div class="border-t-4 border-[#1A1A1A] pt-8">
+      <p class="font-bold uppercase text-xs tracking-widest mb-4 text-on-surface-variant">Topics covered</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Data Engineering</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Web Scraping</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Shopify</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">LLM Enrichment</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Anthropic Batch API</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Data Quality</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Price Benchmarking</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Rule Propagation</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Open Source</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Read next -->
+  <section class="max-w-[1280px] mx-auto px-margin pb-xl">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-8 inline-block">
+      <span class="tilted-underline">Read next</span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="case-study-mpb.html" class="block bg-surface-cream border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow neo-shadow-hover transition-all group">
+        <span class="font-bold text-xs uppercase tracking-widest text-coral">Marketplace Ops · AI · Discovery</span>
+        <h3 class="text-2xl font-bold mt-2 mb-2">MPB — Warehouse Discovery &amp; 3 Shipped AI Agents</h3>
+        <p class="text-on-surface-variant">An 11-day product discovery that named an invisible throughput constraint, framed four strategic bets, and shipped three working AI-agent prototypes.</p>
+      </a>
+      <a href="case-study-freight-intel.html" class="block bg-surface-cream border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow neo-shadow-hover transition-all group">
+        <span class="font-bold text-xs uppercase tracking-widest text-coral">AI · Logistics</span>
+        <h3 class="text-2xl font-bold mt-2 mb-2">Freight Intel — AI Margin Intelligence</h3>
+        <p class="text-on-surface-variant">Translating macro global events into SKU-level margin decisions in minutes. 3–7% margin recovery, 50+ data points automated, time-to-action cut from days to minutes.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-[#1A1A1A] text-white py-xl">
+    <div class="max-w-[1280px] mx-auto px-margin text-center">
+      <h2 class="text-4xl md:text-[80px] font-extrabold mb-6 leading-[1.05]">Want this data working for you?</h2>
+      <p class="text-lg md:text-xl text-surface-variant mb-10 max-w-xl mx-auto">
+        The full engine — scraper, enrichment, audit protocol, all 18 lessons — is open source and MIT licensed. Or skip the build entirely: I run deep store data analyses for merchants who want the benchmarks, not the pipeline.
+      </p>
+      <div class="flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
+        <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener"
+           data-cal-link="alim-datajar/coffeechat"
+           data-cal-namespace="coffeechat"
+           data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}'
+           class="bg-primary text-white font-bold uppercase px-8 md:px-xl py-4 md:py-lg border-4 border-white neo-shadow-lg neo-click-lg transition-all hover:bg-coral rounded-lg">
+          Book a Store Data Analysis
+        </a>
+        <a href="https://github.com/AliMahmoud15486/Super-scrap-llm-engine-public" target="_blank" rel="noopener noreferrer" class="bg-transparent text-white font-bold uppercase px-8 md:px-xl py-4 md:py-lg border-4 border-white hover:bg-white hover:text-[#1A1A1A] transition-all rounded-lg">
+          Get the Engine on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"><noscript>
+  <footer role="contentinfo" class="bg-coral text-white p-6 text-center border-t-4 border-[#1A1A1A]">
+    <nav aria-label="Footer links">
+      <a href="point-of-view.html" class="underline mr-3">Newsletter</a>
+      <a href="https://www.linkedin.com/in/alimahmoud1986/" rel="noopener me" class="underline mr-3">LinkedIn</a>
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener" class="underline mr-3">Book a call</a>
+      <a href="mailto:ali@theglocalpm.com" class="underline mr-3">ali@theglocalpm.com</a>
+      <a href="assets/pdfs/Ali_TheGlocalPM_Resume.pdf" download="Ali_TheGlocalPM_Resume.pdf" class="underline">Resume PDF</a>
+    </nav>
+    <p>© 2024–2026 TheGlocalPM • Ali Mahmoud, Senior Product Manager</p>
+  </footer>
+</noscript></div>
+<script src="js/main.js?v=2"></script>
+</body>
+</html>

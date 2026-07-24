@@ -93,11 +93,33 @@ f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){retu
       "@type": "ItemList",
       "name": "Product Manager Case Studies",
       "itemListOrder": "https://schema.org/ItemListOrderAscending",
-      "numberOfItems": 4,
+      "numberOfItems": 6,
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "Store Data Engine",
+            "about": "Data engineering, AI, e-commerce market data, Shopify scraping, LLM enrichment",
+            "url": "https://theglocalpm.com/case-study-store-data-engine.html",
+            "description": "Solo-built AI-native pipeline: 697,299 products scraped from 397 European Shopify stores in ~1 week, ~110K products LLM-enriched for ~$31 via the Anthropic Batch API, +72K more labels propagated free at 97.1% held-out precision. Turned a meaningless benchmark (median leather bag €640) into tiered, statistically honest answers. Open source, MIT licensed."
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "MPB",
+            "about": "Marketplace operations, AI product discovery, warehouse throughput, recommerce",
+            "url": "https://theglocalpm.com/case-study-mpb.html",
+            "description": "Self-initiated 11-day product discovery for MPB's warehouse operations: named the invisible 'Listing Leg' throughput constraint, framed four strategic bets, and shipped three working AI-agent prototypes on n8n + Claude + Bolt.new. 5–8% NSM lift/quarter modeled; ~€1.5–3M annual margin add."
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
           "item": {
             "@type": "CreativeWork",
             "name": "GetHalal",
@@ -108,7 +130,7 @@ f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){retu
         },
         {
           "@type": "ListItem",
-          "position": 2,
+          "position": 4,
           "item": {
             "@type": "CreativeWork",
             "name": "Everstox",
@@ -119,7 +141,7 @@ f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){retu
         },
         {
           "@type": "ListItem",
-          "position": 3,
+          "position": 5,
           "item": {
             "@type": "CreativeWork",
             "name": "Flightright",
@@ -130,7 +152,7 @@ f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){retu
         },
         {
           "@type": "ListItem",
-          "position": 4,
+          "position": 6,
           "item": {
             "@type": "CreativeWork",
             "name": "Freight Intel",
@@ -176,7 +198,34 @@ f="XMLHttpRequest",g._w={},g._w[f]=m[f],g._w[s]=m[s],m[s]&&(m[s]=function(){retu
 
   <!-- Case study list -->
   <div class="space-y-8 md:space-y-12">
-    <!-- Project 0 — MPB (featured / newest) -->
+    <!-- Project 00 — Store Data Engine (featured / newest) -->
+    <a href="case-study-store-data-engine.html" class="block grid grid-cols-1 lg:grid-cols-2 bg-primary-fixed border-4 border-[#1A1A1A] rounded-3xl overflow-hidden neo-shadow-lg hover:shadow-[12px_12px_0px_0px_rgba(26,26,26,1)] transition-all">
+      <div class="bg-[#1A1A1A] flex flex-col items-center justify-center gap-4 p-8 md:p-10 lg:border-r-4 border-b-4 lg:border-b-0 border-[#1A1A1A] text-center order-last lg:order-first">
+        <div class="flex items-center gap-3" role="img" aria-label="Store Data Engine">
+          <span class="text-4xl md:text-5xl" aria-hidden="true">🕷️</span>
+          <span class="text-white font-black text-4xl md:text-5xl tracking-tighter">697K</span>
+        </div>
+        <p class="text-white font-extrabold text-lg md:text-xl leading-tight">Store Data Engine — products enriched for ~$31</p>
+        <div class="flex flex-wrap gap-2 justify-center">
+          <span class="bg-primary-fixed border-2 border-white/20 px-3 py-1 rounded-full text-xs font-bold">397 stores</span>
+          <span class="bg-accent-yellow border-2 border-white/20 px-3 py-1 rounded-full text-xs font-bold">Batch API</span>
+          <span class="bg-accent-rose border-2 border-white/20 px-3 py-1 rounded-full text-xs font-bold">97.1% propagation</span>
+        </div>
+      </div>
+      <div class="p-5 md:p-8 flex flex-col justify-center">
+        <span class="w-max bg-[#1A1A1A] text-white px-4 py-1 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">Data Engineering • AI • E-Commerce</span>
+        <h2 class="text-2xl md:text-4xl font-extrabold mb-3">Store Data Engine</h2>
+        <div class="space-y-2 mb-4 text-sm md:text-base text-black/80">
+          <p><strong>Problem:</strong> Raw catalog data gave merchants a meaningless benchmark — "median leather bag: €640" pooled couture with high-street. Making it honest needed attributes (material, colour, tier) no solo operator could label by hand at 697K products.</p>
+          <p><strong>Process:</strong> A five-stage AI-native pipeline — scrape → chunk → enrich → merge → propagate — with typed failures, key-set validation, and precision-gated free label propagation. ~110K products LLM-enriched via the Anthropic Batch API, then +72K more labels mined for free at 97.1% held-out precision.</p>
+          <p><strong>Proof:</strong> 697,299 products from 397 European Shopify stores in ~1 week, mostly unattended, for ~$31 total LLM spend — vs. ~$5–15K for manual labelling. The benchmark became mid €82 (n=202) / premium €197 (n=116) / luxury €440 (n=896). Open source, MIT licensed, 18 documented lessons.</p>
+        </div>
+        <span class="w-max bg-white border-2 border-[#1A1A1A] px-6 py-2 font-bold hover:bg-primary hover:text-white transition-all neo-shadow rounded">View Case Study →</span>
+      </div>
+    </a>
+
+    <!-- Project 0 — MPB -->
+
     <a href="case-study-mpb.html" class="block grid grid-cols-1 lg:grid-cols-2 bg-tertiary-fixed border-4 border-[#1A1A1A] rounded-3xl overflow-hidden neo-shadow-lg hover:shadow-[12px_12px_0px_0px_rgba(26,26,26,1)] transition-all">
       <div class="p-5 md:p-8 flex flex-col justify-center">
         <span class="w-max bg-[#1A1A1A] text-white px-4 py-1 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">Marketplace Ops • AI • Discovery</span>
