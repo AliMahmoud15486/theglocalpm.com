@@ -60,15 +60,9 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     { key: 'point-of-view', href: 'point-of-view.html',  label: 'Point of View' },
   ];
 
-  // Soon-badge pill (shared between desktop + mobile renderers)
-  const SOON_PILL = '<sup style="position:absolute;top:-4px;right:-20px;background:#FF5733;color:#fff;font-size:9px;font-weight:600;text-transform:uppercase;padding:2px 5px;border-radius:20px;line-height:1;letter-spacing:0.5px;">Soon</sup>';
-
   function buildHeader(activeKey) {
     const navLinks = NAV_ITEMS.map(item => {
       const isActive = item.key === activeKey;
-      if (item.key === 'skills') {
-        return `<span class="relative inline-block text-[#1A1A1A] px-3 py-1 whitespace-nowrap" style="opacity:0.4;cursor:not-allowed;pointer-events:none;" aria-disabled="true" role="link">${item.label}${SOON_PILL}</span>`;
-      }
       const cls = isActive
         ? 'bg-coral text-white border-2 border-[#1A1A1A] -rotate-1 px-3 py-1 hover:-rotate-2 transition-all whitespace-nowrap'
         : 'text-[#1A1A1A] px-3 py-1 hover:bg-coral hover:text-white hover:-rotate-2 transition-all whitespace-nowrap';
@@ -78,9 +72,6 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 
     const mobileLinks = NAV_ITEMS.map(item => {
       const isActive = item.key === activeKey;
-      if (item.key === 'skills') {
-        return `<div class="block px-4 py-3 font-bold uppercase tracking-tight text-[#1A1A1A]" style="opacity:0.4;cursor:not-allowed;pointer-events:none;" aria-disabled="true" role="link"><span class="relative inline-block">${item.label}${SOON_PILL}</span></div>`;
-      }
       const cls = isActive
         ? 'block bg-coral text-white border-2 border-[#1A1A1A] px-4 py-3 font-bold uppercase tracking-tight'
         : 'block text-[#1A1A1A] px-4 py-3 font-bold uppercase tracking-tight hover:bg-coral hover:text-white border-2 border-transparent transition-colors';
@@ -92,7 +83,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 <header class="fixed top-0 left-0 right-0 z-50 flex justify-center px-4" role="banner">
   <nav class="bg-white rounded-full border-2 border-[#1A1A1A] mx-auto mt-4 md:mt-6 flex items-center gap-2 md:gap-4 px-3 md:px-6 py-2 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] md:shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] w-auto max-w-[calc(100vw-2rem)]" aria-label="Main navigation">
     <a href="index.html" class="flex items-center shrink-0" aria-label="TheGlocalPM — Home">
-      <img alt="TheGlocalPM — Ali Mahmoud, Senior Product Manager" class="h-8 md:h-10 w-auto bg-transparent max-w-[140px]" src="assets/logos/theglocalpm.png" />
+      <img alt="TheGlocalPM — Ali Mahmoud, Senior Product Manager" class="h-8 md:h-10 w-auto bg-transparent max-w-[140px]" src="assets/logos/logo.png" />
     </a>
     <div class="hidden lg:flex items-center gap-1 font-['Plus_Jakarta_Sans'] font-bold uppercase tracking-tight text-[13px]">
       ${navLinks}
@@ -127,7 +118,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="https://www.linkedin.com/in/alimahmoud1986/" target="_blank" rel="noopener me">LinkedIn</a>
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="https://cal.com/alim-datajar/coffeechat" rel="noopener" data-cal-link="alim-datajar/coffeechat" data-cal-namespace="coffeechat" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}'>Book a call</a>
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="mailto:ali@theglocalpm.com">Contact</a>
-    <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="assets/pdfs/Ali_TheGlocalPM_Resume.pdf" download="Ali_TheGlocalPM_Resume.pdf">Resume</a>
+    <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="assets/pdfs/Ali_Mahmoud_Resume.pdf" download="Ali_Mahmoud_Resume.pdf">Resume</a>
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="imprint.html">Imprint</a>
   </nav>
   <p class="text-white font-medium">© 2024–${year} TheGlocalPM • Ali Mahmoud, Senior Product Manager • Built with Chaos &amp; Logic</p>
@@ -151,14 +142,14 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
       <div class="w-full md:w-2/3 bg-surface-container border-4 border-[#1A1A1A] rounded-2xl h-[300px] md:h-[420px] flex items-center justify-center">
         <div class="text-center p-6">
           <span class="material-symbols-outlined text-6xl text-primary mb-2">description</span>
-          <h3 class="text-2xl font-bold mb-1">Ali_TheGlocalPM_Resume.pdf</h3>
+          <h3 class="text-2xl font-bold mb-1">Ali_Mahmoud_Resume.pdf</h3>
           <p class="text-on-surface-variant">Senior PM • 10 years • SaaS, marketplaces, AI</p>
         </div>
       </div>
       <div class="w-full md:w-1/3 space-y-4">
         <h2 class="text-2xl md:text-3xl font-extrabold">My Resume</h2>
         <p class="text-on-surface-variant">10 years shipping products across SaaS, marketplaces and AI-driven tools.</p>
-        <a href="assets/pdfs/Ali_TheGlocalPM_Resume.pdf" download="Ali_TheGlocalPM_Resume.pdf" class="block w-full text-center bg-primary text-white font-bold px-6 py-4 border-4 border-[#1A1A1A] hover:bg-coral transition-all neo-shadow rounded-lg">
+        <a href="assets/pdfs/Ali_Mahmoud_Resume.pdf" download="Ali_Mahmoud_Resume.pdf" class="block w-full text-center bg-primary text-white font-bold px-6 py-4 border-4 border-[#1A1A1A] hover:bg-coral transition-all neo-shadow rounded-lg">
           <span class="material-symbols-outlined align-middle mr-1">download</span> DOWNLOAD PDF
         </a>
       </div>

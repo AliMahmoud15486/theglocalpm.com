@@ -54,7 +54,11 @@ site/
 ├── case-study.html                  # GetHalal deep dive (8-section)
 ├── case-study-everstox.html         # Everstox deep dive (9-section)
 ├── case-study-flightright.html      # Flightright deep dive (OLD 3-column template — pending rewrite)
-├── skills.html                      # DISABLED in navbar but page exists
+├── skills.html                      # 6 PM competencies + The Skills Library (LIVE in navbar since 2026-07-20)
+├── skills/                          # Downloadable Claude Skill files (.md) served by The Skills Library
+│   ├── prd-writer.md
+│   ├── discovery-plan.md
+│   └── job-application.md
 ├── toolkit.html                     # PM toolkit + FAQ
 ├── point-of-view.html               # Essay index (5 cards, newest-first)
 ├── blog-post.html                   # ⚠️ deprecated original — no longer linked from point-of-view;
@@ -139,7 +143,7 @@ site/
 ### Other pages
 - **`agent-lab.html`** — 3-card grid, all three cards link to their GitHub repos (PM Disco → `pm-disco`, Travel Agent → `travel-orchestrator`, PNT → `Product_nature_tagging`). JSON-LD `SoftwareApplication` entries each carry a `url` field. Subtitle: "AI agents built to solve real product and operational problems — from discovery to execution"
 - **`toolkit.html`** — 3 PDF download cards + **PM Wiki featured section** (open-source, links to `github.com/AliMahmoud15486/pm-llm-wiki` + `blog-pm-llm-wiki.html`) + "Mastering the Art of No" featured PDF + 4-Q FAQ (incl. "What is an LLM wiki for product managers?", mirrored in FAQPage JSON-LD)
-- **`skills.html`** — 6 skill cards + "What does a Senior PM do?" lede + 2-Q FAQ. **Disabled in navbar**, page still serves
+- **`skills.html`** — two stacked sections: (1) the original 6 competency cards + "What does a Senior PM do?" lede; (2) **The Skills Library** — 3 Toolkit-style bento cards (`prd-writer` / `discovery-plan` / `job-application`) each downloading a `.md` from `skills/`, plus a `bg-primary-fixed` "How to use one" install panel showing the `~/.claude/skills/<name>/SKILL.md` path. FAQ grown 2 → 5 visible `<details>` (added "What is a Claude Skill…", "Why write your own skills…", and restored the previously schema-only "What does a Senior PM actually do?"). JSON-LD carries a second `ItemList` (3 × `SoftwareSourceCode`) alongside the original 6-term `ItemList`. **Enabled in the navbar 2026-07-20** — canonical source of the skill files is `TheGlocalPM/SKILLS/<name>/SKILL.md`, copied here flat as `skills/<name>.md`
 - **`imprint.html`** — legal disclosure / provider identification. Operator is **Ventureland OÜ** (Estonian Osaühing; registry code 17040268; VAT EE102763355; Pärnu mnt 139b, 11317 Tallinn, Estonia; represented by Ali Mahmoud, board member; email ali@theglocalpm.com — phone deliberately NOT published per owner request 2026-07-20). Sections: Service Provider · Represented By · Contact · VAT · Responsible for Content (§ 18 MStV) · Consumer Dispute Resolution (notes EU ODR platform closed 2025-07-20) · Liability & Copyright. Linked from the shared footer (`buildFooter()` in `js/main.js`); in `sitemap.xml` (priority 0.3). Org data mirrored in page JSON-LD (Organization address/vatID/identifier/telephone). English-only. `data-page="imprint"` (no nav highlight)
 - **`point-of-view.html`** — 7 essay cards, newest-first, alternating image-left / image-right layouts; per-card category badge + (for non-featured cards) "Month YYYY" date label below the badge; Load More button removed; embedded HTML comment documents the rules for adding new posts (naming, routing, date label, order, alternation, JSON-LD upkeep)
 - **Blog system (7 individual essay files)** — each essay lives in its own `blog-[short-kebab-title].html` file with full nav/footer, hero, featured image/chart, article body, author block, and Read Next cards cross-linking the two next-most-recent posts. Per-post JSON-LD includes `BlogPosting` + `BreadcrumbList`; long-form posts add a `citation` array. Posts referencing charts load PNGs from `assets/blog/<topic>/` inside cream-bordered figure containers with italic muted captions
@@ -147,7 +151,7 @@ site/
 
 ### Header (rendered by `js/main.js`)
 - Logo links home
-- Nav items: Work / Case Studies / Agent Lab / **Skills (disabled, "SOON" pill)** / The Toolkit / Point of View
+- Nav items: Work / Case Studies / Agent Lab / Skills / The Toolkit / Point of View — all live (the Skills "SOON" pill and its `SOON_PILL` constant were removed 2026-07-20)
 - "Book a call" CTA (Cal.com popup)
 - Mobile hamburger menu with same items
 - `aria-current="page"` on active link
@@ -174,9 +178,11 @@ site/
 8. **Tailwind production build** — replace the CDN with compiled CSS (Core Web Vitals win, removes console warning).
 
 ### Low priority / housekeeping
-9. **Restore Skills page link in navbar** once the page is ready (currently shown as "SOON" + disabled).
-10. **`noscript` Skills link** in each page still points to `skills.html` — fine for crawlers, but consider dimming for consistency if Skills is gone for a long time.
-11. **Submit `sitemap.xml`** to Google Search Console + Bing Webmaster Tools once live on production domain.
+9. ~~**Restore Skills page link in navbar**~~ — done 2026-07-20 (Skills Library shipped; nav enabled, SOON pill removed).
+10. ~~**`noscript` Skills link** dimming~~ — moot, Skills is live and the noscript links were already correct.
+11. **Add more skills to the library** as they're authored. Candidates in `TheGlocalPM/SKILLS/README.md`: `user-story-slicer`, `prioritization`, `competitor-teardown`, `metrics-tree`, `interview-guide`, `feedback-synthesis`, `weekly-review`.
+12. **Consider a Skills teaser on `index.html`**, matching the Toolkit / Agent Lab teaser pattern — currently the library is only reachable from the navbar.
+13. **Submit `sitemap.xml`** to Google Search Console + Bing Webmaster Tools once live on production domain.
 
 ---
 
@@ -194,6 +200,7 @@ site/
 - **Internal-linking pattern**: each case study deep dive has a "Read next" section linking to the other two case studies. Each blog post's "Read Next" links to the two next-most-recent posts (not itself, not the older tail).
 - **CTAs below sections**: standard pattern is `mt-12 md:mt-16 text-center` with muted helper line + outlined button. Helper text is `text-on-surface-variant` (dark sections) or `text-white/80` (purple/dark sections)
 - **Disabled button style**: `bg-surface-container-high border-outline-variant text-outline opacity-50 cursor-not-allowed` (currently used only for the Skills "SOON" nav pill; PNT used this style until 2026-05-26 when it was activated and switched to a regular `Get Agent` link)
+- **Skills Library sync**: the skill files are AUTHORED in `TheGlocalPM/SKILLS/<name>/SKILL.md` (that folder is the source of truth and is what gets symlinked into `~/.claude/skills/`). The site copy is flattened to `site/skills/<name>.md` so the download URL is readable. When a skill changes, re-copy it and update BOTH the card and the `SoftwareSourceCode` entry in the page JSON-LD. Adding a skill = new card (next tilt/color in rotation) + new `ListItem` + bump `numberOfItems` + a line in `llms-full.txt`
 - **Schema-content parity**: when visible content changes, also update the matching JSON-LD on the same page (Google penalizes drift)
 - **AEO mirror**: every FAQ section on a page has visible `<details>` markup matching the `FAQPage` JSON-LD 1:1
 
@@ -254,6 +261,10 @@ These are flagged but require owner action — not codeable autonomously:
 - Decision on whether newsletter form should be wired to a real CRM (currently fake submit)
 
 ---
+
+*Update (2026-07-23): **Store Data Engine shipped across the site** (case study + Agent Lab entry + essay), sourced from the public `Super-scrap-llm-engine-public` repo (github.com/AliMahmoud15486/Super-scrap-llm-engine-public). New `case-study-store-data-engine.html` (MPB template: Article + BreadcrumbList JSON-LD, 4-metric row 697K/397/~$31/97.1%, Problem → 5-stage pipeline diagram → 4 failure cards → economics table → before/after proof → GitHub + "Book a Store Data Analysis" CTA). New `blog-llm-data-pipeline.html` ("18 Lessons from Enriching 697,000 Products for $31", Data & AI · July 2026, evals-style dark styled-panel hero — no stock image; Read Next → PM Wiki + Evals). `case-studies.html`: new featured card at top (bg-primary-fixed, dark 🕷️ panel on the LEFT to alternate vs MPB's right panel); ItemList fixed to 6 (also added the previously-missing MPB entry, positions renumbered). `agent-lab.html`: 7th card (bg-primary-fixed, tilt-1, badge "Data Pipeline", 🕷️), ItemList → 7. `point-of-view.html`: new top card (bg-secondary-fixed, image-right/tilt-1 to alternate vs PM Wiki's image-left/tilt-1-reverse, July 2026 date label; PM Wiki card got its date label on demotion), Card comments renumbered 1–8, ItemList → 8. `sitemap.xml` → 21 URLs (2 new + lastmod bumps on case-studies/point-of-view/agent-lab); `llms.txt` + `llms-full.txt` updated (new case study + essay entries, Agent Lab lines now mention Super Scrap, glossary six→seven agents). NOT committed or pushed. Known pre-existing issue left untouched: `assets/pdfs/Ali_TheGlocalPM_Resume.pdf` is still referenced site-wide (incl. the two new pages' noscript footers) but the file on disk is `Ali_Mahmoud_Resume.pdf` — part of Ali's in-progress asset swap.*
+
+*Update (2026-07-20): **The Skills Library shipped and Skills went live in the navbar.** Three authored Claude Skills (`prd-writer`, `discovery-plan`, `job-application`) copied from `TheGlocalPM/SKILLS/` into new `site/skills/` and surfaced on `skills.html` as a Toolkit-style bento section below the existing 6 competency cards (non-destructive — the original competency content, its keywords, and its FAQ were all preserved). Added: install panel with the `~/.claude/skills/<name>/SKILL.md` path, 2 new FAQ entries, and 1 restored FAQ entry that had been schema-only since launch (FAQ parity was 3 schema / 2 visible — now 5 / 5). Second `ItemList` (3 × `SoftwareSourceCode`) added to JSON-LD. `js/main.js`: the `skills` special-case removed from both `buildHeader()` renderers and the now-unused `SOON_PILL` constant deleted — Skills renders as a normal nav link. Title/description/OG/Twitter broadened to cover both halves of the page. `sitemap.xml` lastmod bumped; `llms.txt` + `llms-full.txt` updated. Verified locally: all pages 200, all JSON-LD parses, 3 `.md` files serve, FAQ 1:1 parity restored. **Not yet committed or pushed** — working tree also still holds the older in-progress logo/resume asset swap (`assets/logos/logo.png`, `assets/pdfs/Ali_Mahmoud_Resume.pdf` untracked; old filenames deleted but still referenced in footer/schema), so a commit here needs care not to sweep that in half-done.*
 
 *Update (2026-07-03): **PM Wiki (pm-llm-wiki) added across the site**, timed with the LinkedIn launch post — rebased on top of another session's 2026-07-01 push (evals essay `blog-evals-pm-quality-gate.html`, MPB case study, Agent Lab additions; those are NOT yet fully reflected in the older sections of this file). New essay `blog-pm-llm-wiki.html` (AI Tooling · July 2026 · 7 min, Unsplash library hero, JSON-LD BlogPosting + BreadcrumbList with Karpathy gist + repo citations, Read Next → evals + q-commerce). `point-of-view.html`: PM Wiki prepended as featured Card 1 (bg-primary-fixed, image-left), evals demoted to Card 2 with a July 2026 date label, existing cards otherwise untouched, ItemList bumped to 7. `toolkit.html`: PM Wiki featured section (bg-primary-fixed, GitHub CTA + essay link), lede/meta updated to four resources, ItemList numberOfItems=4 with a SoftwareSourceCode entry, 4th FAQ Q&A added (visible + JSON-LD). `index.html`: full-width PM Wiki banner card added under the Toolkit teaser grid; Point of View teaser repointed from the evals essay to the new (newer) essay. `sitemap.xml` → 18 URLs. `llms.txt` + `llms-full.txt` updated (essay entry, toolkit description, new FAQ, PM Wiki glossary term). Working tree also holds Ali's in-progress logo/resume asset swap (stashed during the rebase, restored after; old asset filenames still referenced in footer/schema — pending).*
 
