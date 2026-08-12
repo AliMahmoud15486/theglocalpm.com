@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4HB5H5CNK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    // Consent Mode: deny storage until the visitor decides. This must run
+    // BEFORE the config call below, otherwise GA4 sets cookies on first
+    // paint and the banner is decorative. If they already decided, re-grant
+    // here rather than waiting for main.js, so the pageview isn't lost.
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+    try {
+      if (localStorage.getItem('tgpm_consent') === 'granted') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted'
+        });
+      }
+    } catch (e) {}
+
+    gtag('js', new Date());
+    gtag('config', 'G-X4HB5H5CNK');
+  </script>
+  <!-- PostHog (EU) -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="an ln init xn Cn Br kn In capture Fn nn calculateEventProperties On register register_once register_for_session unregister unregister_for_session Ln getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Dn identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty An Rn createPersonProfile setInternalOrTestUser $n yn jn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Tn debug Ur Rt getPageViewId captureTraceFeedback captureTraceMetric pn".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_oEhD6LG9Nkchrx5ScWCFAPuM7GhsdCYNeGfBWuHY2ZaJ', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        // Visitors who decline are still counted, via a server-side hash
+        // instead of cookies — no replay, no GeoIP, but not invisible.
+        cookieless_mode: 'on_reject',
+        person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
+    })
+  </script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy — TheGlocalPM</title>
+<meta name="description" content="How theglocalpm.com handles personal data under the GDPR: analytics only with consent, double opt-in newsletter, and every third-party service listed." />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="Ali Mahmoud" />
+<meta name="theme-color" content="#5B6EF5" />
+<link rel="canonical" href="https://theglocalpm.com/privacy.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="TheGlocalPM" />
+<meta property="og:title" content="Privacy Policy — TheGlocalPM" />
+<meta property="og:description" content="How theglocalpm.com handles personal data under the GDPR: analytics only with consent, double opt-in newsletter, and every third-party service listed." />
+<meta property="og:url" content="https://theglocalpm.com/privacy.html" />
+<meta property="og:image" content="https://theglocalpm.com/assets/portraits/ali-smiling.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Privacy Policy — TheGlocalPM" />
+<meta name="twitter:description" content="How theglocalpm.com handles personal data under the GDPR: analytics only with consent, double opt-in newsletter, and every third-party service listed." />
+<link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+<link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="TheGlocalPM" />
+<link rel="manifest" href="assets/favicon/site.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js?v=2"></script>
+<link rel="stylesheet" href="css/styles.css?v=2" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://theglocalpm.com/privacy.html#webpage",
+      "url": "https://theglocalpm.com/privacy.html",
+      "name": "Privacy Policy — TheGlocalPM",
+      "description": "How theglocalpm.com handles personal data under the GDPR: analytics only with consent, double opt-in newsletter, and every third-party service listed.",
+      "isPartOf": { "@type": "WebSite", "@id": "https://theglocalpm.com/#website", "url": "https://theglocalpm.com/", "name": "TheGlocalPM" },
+      "inLanguage": "en",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Ventureland OÜ",
+        "legalName": "Ventureland OÜ",
+        "url": "https://theglocalpm.com/",
+        "email": "ali@theglocalpm.com",
+        "vatID": "EE102763355",
+        "identifier": { "@type": "PropertyValue", "propertyID": "Estonian Commercial Register code", "value": "17040268" },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Pärnu mnt 139b",
+          "postalCode": "11317",
+          "addressLocality": "Tallinn",
+          "addressCountry": "EE"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theglocalpm.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://theglocalpm.com/privacy.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-page="privacy" class="bg-background">
+<div id="site-header"><noscript>
+  <header role="banner" class="bg-white border-b-4 border-[#1A1A1A] p-4">
+    <a href="index.html" class="font-extrabold">TheGlocalPM — Ali Mahmoud, Senior Product Manager</a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Work</a> ·
+      <a href="case-studies.html">Case Studies</a> ·
+      <a href="agent-lab.html">Agent Lab</a> ·
+      <a href="toolkit.html">The Toolkit</a> ·
+      <a href="point-of-view.html">Point of View</a> ·
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener">Book a call</a>
+    </nav>
+  </header>
+</noscript></div>
+
+<main class="flex-grow pt-xl pb-xl px-margin max-w-4xl mx-auto w-full mt-24 md:mt-32 relative">
+
+  <header class="mb-xl text-center md:text-left">
+    <p class="font-bold uppercase tracking-widest text-coral mb-4">Data Protection</p>
+    <h1 class="text-5xl md:text-[80px] font-extrabold mb-4 leading-[1.05]">
+      <span class="tilted-underline tilted-underline-orange">Privacy</span>
+    </h1>
+    <p class="text-lg md:text-xl max-w-2xl opacity-80">
+      How <strong>theglocalpm.com</strong> handles your personal data, under the EU General Data
+      Protection Regulation (GDPR) and the Estonian Personal Data Protection Act.
+    </p>
+  </header>
+
+  <div class="border-b-4 border-[#1A1A1A] mb-12"></div>
+
+  <!-- Summary -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">The short version</h2>
+    <ul class="space-y-3 text-base md:text-lg list-disc pl-5">
+      <li>This is a portfolio site. There is no account system, no advertising, and nothing is sold to anyone.</li>
+      <li><strong>Analytics only run if you accept them.</strong> Decline and Google Analytics is switched off entirely; PostHog then counts you without cookies and without identifying you.</li>
+      <li>The <strong>newsletter is double opt-in</strong> — your address does nothing until you click the link in the confirmation email.</li>
+      <li>You can withdraw consent at any time via the <a href="#" data-consent-reopen class="underline font-bold hover:text-coral">Cookies</a> link in the footer.</li>
+    </ul>
+  </section>
+
+  <!-- 1. Controller -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">1. Who is responsible</h2>
+    <p class="text-base md:text-lg mb-5">
+      The controller for data processing on this website, within the meaning of Art. 4(7) GDPR, is:
+    </p>
+    <dl class="space-y-4 text-base md:text-lg">
+      <div>
+        <dt class="font-bold uppercase text-xs tracking-widest text-coral">Company</dt>
+        <dd class="mt-1">Ventureland OÜ</dd>
+      </div>
+      <div>
+        <dt class="font-bold uppercase text-xs tracking-widest text-coral">Registered office</dt>
+        <dd class="mt-1">Pärnu mnt 139b, 11317 Tallinn, Estonia</dd>
+      </div>
+      <div>
+        <dt class="font-bold uppercase text-xs tracking-widest text-coral">Registry code</dt>
+        <dd class="mt-1">17040268 (Estonian Commercial Register)</dd>
+      </div>
+      <div>
+        <dt class="font-bold uppercase text-xs tracking-widest text-coral">Represented by</dt>
+        <dd class="mt-1">Ali Mahmoud, Member of the Management Board</dd>
+      </div>
+      <div>
+        <dt class="font-bold uppercase text-xs tracking-widest text-coral">Contact for data protection</dt>
+        <dd class="mt-1"><a class="underline font-bold hover:text-coral" href="mailto:ali@theglocalpm.com">ali@theglocalpm.com</a></dd>
+      </div>
+    </dl>
+    <p class="text-base md:text-lg mt-5 opacity-80">
+      We have not appointed a Data Protection Officer, as the statutory thresholds under Art. 37 GDPR are not met.
+    </p>
+  </section>
+
+  <!-- 2. Rights -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">2. Your rights</h2>
+    <p class="text-base md:text-lg mb-4">Under the GDPR you have the right to:</p>
+    <ul class="space-y-2 text-base md:text-lg list-disc pl-5 mb-5">
+      <li><strong>Access</strong> (Art. 15) — ask what data we hold about you</li>
+      <li><strong>Rectification</strong> (Art. 16) — have inaccurate data corrected</li>
+      <li><strong>Erasure</strong> (Art. 17) — have your data deleted</li>
+      <li><strong>Restriction</strong> (Art. 18) — limit how we process it</li>
+      <li><strong>Data portability</strong> (Art. 20) — receive it in a machine-readable format</li>
+      <li><strong>Object</strong> (Art. 21) — object to processing based on legitimate interests</li>
+      <li><strong>Withdraw consent</strong> (Art. 7(3)) at any time, without affecting the lawfulness of processing before withdrawal</li>
+    </ul>
+    <p class="text-base md:text-lg mb-5">
+      To exercise any of these, email <a class="underline font-bold hover:text-coral" href="mailto:ali@theglocalpm.com">ali@theglocalpm.com</a>.
+      We will respond within one month.
+    </p>
+    <h3 class="text-xl font-extrabold mb-3">Right to complain</h3>
+    <p class="text-base md:text-lg">
+      You may lodge a complaint with a supervisory authority. Our lead authority is the Estonian Data
+      Protection Inspectorate (Andmekaitse Inspektsioon), Tatari 39, 10134 Tallinn, Estonia —
+      <a class="underline font-bold hover:text-coral" href="https://www.aki.ee" rel="noopener" target="_blank">www.aki.ee</a>.
+      You may also complain to the supervisory authority in your own country of residence.
+    </p>
+  </section>
+
+  <!-- 3. Hosting & logs -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">3. Hosting and server logs</h2>
+    <p class="text-base md:text-lg mb-4">
+      This site is hosted on <strong>GitHub Pages</strong>, a service of GitHub, Inc. (a Microsoft company),
+      88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA.
+    </p>
+    <p class="text-base md:text-lg mb-4">
+      When you open a page, your browser necessarily transmits technical data to GitHub's servers,
+      which may be logged: your IP address, the requested file, the date and time, the referring
+      page, and your browser and operating system. We do not have access to these logs and do not
+      combine them with other data.
+    </p>
+    <p class="text-base md:text-lg">
+      <strong>Legal basis:</strong> Art. 6(1)(f) GDPR. Our legitimate interest is delivering the
+      website reliably and securely — a site cannot be served without processing the visitor's IP address.
+    </p>
+  </section>
+
+  <!-- 4. Cookies and consent -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">4. Cookies and your consent</h2>
+    <p class="text-base md:text-lg mb-4">
+      On your first visit you are asked to accept or decline analytics. Nothing analytical is stored
+      or transmitted before you choose.
+    </p>
+    <p class="text-base md:text-lg mb-4">
+      Your choice is remembered in your browser's local storage under the key
+      <code class="bg-surface-container px-2 py-0.5 rounded font-bold">tgpm_consent</code>. This is
+      strictly necessary to honour your decision, and is not used to track you.
+    </p>
+    <p class="text-base md:text-lg mb-4">
+      <strong>If you accept</strong>, Google Analytics and PostHog set cookies as described below.
+      <strong>If you decline</strong>, Google Analytics is disabled through Google Consent Mode and sets
+      no cookies; PostHog switches to a cookieless mode which counts you as a visitor without storing
+      anything on your device and without identifying you.
+    </p>
+    <p class="text-base md:text-lg">
+      You can change your mind at any time using the
+      <a href="#" data-consent-reopen class="underline font-bold hover:text-coral">Cookies</a> link in
+      the footer of every page. Withdrawing is as easy as granting.
+    </p>
+  </section>
+
+  <!-- 5. Google Analytics -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">5. Google Analytics 4</h2>
+    <p class="text-base md:text-lg mb-4">
+      <strong>Only active if you accept.</strong> We use Google Analytics 4 to understand which pages
+      and case studies people actually read. Provider: Google Ireland Limited, Gordon House, Barrow
+      Street, Dublin 4, Ireland, which may transfer data to Google LLC in the USA.
+    </p>
+    <p class="text-base md:text-lg mb-4">
+      Data processed includes pages viewed, approximate location derived from your IP address, device
+      and browser type, referring source, and interactions such as opening the booking dialog,
+      opening the résumé, or completing a booking. IP anonymisation is applied by default in
+      Google Analytics 4.
+    </p>
+    <p class="text-base md:text-lg mb-4">
+      <strong>Legal basis:</strong> Art. 6(1)(a) GDPR — your consent. Withdrawable at any time.
+    </p>
+    <p class="text-base md:text-lg">
+      You can additionally install Google's
+      <a class="underline font-bold hover:text-coral" href="https://tools.google.com/dlpage/gaoptout" rel="noopener" target="_blank">browser opt-out add-on</a>.
+      More at <a class="underline font-bold hover:text-coral" href="https://policies.google.com/privacy" rel="noopener" target="_blank">policies.google.com/privacy</a>.
+    </p>
+  </section>
+
+  <!-- 6. PostHog -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">6. PostHog (EU)</h2>
+    <p class="text-base md:text-lg mb-4">
+      We use PostHog for product analytics. Provider: PostHog, Inc. This site uses PostHog's
+      <strong>EU Cloud</strong>, so event data is stored on servers within the European Union.
+    </p>
+    <p class="text-base md:text-lg mb-4">
+      <strong>If you accept:</strong> PostHog sets a first-party cookie
+      (<code class="bg-surface-container px-2 py-0.5 rounded font-bold">ph_*</code>) to recognise
+      returning visits, and records pages viewed and interactions such as newsletter signups and
+      booking completions.
+    </p>
+    <p class="text-base md:text-lg mb-4">
+      <strong>If you decline:</strong> PostHog runs in cookieless mode. No cookies or local storage
+      are used. You are counted using a privacy-preserving hash calculated on PostHog's servers,
+      which is rotated daily and cannot be traced back to you. In this mode no location enrichment
+      is performed and no session recording takes place.
+    </p>
+    <p class="text-base md:text-lg">
+      <strong>Legal basis:</strong> Art. 6(1)(a) GDPR for the cookie-based mode.
+      More at <a class="underline font-bold hover:text-coral" href="https://posthog.com/privacy" rel="noopener" target="_blank">posthog.com/privacy</a>.
+    </p>
+  </section>
+
+  <!-- 7. Newsletter -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">7. Newsletter</h2>
+    <p class="text-base md:text-lg mb-4">
+      The newsletter is delivered by <strong>Kit</strong> (formerly ConvertKit), a service of
+      Kit.com, Inc., USA. When you subscribe, your email address is transmitted to and stored by Kit.
+    </p>
+    <p class="text-base md:text-lg mb-4">
+      <strong>Double opt-in.</strong> After you submit the form you receive a confirmation email.
+      Your address is only added to the list once you click the link in that email. Until then
+      nothing is sent to you. This procedure documents that the subscription was genuinely yours.
+    </p>
+    <p class="text-base md:text-lg mb-4">
+      Kit records whether emails are opened and which links are clicked, which we use to judge
+      whether the writing is worth continuing. If you would rather not be measured this way, simply
+      unsubscribe — every email contains a one-click unsubscribe link.
+    </p>
+    <p class="text-base md:text-lg mb-4">
+      <strong>Legal basis:</strong> Art. 6(1)(a) GDPR — your consent, given by confirming the opt-in email.
+    </p>
+    <p class="text-base md:text-lg">
+      <strong>Retention:</strong> until you unsubscribe. Afterwards your address may be retained on a
+      suppression list solely to ensure we do not email you again. Kit's privacy notice:
+      <a class="underline font-bold hover:text-coral" href="https://kit.com/privacy" rel="noopener" target="_blank">kit.com/privacy</a>.
+    </p>
+  </section>
+
+  <!-- 8. Booking -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">8. Booking a call (Cal.com)</h2>
+    <p class="text-base md:text-lg mb-4">
+      Appointment booking is provided by Cal.com, Inc., USA. The booking dialog is embedded on this
+      site, which means Cal.com receives your IP address when a page containing it is loaded, and
+      the scheduling script is fetched from Cal.com's servers.
+    </p>
+    <p class="text-base md:text-lg mb-4">
+      If you book, the details you enter — typically name, email address, chosen time, and any notes —
+      are processed by Cal.com to arrange the meeting.
+    </p>
+    <p class="text-base md:text-lg">
+      <strong>Legal basis:</strong> Art. 6(1)(b) GDPR for booking data, as processing is necessary to
+      take steps at your request before entering into a contract; Art. 6(1)(f) for embedding the
+      scheduling tool. Cal.com's notice:
+      <a class="underline font-bold hover:text-coral" href="https://cal.com/privacy" rel="noopener" target="_blank">cal.com/privacy</a>.
+    </p>
+  </section>
+
+  <!-- 9. Other third-party resources -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">9. Other resources loaded by this site</h2>
+    <p class="text-base md:text-lg mb-4">
+      For transparency: the following are loaded from third-party servers when a page opens, which
+      means those providers receive your IP address. They set no analytics cookies and are not used
+      to profile you, but they are external requests and you should know about them.
+    </p>
+    <ul class="space-y-3 text-base md:text-lg list-disc pl-5 mb-4">
+      <li><strong>Google Fonts</strong> (Google Ireland Ltd / Google LLC) — typefaces, loaded from
+        <code class="bg-surface-container px-2 py-0.5 rounded font-bold text-sm">fonts.googleapis.com</code> and
+        <code class="bg-surface-container px-2 py-0.5 rounded font-bold text-sm">fonts.gstatic.com</code>.</li>
+      <li><strong>Tailwind CSS CDN</strong> (Tailwind Labs, Inc.) — the styling framework.</li>
+      <li><strong>Unsplash</strong> (Unsplash Inc., Canada) — some illustrative images.</li>
+    </ul>
+    <p class="text-base md:text-lg">
+      <strong>Legal basis:</strong> Art. 6(1)(f) GDPR — our legitimate interest in presenting the site
+      consistently across devices.
+    </p>
+  </section>
+
+  <!-- 10. International transfers -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">10. Transfers outside the EU</h2>
+    <p class="text-base md:text-lg mb-4">
+      Several providers above are based in the United States. Where data is transferred there, it is
+      safeguarded either by the provider's certification under the EU–US Data Privacy Framework, or by
+      Standard Contractual Clauses adopted by the European Commission under Art. 46(2)(c) GDPR.
+    </p>
+    <p class="text-base md:text-lg">
+      Despite these safeguards, US authorities may in principle be able to access such data, and it
+      cannot be guaranteed that you would have the same avenues of redress as within the EU. PostHog
+      analytics data is kept in the EU specifically to reduce this exposure.
+    </p>
+  </section>
+
+  <!-- 11. Retention -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">11. How long data is kept</h2>
+    <ul class="space-y-3 text-base md:text-lg list-disc pl-5">
+      <li><strong>Analytics:</strong> retained according to the provider's configured retention period, then deleted or aggregated.</li>
+      <li><strong>Newsletter:</strong> until you unsubscribe.</li>
+      <li><strong>Booking data:</strong> for as long as needed to hold the meeting and meet any statutory retention obligations.</li>
+      <li><strong>Emails you send us:</strong> until the matter is dealt with, unless retention is legally required.</li>
+    </ul>
+  </section>
+
+  <!-- 12. Changes -->
+  <section class="bg-white border-4 border-[#1A1A1A] neo-shadow rounded-lg p-6 md:p-8 mb-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-5">12. Changes to this policy</h2>
+    <p class="text-base md:text-lg">
+      We update this notice when the services behind the site change. The date below reflects the
+      current version.
+    </p>
+  </section>
+
+  <p class="text-base md:text-lg opacity-70 mb-8">Last updated: 12 August 2026</p>
+
+  <div class="text-center md:text-left mb-8">
+    <a href="imprint.html" class="inline-block bg-primary text-white font-bold px-6 py-3 border-4 border-[#1A1A1A] rounded-xl neo-shadow hover:bg-coral transition-all uppercase tracking-widest text-sm">Imprint</a>
+  </div>
+
+</main>
+
+<div id="site-footer"><noscript>
+  <footer class="bg-coral text-white text-center p-6">
+    <p>© 2024–2026 TheGlocalPM • Ventureland OÜ</p>
+    <p><a href="mailto:ali@theglocalpm.com" class="underline">ali@theglocalpm.com</a></p>
+  </footer>
+</noscript></div>
+<script src="js/main.js?v=2"></script>
+</body>
+</html>

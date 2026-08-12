@@ -107,7 +107,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
   <p class="text-sm text-[#454654] mb-4 leading-relaxed">
     I use analytics to see which work actually lands. Accept and I can see how you
     found me and what you read. Decline and you're still counted — anonymously, no cookies.
-    <a href="imprint.html" class="underline font-bold text-[#1A1A1A] hover:text-coral">Details</a>.
+    <a href="privacy.html" class="underline font-bold text-[#1A1A1A] hover:text-coral">Details</a>.
   </p>
   <div class="flex gap-2">
     <button type="button" data-consent="granted"
@@ -323,6 +323,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="https://cal.com/alim-datajar/coffeechat" rel="noopener" data-cal-link="alim-datajar/coffeechat" data-cal-namespace="coffeechat" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}'>Book a call</a>
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="mailto:ali@theglocalpm.com">Contact</a>
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="assets/pdfs/Ali_Mahmoud_Resume.pdf" download="Ali_Mahmoud_Resume.pdf">Resume</a>
+    <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="privacy.html">Privacy</a>
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="imprint.html">Imprint</a>
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95 cursor-pointer" href="#" data-consent-reopen>Cookies</a>
   </nav>
