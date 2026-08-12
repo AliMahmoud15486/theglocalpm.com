@@ -6,8 +6,30 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
+    // Consent Mode: deny storage until the visitor decides. This must run
+    // BEFORE the config call below, otherwise GA4 sets cookies on first
+    // paint and the banner is decorative. If they already decided, re-grant
+    // here rather than waiting for main.js, so the pageview isn't lost.
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+    try {
+      if (localStorage.getItem('tgpm_consent') === 'granted') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted'
+        });
+      }
+    } catch (e) {}
+
+    gtag('js', new Date());
     gtag('config', 'G-X4HB5H5CNK');
   </script>
   <!-- PostHog (EU) -->
@@ -16,6 +38,9 @@
     posthog.init('phc_oEhD6LG9Nkchrx5ScWCFAPuM7GhsdCYNeGfBWuHY2ZaJ', {
         api_host: 'https://eu.i.posthog.com',
         defaults: '2026-05-30',
+        // Visitors who decline are still counted, via a server-side hash
+        // instead of cookies — no replay, no GeoIP, but not invisible.
+        cookieless_mode: 'on_reject',
         person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
     })
   </script>
