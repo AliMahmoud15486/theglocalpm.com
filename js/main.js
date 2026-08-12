@@ -152,6 +152,73 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
   }
 
   // -------------------------------------------------------------
+  // 0b. Newsletter (Kit / ConvertKit form 9795384)
+  //     The form keeps a real action+method so that if this script fails to
+  //     load the browser still performs a native POST to Kit rather than
+  //     doing nothing. When JS is available we intercept it to stay on the
+  //     page and show inline status.
+  //     Kit requires the field to be named `email_address`; under any other
+  //     name it returns success and discards the address.
+  // -------------------------------------------------------------
+  const KIT_FORM_ENDPOINT = 'https://app.convertkit.com/forms/9795384/subscriptions';
+
+  function initNewsletter() {
+    const form = document.getElementById('newsletter-form');
+    if (!form) return;
+
+    const input = form.querySelector('input[name="email_address"]');
+    const button = form.querySelector('button[type="submit"]');
+    const status = document.getElementById('newsletter-status');
+    if (!input || !button) return;
+
+    const idleLabel = button.textContent;
+
+    function setStatus(message, kind) {
+      if (!status) return;
+      status.textContent = message;
+      status.classList.toggle('hidden', !message);
+      status.classList.toggle('text-[#1A1A1A]', kind === 'ok');
+      status.classList.toggle('text-[#ba1a1a]', kind === 'error');
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const email = (input.value || '').trim();
+      if (!email) return;
+
+      button.disabled = true;
+      button.textContent = 'Subscribing…';
+      setStatus('', null);
+
+      fetch(KIT_FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email_address: email }),
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          // Kit answers 200 with a status field; treat anything else as failure
+          // rather than showing success for a response we don't understand.
+          if (data && data.status !== 'success') throw new Error('unexpected: ' + data.status);
+
+          form.reset();
+          button.textContent = '✓ Almost there';
+          setStatus('Check your inbox — confirm the email to finish subscribing.', 'ok');
+          track('newsletter_signup', { source_page: document.body.dataset.page || 'unknown' });
+        })
+        .catch(function () {
+          button.disabled = false;
+          button.textContent = idleLabel;
+          setStatus('That didn’t go through. Try again, or email ali@theglocalpm.com.', 'error');
+        });
+    });
+  }
+
+  // -------------------------------------------------------------
   // 0. Analytics: completed Cal.com bookings
   //    `cta_click` (below) only means the popup was opened. This fires when
   //    the booking is actually confirmed inside the Cal iframe, so GA4 and
@@ -314,6 +381,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 
     // Consent must initialise after the footer, which owns the reopen link
     initConsent();
+    initNewsletter();
 
     // Inject resume modal
     document.body.insertAdjacentHTML('beforeend', buildResumeModal());
