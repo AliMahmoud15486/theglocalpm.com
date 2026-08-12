@@ -37,13 +37,54 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 (function () {
   'use strict';
 
-  function fireGAEvent(eventName, params) {
+  // Single fan-out point for product analytics. Every custom event goes to
+  // both GA4 and PostHog from here, so the two can never drift apart.
+  // Each destination is guarded independently: if one script is blocked or
+  // still loading, the other still records the event.
+  // (Pageviews are not sent here — GA4 and PostHog both capture those
+  // automatically from their own snippets in <head>.)
+  function track(eventName, params) {
     if (typeof gtag === 'function') gtag('event', eventName, params);
+    if (typeof posthog !== 'undefined' && typeof posthog.capture === 'function') {
+      posthog.capture(eventName, params);
+    }
   }
 
   function ready(fn) {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  // -------------------------------------------------------------
+  // 0. Analytics: completed Cal.com bookings
+  //    `cta_click` (below) only means the popup was opened. This fires when
+  //    the booking is actually confirmed inside the Cal iframe, so GA4 and
+  //    PostHog can report a real conversion rate, not intent-to-open.
+  //    Cal renamed the action at one point and a single booking can emit
+  //    both names, so we register both and de-dupe.
+  // -------------------------------------------------------------
+  const seenBookings = new Set();
+
+  function onBookingSuccessful(e) {
+    const data = (e && e.detail && e.detail.data) || {};
+    const booking = data.booking || {};
+    const eventType = data.eventType || {};
+    const uid = booking.uid || data.uid || '';
+    const slug = eventType.slug || eventType.title || 'coffeechat';
+
+    const dedupeKey = uid || slug + '|' + (data.date || booking.startTime || '');
+    if (seenBookings.has(dedupeKey)) return;
+    seenBookings.add(dedupeKey);
+
+    const params = { cta_name: 'book_a_call', event_type: slug };
+    if (uid) params.booking_uid = uid;
+    track('booking_completed', params);
+  }
+
+  if (typeof Cal === 'function' && Cal.ns && Cal.ns.coffeechat) {
+    ['bookingSuccessful', 'bookingSuccessfulV2'].forEach(function (action) {
+      Cal.ns.coffeechat('on', { action: action, callback: onBookingSuccessful });
+    });
   }
 
   // -------------------------------------------------------------
@@ -186,7 +227,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
       const el = e.target.closest('[data-cal-link]');
       if (el) {
         e.preventDefault();
-        fireGAEvent('cta_click', { cta_name: 'book_a_call' });
+        track('cta_click', { cta_name: 'book_a_call' });
       }
     }, true);
 
@@ -207,7 +248,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     function openResume() {
       const m = document.getElementById('resume-modal');
       if (!m) return;
-      fireGAEvent('cta_click', { cta_name: 'open_resume' });
+      track('cta_click', { cta_name: 'open_resume' });
       m.classList.remove('hidden');
       m.classList.add('flex');
       document.body.style.overflow = 'hidden';
@@ -228,7 +269,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
       if (e.key === 'Escape') closeResume();
     });
 
-    // GA: nav topic clicks (Agent Lab, The Toolkit, Case Studies, Point of View)
+    // Analytics: nav topic clicks (Agent Lab, The Toolkit, Case Studies, Point of View)
     const GA_NAV_TOPICS = {
       'agent-lab.html':    'agent_lab',
       'toolkit.html':      'the_toolkit',
@@ -239,7 +280,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
       const link = e.target.closest('a[href]');
       if (!link) return;
       const topic = GA_NAV_TOPICS[link.getAttribute('href')];
-      if (topic) fireGAEvent('nav_topic_click', { topic });
+      if (topic) track('nav_topic_click', { topic });
     });
 
     // Press-down animation for elements with .neo-shadow that opt in
