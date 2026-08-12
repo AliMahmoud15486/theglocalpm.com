@@ -37,13 +37,150 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 (function () {
   'use strict';
 
-  function fireGAEvent(eventName, params) {
+  // Single fan-out point for product analytics. Every custom event goes to
+  // both GA4 and PostHog from here, so the two can never drift apart.
+  // Each destination is guarded independently: if one script is blocked or
+  // still loading, the other still records the event.
+  // (Pageviews are not sent here — GA4 and PostHog both capture those
+  // automatically from their own snippets in <head>.)
+  function track(eventName, params) {
     if (typeof gtag === 'function') gtag('event', eventName, params);
+    if (typeof posthog !== 'undefined' && typeof posthog.capture === 'function') {
+      posthog.capture(eventName, params);
+    }
   }
 
   function ready(fn) {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  // -------------------------------------------------------------
+  // 0a. Cookie consent
+  //     GA4 runs in Consent Mode — denied by default from the <head>, and
+  //     granted here only on accept. PostHog runs cookieless_mode:
+  //     'on_reject', so declining doesn't erase the visitor: they're still
+  //     counted via a server-side hash, just without cookies, session
+  //     replay or GeoIP.
+  //     localStorage is the source of truth for the banner and for GA4.
+  //     PostHog keeps its own record, so we replay our stored decision into
+  //     it on every load — otherwise the two can disagree when one of them
+  //     is blocked or cleared.
+  // -------------------------------------------------------------
+  const CONSENT_KEY = 'tgpm_consent';
+
+  function readConsent() {
+    try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+  }
+
+  function writeConsent(value) {
+    try { localStorage.setItem(CONSENT_KEY, value); } catch (e) { /* private mode */ }
+  }
+
+  function applyConsent(decision) {
+    const granted = decision === 'granted';
+    const state = granted ? 'granted' : 'denied';
+
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', {
+        ad_storage: state,
+        ad_user_data: state,
+        ad_personalization: state,
+        analytics_storage: state,
+      });
+    }
+
+    if (typeof posthog !== 'undefined') {
+      if (granted && typeof posthog.opt_in_capturing === 'function') {
+        posthog.opt_in_capturing();
+      } else if (!granted && typeof posthog.opt_out_capturing === 'function') {
+        posthog.opt_out_capturing();
+      }
+    }
+  }
+
+  function buildConsentBanner() {
+    return `
+<div id="consent-banner" role="dialog" aria-labelledby="consent-title"
+     class="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-sm z-[60] bg-white border-4 border-[#1A1A1A] rounded-2xl shadow-[6px_6px_0px_0px_rgba(26,26,26,1)] p-5 font-['Plus_Jakarta_Sans'] no-print">
+  <h2 id="consent-title" class="font-black uppercase tracking-tight text-lg text-[#1A1A1A] mb-2">Cookies</h2>
+  <p class="text-sm text-[#454654] mb-4 leading-relaxed">
+    I use analytics to see which work actually lands. Accept and I can see how you
+    found me and what you read. Decline and you're still counted — anonymously, no cookies.
+    <a href="imprint.html" class="underline font-bold text-[#1A1A1A] hover:text-coral">Details</a>.
+  </p>
+  <div class="flex gap-2">
+    <button type="button" data-consent="granted"
+            class="flex-1 bg-primary text-white border-2 border-[#1A1A1A] px-4 py-2 rounded-full font-bold text-[12px] uppercase tracking-widest hover:bg-coral transition-all shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] active:translate-x-1 active:translate-y-1 active:shadow-none">Accept</button>
+    <button type="button" data-consent="denied"
+            class="flex-1 bg-white text-[#1A1A1A] border-2 border-[#1A1A1A] px-4 py-2 rounded-full font-bold text-[12px] uppercase tracking-widest hover:bg-surface-container transition-all shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] active:translate-x-1 active:translate-y-1 active:shadow-none">Decline</button>
+  </div>
+</div>`;
+  }
+
+  function showConsentBanner() {
+    if (document.getElementById('consent-banner')) return;
+    document.body.insertAdjacentHTML('beforeend', buildConsentBanner());
+  }
+
+  function initConsent() {
+    const stored = readConsent();
+    if (stored === 'granted' || stored === 'denied') applyConsent(stored);
+    else showConsentBanner();
+
+    // Delegated so it survives the banner being re-opened from the footer.
+    document.addEventListener('click', function (e) {
+      const btn = e.target.closest('#consent-banner [data-consent]');
+      if (btn) {
+        const decision = btn.getAttribute('data-consent');
+        writeConsent(decision);
+        applyConsent(decision);
+        const banner = document.getElementById('consent-banner');
+        if (banner) banner.remove();
+        // Safe to record under either outcome: granted means full consent,
+        // denied means PostHog logs it cookielessly and GA4 drops it.
+        track('consent_decision', { decision: decision });
+        return;
+      }
+
+      // Withdrawing must be as easy as granting — footer link re-opens it.
+      if (e.target.closest('[data-consent-reopen]')) {
+        e.preventDefault();
+        showConsentBanner();
+      }
+    });
+  }
+
+  // -------------------------------------------------------------
+  // 0. Analytics: completed Cal.com bookings
+  //    `cta_click` (below) only means the popup was opened. This fires when
+  //    the booking is actually confirmed inside the Cal iframe, so GA4 and
+  //    PostHog can report a real conversion rate, not intent-to-open.
+  //    Cal renamed the action at one point and a single booking can emit
+  //    both names, so we register both and de-dupe.
+  // -------------------------------------------------------------
+  const seenBookings = new Set();
+
+  function onBookingSuccessful(e) {
+    const data = (e && e.detail && e.detail.data) || {};
+    const booking = data.booking || {};
+    const eventType = data.eventType || {};
+    const uid = booking.uid || data.uid || '';
+    const slug = eventType.slug || eventType.title || 'coffeechat';
+
+    const dedupeKey = uid || slug + '|' + (data.date || booking.startTime || '');
+    if (seenBookings.has(dedupeKey)) return;
+    seenBookings.add(dedupeKey);
+
+    const params = { cta_name: 'book_a_call', event_type: slug };
+    if (uid) params.booking_uid = uid;
+    track('booking_completed', params);
+  }
+
+  if (typeof Cal === 'function' && Cal.ns && Cal.ns.coffeechat) {
+    ['bookingSuccessful', 'bookingSuccessfulV2'].forEach(function (action) {
+      Cal.ns.coffeechat('on', { action: action, callback: onBookingSuccessful });
+    });
   }
 
   // -------------------------------------------------------------
@@ -120,6 +257,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="mailto:ali@theglocalpm.com">Contact</a>
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="assets/pdfs/Ali_Mahmoud_Resume.pdf" download="Ali_Mahmoud_Resume.pdf">Resume</a>
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="imprint.html">Imprint</a>
+    <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95 cursor-pointer" href="#" data-consent-reopen>Cookies</a>
   </nav>
   <p class="text-white font-medium">© 2024–${year} TheGlocalPM • Ali Mahmoud, Senior Product Manager • Built with Chaos &amp; Logic</p>
   <div class="flex gap-4" aria-hidden="true">
@@ -174,6 +312,9 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     if (footerSlot) footerSlot.outerHTML = buildFooter();
     else document.body.insertAdjacentHTML('beforeend', buildFooter());
 
+    // Consent must initialise after the footer, which owns the reopen link
+    initConsent();
+
     // Inject resume modal
     document.body.insertAdjacentHTML('beforeend', buildResumeModal());
 
@@ -186,7 +327,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
       const el = e.target.closest('[data-cal-link]');
       if (el) {
         e.preventDefault();
-        fireGAEvent('cta_click', { cta_name: 'book_a_call' });
+        track('cta_click', { cta_name: 'book_a_call' });
       }
     }, true);
 
@@ -207,7 +348,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     function openResume() {
       const m = document.getElementById('resume-modal');
       if (!m) return;
-      fireGAEvent('cta_click', { cta_name: 'open_resume' });
+      track('cta_click', { cta_name: 'open_resume' });
       m.classList.remove('hidden');
       m.classList.add('flex');
       document.body.style.overflow = 'hidden';
@@ -228,7 +369,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
       if (e.key === 'Escape') closeResume();
     });
 
-    // GA: nav topic clicks (Agent Lab, The Toolkit, Case Studies, Point of View)
+    // Analytics: nav topic clicks (Agent Lab, The Toolkit, Case Studies, Point of View)
     const GA_NAV_TOPICS = {
       'agent-lab.html':    'agent_lab',
       'toolkit.html':      'the_toolkit',
@@ -239,7 +380,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
       const link = e.target.closest('a[href]');
       if (!link) return;
       const topic = GA_NAV_TOPICS[link.getAttribute('href')];
-      if (topic) fireGAEvent('nav_topic_click', { topic });
+      if (topic) track('nav_topic_click', { topic });
     });
 
     // Press-down animation for elements with .neo-shadow that opt in
