@@ -131,7 +131,7 @@ A knowledge base an AI agent maintains for you: every customer interview, analyt
 ## Glossary
 
 - **AEO (Answer Engine Optimization).** Structuring content so it can be lifted verbatim into AI-generated answers.
-- **Agent Lab.** TheGlocalPM section showcasing seven custom AI agents built for product teams.
+- **Agent Lab.** TheGlocalPM section showcasing eight custom AI agents and systems built for product teams, including GTM Machine OS (open source).
 - **Everstox.** Case study on a B2B SaaS logistics product. First inventory-team roadmap via the Opportunity Solution Tree; 30% conversion on rollout, 60% monthly active use.
 - **Flightright.** Case study on a legaltech EU261 compensation product. +27% GMV from a fee-transparency A/B test under a strict −5% guardrail.
 - **Freight Intel.** Case study on an AI margin intelligence platform built with Datajar + Manus. Uses the "10 Steps Ahead" problem framework + LLM-based news classification to translate macro global events into SKU-level merchant decisions. 3–7% net margin recovery, 50+ global data points automated, time-to-action reduced from days to minutes.
