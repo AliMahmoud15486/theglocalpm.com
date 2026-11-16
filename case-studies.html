@@ -192,9 +192,10 @@
 <body data-page="case-studies" class="bg-background">
 <div id="site-header"><noscript>
   <header role="banner" class="bg-white border-b-4 border-[#1A1A1A] p-4">
-    <a href="index.html" class="font-extrabold">TheGlocalPM — Ali Mahmoud, Senior Product Manager</a>
+    <a href="index.html" class="font-extrabold">TheGlocalPM — Ali Mahmoud, AI-Native Product Manager</a>
     <nav aria-label="Main navigation">
       <a href="index.html">Work</a> ·
+      <a href="evals.html">Evals</a> ·
       <a href="case-studies.html">Case Studies</a> ·
       <a href="agent-lab.html">Agent Lab</a> ·
       <a href="skills.html">Skills</a> ·
@@ -214,7 +215,7 @@
       <span class="tilted-underline">Case Studies</span>
     </h1>
     <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed">
-      Real product work — from 0-to-1 founding and marketplace building, to B2B SaaS discovery and high-stakes A/B testing.
+      Real product work — from 0-to-1 founding and marketplace building, to B2B SaaS discovery and high-stakes A/B testing. On the AI work, each card says how the output was <a href="evals.html" class="underline decoration-coral decoration-4 underline-offset-4 font-bold">evaluated</a>.
     </p>
   </section>
 
@@ -241,6 +242,7 @@
           <p><strong>Problem:</strong> AI writes a convincing GTM strategy in minutes, but nobody can tell later which parts were known and which were guessed, and documents written in isolation contradict each other.</p>
           <p><strong>Process:</strong> A 12-pillar system of 19 Claude Code skills: discovery and a Business Profile first, strategy behind a coherence audit, execution behind a cross-check. A researcher, strategist and adversarial auditor run on every pillar.</p>
           <p><strong>Proof:</strong> Every claim tagged VALIDATED, RESEARCHED or ASSUMED; customer quotes never invented; 78 done-when checks; drafts only, and only a human can lock a decision. Open source as GTM Machine OS (MIT); exports to a Grok Bot with approval rules.</p>
+          <p><strong>Eval:</strong> Three grader layers on every output: code checks, an adversarial model judge, then a human lock. Gates today; a planted-problem eval set is next.</p>
         </div>
         <span class="w-max bg-white border-2 border-[#1A1A1A] px-6 py-2 font-bold hover:bg-primary hover:text-white transition-all neo-shadow rounded">View Case Study →</span>
       </div>
@@ -267,6 +269,7 @@
           <p><strong>Problem:</strong> Raw catalog data gave merchants a meaningless benchmark — "median leather bag: €640" pooled couture with high-street. Making it honest needed attributes (material, colour, tier) no solo operator could label by hand at 697K products.</p>
           <p><strong>Process:</strong> A five-stage AI-native pipeline — scrape → chunk → enrich → merge → propagate — with typed failures, key-set validation, and precision-gated free label propagation. ~110K products LLM-enriched via the Anthropic Batch API, then +72K more labels mined for free at 97.1% held-out precision.</p>
           <p><strong>Proof:</strong> 697,299 products from 397 European Shopify stores in ~1 week, mostly unattended, for ~$31 total LLM spend — vs. ~$5–15K for manual labelling. The benchmark became mid €82 (n=202) / premium €197 (n=116) / luxury €440 (n=896). Open source, MIT licensed, 18 documented lessons.</p>
+          <p><strong>Eval:</strong> Propagation scored on a held-out split before applying (97.1% precision); a 50-row hand audit measured the LLM at ~94% precision vs ~21% error for keyword rules.</p>
         </div>
         <span class="w-max bg-white border-2 border-[#1A1A1A] px-6 py-2 font-bold hover:bg-primary hover:text-white transition-all neo-shadow rounded">View Case Study →</span>
       </div>
@@ -282,6 +285,7 @@
           <p><strong>Problem:</strong> MPB's growth is constrained by warehouse throughput, not demand — yet the highest-leverage bottleneck, the "Listing Leg" between graded and live-on-site, is invisible: in no SLA, measured by no one, owned by no PM.</p>
           <p><strong>Process:</strong> A self-initiated 11-day, problem-first discovery — North Star to prioritisation to a 6-agent hypothesis workshop — that named the constraint, framed four orthogonal strategic bets, and reframed the build from waterfall ML to lean LLM (~90% cheaper).</p>
           <p><strong>Proof:</strong> Three working AI agents shipped end-to-end on n8n + Claude + Bolt.new. 5–8% NSM lift/quarter modeled from the Listing Leg alone; ~€1.5–3M annual margin add across the bets.</p>
+          <p><strong>Eval:</strong> The grading co-pilot scores approve / review / decline against a written rubric with few-shot examples, and returns its confidence so people review only the unsure cases.</p>
         </div>
         <span class="w-max bg-white border-2 border-[#1A1A1A] px-6 py-2 font-bold hover:bg-brand-purple hover:text-white transition-all neo-shadow rounded">View Case Study →</span>
       </div>
@@ -382,7 +386,7 @@
       <a href="mailto:ali@theglocalpm.com" class="underline mr-3">ali@theglocalpm.com</a>
       <a href="assets/pdfs/Ali_Mahmoud_Resume.pdf" download="Ali_Mahmoud_Resume.pdf" class="underline">Resume PDF</a>
     </nav>
-    <p>© 2024–2026 TheGlocalPM • Ali Mahmoud, Senior Product Manager</p>
+    <p>© 2024–2026 TheGlocalPM • Ali Mahmoud, AI-Native Product Manager</p>
   </footer>
 </noscript></div>
 <script src="js/main.js?v=2"></script>

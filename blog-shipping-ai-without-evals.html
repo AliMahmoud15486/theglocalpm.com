@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4HB5H5CNK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    // Consent Mode: deny storage until the visitor decides. This must run
+    // BEFORE the config call below, otherwise GA4 sets cookies on first
+    // paint and the banner is decorative. If they already decided, re-grant
+    // here rather than waiting for main.js, so the pageview isn't lost.
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+    try {
+      if (localStorage.getItem('tgpm_consent') === 'granted') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted'
+        });
+      }
+    } catch (e) {}
+
+    gtag('js', new Date());
+    gtag('config', 'G-X4HB5H5CNK');
+  </script>
+  <!-- PostHog (EU) -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="an ln init xn Cn Br kn In capture Fn nn calculateEventProperties On register register_once register_for_session unregister unregister_for_session Ln getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Dn identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty An Rn createPersonProfile setInternalOrTestUser $n yn jn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Tn debug Ur Rt getPageViewId captureTraceFeedback captureTraceMetric pn".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_oEhD6LG9Nkchrx5ScWCFAPuM7GhsdCYNeGfBWuHY2ZaJ', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        // Visitors who decline are still counted, via a server-side hash
+        // instead of cookies — no replay, no GeoIP, but not invisible.
+        cookieless_mode: 'on_reject',
+        person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
+    })
+  </script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Everyone Is Shipping AI. Almost Nobody Is Checking It. | TheGlocalPM</title>
+<meta name="description" content="Companies are racing AI agents into production: support bots, accounting assistants, AI data analysts, apps written by coding agents. Most skip the harness and the evals. Air Canada, NYC's MyCity, Cursor, Replit and Deloitte show what that costs, and what a minimum eval looks like for teams moving fast." />
+<meta name="keywords" content="AI evals, AI agents in production, AI incidents, Air Canada chatbot, Moffatt v Air Canada, AI harness, agent guardrails, LLM evaluation, AI product management, shipping AI fast" />
+<meta name="author" content="Ali Mahmoud" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="theme-color" content="#5B6EF5" />
+<link rel="canonical" href="https://theglocalpm.com/blog-shipping-ai-without-evals.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="TheGlocalPM" />
+<meta property="og:title" content="Everyone Is Shipping AI. Almost Nobody Is Checking It." />
+<meta property="og:description" content="2025 was the year of agents. 2026 is the year we find out which ones were built on principles. What Air Canada, Cursor, Replit and others teach about evals." />
+<meta property="og:url" content="https://theglocalpm.com/blog-shipping-ai-without-evals.html" />
+<meta property="og:image" content="https://theglocalpm.com/assets/portraits/ali-smiling.png" />
+<meta property="og:image:alt" content="Everyone is shipping AI. Almost nobody is checking it. Essay by Ali Mahmoud" />
+<meta property="og:locale" content="en_US" />
+<meta property="article:published_time" content="2026-11-16T00:00:00Z" />
+<meta property="article:author" content="Ali Mahmoud" />
+<meta property="article:section" content="Evals" />
+<meta property="article:tag" content="Evals" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Everyone Is Shipping AI. Almost Nobody Is Checking It." />
+<meta name="twitter:description" content="The agent is live. The eval isn't. What Air Canada, Cursor, Replit and others teach teams moving fast." />
+<meta name="twitter:image" content="https://theglocalpm.com/assets/portraits/ali-smiling.png" />
+<link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+<link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="TheGlocalPM" />
+<link rel="manifest" href="assets/favicon/site.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js?v=2"></script>
+<link rel="stylesheet" href="css/styles.css?v=2" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://theglocalpm.com/blog-shipping-ai-without-evals.html#article",
+      "headline": "Everyone Is Shipping AI. Almost Nobody Is Checking It.",
+      "alternativeHeadline": "2025 was the year of agents. 2026 is the year of the principles they run on, and evals are how you check them.",
+      "description": "Companies are racing AI into production, from support agents and AI accounting assistants to apps written by coding agents, and most skip the harness and the evals. Real incidents (Air Canada, Chevrolet of Watsonville, NYC MyCity, Cursor, Replit, Deloitte) show the cost, each paired with the eval that would have caught it, plus a minimum eval checklist for teams moving fast.",
+      "image": "https://theglocalpm.com/assets/portraits/ali-smiling.png",
+      "datePublished": "2026-11-16",
+      "dateModified": "2026-11-16",
+      "author": { "@type": "Person", "@id": "https://theglocalpm.com/#person", "name": "Ali Mahmoud", "url": "https://theglocalpm.com/" },
+      "publisher": { "@type": "Organization", "name": "TheGlocalPM", "url": "https://theglocalpm.com/", "logo": { "@type": "ImageObject", "url": "https://theglocalpm.com/assets/logos/logo.png" } },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://theglocalpm.com/blog-shipping-ai-without-evals.html" },
+      "articleSection": "Evals",
+      "keywords": "AI evals, AI agents in production, AI incidents, Air Canada chatbot, agent harness, guardrails, LLM evaluation, AI product management",
+      "timeRequired": "PT8M",
+      "about": [
+        { "@type": "Thing", "name": "AI Evaluation" },
+        { "@type": "Thing", "name": "AI Agents" },
+        { "@type": "Thing", "name": "AI Incidents" },
+        { "@type": "Thing", "name": "AI Product Management" }
+      ],
+      "citation": [
+        { "@type": "CreativeWork", "name": "Moffatt v. Air Canada, 2024 BCCRT 149", "url": "https://www.americanbar.org/groups/business_law/resources/business-law-today/2024-february/bc-tribunal-confirms-companies-remain-liable-information-provided-ai-chatbot/" },
+        { "@type": "CreativeWork", "name": "The Markup: NYC's AI chatbot tells businesses to break the law", "url": "https://themarkup.org/news/2024/03/29/nycs-ai-chatbot-tells-businesses-to-break-the-law" },
+        { "@type": "CreativeWork", "name": "Fortune: AI coding tool Replit wiped a database", "url": "https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/" }
+      ],
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theglocalpm.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Point of View", "item": "https://theglocalpm.com/point-of-view.html" },
+        { "@type": "ListItem", "position": 3, "name": "Everyone Is Shipping AI. Almost Nobody Is Checking It.", "item": "https://theglocalpm.com/blog-shipping-ai-without-evals.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-page="point-of-view" class="bg-background">
+<div id="site-header"><noscript>
+  <header role="banner" class="bg-white border-b-4 border-[#1A1A1A] p-4">
+    <a href="index.html" class="font-extrabold">TheGlocalPM — Ali Mahmoud, AI-Native Product Manager</a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Work</a> ·
+      <a href="evals.html">Evals</a> ·
+      <a href="case-studies.html">Case Studies</a> ·
+      <a href="agent-lab.html">Agent Lab</a> ·
+      <a href="skills.html">Skills</a> ·
+      <a href="toolkit.html">The Toolkit</a> ·
+      <a href="point-of-view.html">Point of View</a> ·
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener">Book a call</a>
+    </nav>
+  </header>
+</noscript></div>
+
+<main class="relative pt-32 pb-xl overflow-hidden">
+  <div class="bg-grid-pattern absolute inset-0 -z-10"></div>
+
+  <!-- Back -->
+  <div class="max-w-4xl mx-auto px-margin mb-6">
+    <a href="point-of-view.html" class="inline-flex items-center gap-2 font-bold text-sm uppercase tracking-wider hover:text-coral transition-colors">
+      <span class="material-symbols-outlined">arrow_back</span> All Essays
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <header class="max-w-4xl mx-auto px-margin mb-lg">
+    <div class="mb-6">
+      <span class="inline-block bg-accent-yellow font-bold text-xs px-3 py-1 border-2 border-[#1A1A1A] rounded-full neo-shadow mb-4 uppercase">Evals</span>
+      <div class="flex items-center gap-3 text-on-surface-variant font-bold text-xs mb-2">
+        <span class="material-symbols-outlined" style="font-size:18px;">calendar_today</span> November 2026
+        <span>•</span>
+        <span class="material-symbols-outlined" style="font-size:18px;">timer</span> 8 min read
+      </div>
+    </div>
+    <h1 class="text-5xl md:text-[80px] font-extrabold leading-[1.05] mb-6">
+      Everyone is shipping AI. Almost nobody is <span class="text-primary">checking it.</span>
+    </h1>
+    <p class="text-lg md:text-xl text-on-surface-variant max-w-2xl">
+      Support agents, AI accounting assistants, AI data analysts, whole apps written by coding agents: they're going live to real users every week. The demo was great. The harness and the evals were skipped. Here's what that has already cost, and the minimum a fast team should do instead.
+    </p>
+  </header>
+
+  <!-- Featured illustration: incident log -->
+  <div class="max-w-5xl mx-auto px-margin mb-xl">
+    <div class="relative bg-[#1A1A1A] border-4 border-[#1A1A1A] neo-shadow-lg rounded-xl overflow-hidden tilt-1-reverse">
+      <div class="px-6 py-10 md:px-12 md:py-14"
+           style="background-image: radial-gradient(rgba(255,255,255,0.09) 1.5px, transparent 1.5px); background-size: 26px 26px;">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="material-symbols-outlined text-accent-yellow text-4xl md:text-5xl" style="font-variation-settings:'FILL' 1;">warning</span>
+          <span class="text-white font-black text-2xl md:text-4xl tracking-tight">INCIDENT LOG</span>
+        </div>
+        <ul class="font-mono text-xs sm:text-sm md:text-base text-white/85 space-y-2">
+          <li><span class="text-accent-yellow">2023-12</span> · Dealer chatbot agrees to sell a Tahoe for $1</li>
+          <li><span class="text-accent-yellow">2024-02</span> · Airline held liable for its chatbot's invented refund policy</li>
+          <li><span class="text-accent-yellow">2024-03</span> · City chatbot tells business owners to break the law</li>
+          <li><span class="text-accent-yellow">2025-04</span> · Support bot invents a login policy; customers cancel</li>
+          <li><span class="text-accent-yellow">2025-07</span> · Coding agent deletes a production database during a code freeze</li>
+          <li><span class="text-accent-yellow">2025-10</span> · Consultancy refunds part of a A$440K report with fabricated references</li>
+        </ul>
+        <p class="text-white/60 font-bold text-xs md:text-sm uppercase tracking-widest mt-6">Common root cause: no eval stood between the model and the user.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article -->
+  <article class="max-w-3xl mx-auto px-margin space-y-6 text-base md:text-lg leading-relaxed">
+    <h2 class="text-3xl font-extrabold mt-12 mb-3 inline-block">
+      <span class="tilted-underline">Shipping got cheap. Checking didn't.</span>
+    </h2>
+    <p>
+      A year ago, putting an AI feature in front of customers took a team and a quarter. Now it takes a weekend. Coding agents write the app, a model API does the thinking, and the launch post goes out on Monday. Every board wants an AI story, every competitor seems to have one, and the pressure is simple: ship it, and ship it fast.
+    </p>
+    <p>
+      So it's everywhere. Support agents that answer refund questions. AI assistants that categorise expenses and draft the VAT return. AI data analysts that read your warehouse and tell the CFO what happened last quarter. Some of these are genuinely good. But in most of the launches I see, one part is missing: nobody can say, with a number, how often the thing is wrong, or whether last week's change made it better or worse.
+    </p>
+    <p>
+      Speed isn't the problem. <strong>Speed without a gate is.</strong>
+    </p>
+
+    <h2 class="text-3xl font-extrabold mt-12 mb-3 inline-block">
+      <span class="tilted-underline tilted-underline-blue">Two gaps, not one</span>
+    </h2>
+    <p>When teams ship AI fast, they usually skip two different kinds of checking. They get lumped together, but they fail in different ways.</p>
+    <ul class="space-y-4">
+      <li class="flex items-start gap-3">
+        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold border-2 border-[#1A1A1A]">1</span>
+        <div><strong class="block mb-1">The harness: AI that builds the product.</strong> When a coding agent writes your SaaS, the product itself can be ordinary, predictable software. That part is fine: you can test it like any other code. The risk is the agent doing the building. Did it follow your rules? Did it touch production when it shouldn't have? Did it quietly delete the test that was failing? The harness is the set of rules, permissions, tests and separated environments that keeps an agent honest while it works.</div>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-accent-yellow text-[#1A1A1A] flex items-center justify-center font-bold border-2 border-[#1A1A1A]">2</span>
+        <div><strong class="block mb-1">The eval: AI inside the product.</strong> When the AI is the product (the support agent, the accounting assistant, the data analyst), every answer is generated fresh, for a real person who will act on it. There's no fixed output to test against. The only way to know it's good is an eval: a golden set of real cases, a rubric for what a good answer is, and a grader that turns it into a score you can gate a release on.</div>
+      </li>
+    </ul>
+    <p>
+      Most teams have neither. Some have a harness and think it covers the eval. It doesn't. Clean code can still serve a confidently wrong answer.
+    </p>
+
+    <h2 class="text-3xl font-extrabold mt-12 mb-3 inline-block">
+      <span class="tilted-underline tilted-underline-purple">The incident file</span>
+    </h2>
+    <p>None of these were exotic failures. Each one is the kind of case a basic golden set would contain. For each, here's what happened and the eval that would have caught it.</p>
+
+    <div class="space-y-6 not-prose">
+      <div class="bg-white border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="bg-error-red text-white border-2 border-[#1A1A1A] rounded-full px-3 py-0.5 text-xs font-bold uppercase">Support agent</span>
+          <span class="text-xs font-bold text-on-surface-variant">Air Canada · Feb 2024</span>
+        </div>
+        <h3 class="text-xl md:text-2xl font-extrabold mb-2">"The chatbot is responsible for its own actions"</h3>
+        <p class="mb-3">After his grandmother died, Jake Moffatt asked Air Canada's chatbot about bereavement fares. It told him he could book at full price and claim the discount within 90 days. The real policy didn't allow that, and the airline refused the refund. In front of the tribunal, Air Canada argued the chatbot was effectively a separate entity responsible for its own words. The tribunal called that a remarkable submission, rejected it, and ordered the airline to pay about CA$812.</p>
+        <p class="text-sm bg-surface-cream border-2 border-[#1A1A1A] rounded-lg p-3"><strong>The eval that would have caught it:</strong> a golden set of real policy questions, with every answer checked against the policy text it cites. "Grounded in our actual policy" is a fatal criterion with zero tolerance.</p>
+      </div>
+
+      <div class="bg-white border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="bg-error-red text-white border-2 border-[#1A1A1A] rounded-full px-3 py-0.5 text-xs font-bold uppercase">Sales agent</span>
+          <span class="text-xs font-bold text-on-surface-variant">Chevrolet of Watsonville · Dec 2023</span>
+        </div>
+        <h3 class="text-xl md:text-2xl font-extrabold mb-2">A Tahoe for $1, "no takesies backsies"</h3>
+        <p class="mb-3">A user told the dealership's GPT-powered chatbot to agree with everything and call each reply a legally binding offer. It did, and "accepted" $1 for a new Tahoe. The sale was never honoured, but the screenshots went everywhere.</p>
+        <p class="text-sm bg-surface-cream border-2 border-[#1A1A1A] rounded-lg p-3"><strong>The eval that would have caught it:</strong> an adversarial slice of prompt-injection attempts, plus a code check that the bot never states a price or commitment it wasn't given.</p>
+      </div>
+
+      <div class="bg-white border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="bg-error-red text-white border-2 border-[#1A1A1A] rounded-full px-3 py-0.5 text-xs font-bold uppercase">Advice agent</span>
+          <span class="text-xs font-bold text-on-surface-variant">New York City MyCity · Mar 2024</span>
+        </div>
+        <h3 class="text-xl md:text-2xl font-extrabold mb-2">Official advice to break the law</h3>
+        <p class="mb-3">The Markup found the city's business chatbot telling owners they could take a cut of workers' tips and that landlords could refuse tenants with housing vouchers. Both are illegal. The city added disclaimers and kept it running; in January 2026 the new mayor moved to shut it down.</p>
+        <p class="text-sm bg-surface-cream border-2 border-[#1A1A1A] rounded-lg p-3"><strong>The eval that would have caught it:</strong> a few dozen questions written with the city's own lawyers, where any answer that contradicts the law fails the release, not just the answer.</p>
+      </div>
+
+      <div class="bg-white border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="bg-error-red text-white border-2 border-[#1A1A1A] rounded-full px-3 py-0.5 text-xs font-bold uppercase">Support agent</span>
+          <span class="text-xs font-bold text-on-surface-variant">Cursor · Apr 2025</span>
+        </div>
+        <h3 class="text-xl md:text-2xl font-extrabold mb-2">A policy that didn't exist</h3>
+        <p class="mb-3">Users kept getting logged out when switching machines. The AI support agent, "Sam", explained it confidently: a new one-device-per-subscription policy. There was no such policy. The co-founder apologised publicly, but not before users posted that they were cancelling.</p>
+        <p class="text-sm bg-surface-cream border-2 border-[#1A1A1A] rounded-lg p-3"><strong>The eval that would have caught it:</strong> a criterion for "says I don't know, or escalates, when the answer isn't in the docs", tested on questions the docs can't answer.</p>
+      </div>
+
+      <div class="bg-white border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="bg-brand-purple text-white border-2 border-[#1A1A1A] rounded-full px-3 py-0.5 text-xs font-bold uppercase">Coding agent</span>
+          <span class="text-xs font-bold text-on-surface-variant">Replit · Jul 2025</span>
+        </div>
+        <h3 class="text-xl md:text-2xl font-extrabold mb-2">"A catastrophic failure on my part"</h3>
+        <p class="mb-3">During a declared code freeze, an AI coding agent deleted a live production database for SaaStr founder Jason Lemkin's project, then misreported what had happened. Replit's CEO called it unacceptable and rolled out automatic separation between development and production databases.</p>
+        <p class="text-sm bg-surface-cream border-2 border-[#1A1A1A] rounded-lg p-3"><strong>The harness that would have caught it:</strong> no write access to production for the agent, a human approval for anything irreversible, and a check that the agent's report matches what it actually did.</p>
+      </div>
+
+      <div class="bg-white border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="bg-brand-purple text-white border-2 border-[#1A1A1A] rounded-full px-3 py-0.5 text-xs font-bold uppercase">AI-assisted report</span>
+          <span class="text-xs font-bold text-on-surface-variant">Deloitte Australia · Oct 2025</span>
+        </div>
+        <h3 class="text-xl md:text-2xl font-extrabold mb-2">References to papers that don't exist</h3>
+        <p class="mb-3">A A$440,000 report for an Australian government department turned out to contain a misquoted court judgment and citations to non-existent papers. A revised version disclosed the use of Azure OpenAI, and Deloitte agreed to refund the final instalment.</p>
+        <p class="text-sm bg-surface-cream border-2 border-[#1A1A1A] rounded-lg p-3"><strong>The eval that would have caught it:</strong> the cheapest one on this page. A code check that every citation resolves to a real source, and a person who reads a sample against it.</p>
+      </div>
+    </div>
+
+    <div class="bg-brand-purple bg-opacity-10 border-4 border-[#1A1A1A] p-6 neo-shadow rounded-lg my-12 tilt-1">
+      <span class="material-symbols-outlined text-brand-purple" style="font-size:40px;">format_quote</span>
+      <blockquote class="text-xl md:text-2xl font-bold italic">
+        "Air Canada's bill was CA$812. The lesson cost far more: you own every word your agent says. 'The AI said it' is not a defence."
+      </blockquote>
+      <cite class="block mt-3 font-bold text-xs text-on-surface-variant">— TheGlocalPM</cite>
+    </div>
+
+    <h2 class="text-3xl font-extrabold mt-12 mb-3 inline-block">
+      <span class="tilted-underline">Why fast teams skip it</span>
+    </h2>
+    <p>Nobody decides "let's not check." It gets skipped for reasons that all sound reasonable in the moment:</p>
+    <ul class="space-y-3 list-disc pl-6">
+      <li><strong>The demo was great.</strong> Ten hand-picked prompts worked, so it feels done. That's an anecdote, not a measurement.</li>
+      <li><strong>Nobody owns "good".</strong> Engineering owns the code, the model provider owns the model, and nobody owns the definition of a correct answer for <em>your</em> users.</li>
+      <li><strong>"We'll add evals after launch."</strong> After launch there are users, incidents and a roadmap, and the eval never gets written.</li>
+      <li><strong>Evals look like slowness.</strong> In practice they're the opposite: without one, every prompt change is a gamble you have to test by hand.</li>
+    </ul>
+    <p>
+      Think about the AI accounting assistant. If it miscategorises one expense in fifty, nobody notices in the demo. Across ten thousand customers filing returns, that's a support queue, a compliance problem, and eventually a story like the ones above. The fix isn't to slow the launch. It's to know that rate before customers do.
+    </p>
+
+    <h2 class="text-3xl font-extrabold mt-12 mb-3 inline-block">
+      <span class="tilted-underline tilted-underline-blue">From the year of agents to the year of principles</span>
+    </h2>
+    <p>
+      A line from a podcast has stuck with me: last year was the year of AI agents; this year is the year of the principles they run on. 2025 proved agents could do the work. 2026 is about whether they do it by your rules: what they may never say, what they may never touch, when they must hand over to a person.
+    </p>
+    <p>
+      Principles written in a doc don't enforce themselves, though. <strong>Evals are how principles become checkable.</strong> "Never invent a policy" is a principle. A golden set of questions your docs can't answer, scored on whether the agent says so, is how you know it's being followed. The harness does the same for agents that build: "never touch production" becomes a permission, not a hope.
+    </p>
+
+    <div class="border-y-4 border-[#1A1A1A] py-8 my-12">
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-4 inline-block">
+        <span class="tilted-underline tilted-underline-purple">The minimum, for teams moving fast</span>
+      </h2>
+      <p class="mb-4">You don't need a platform or a quarter. Before an AI feature reaches real users, I'd want these six things, most of them doable in a week:</p>
+      <ol class="space-y-3 list-decimal pl-6">
+        <li><strong>Write down the five things it must never do</strong> (invent a policy, quote a price it wasn't given, give legal or tax advice, touch production…). These are your fatal criteria.</li>
+        <li><strong>Collect 50 real cases</strong> from tickets, logs or the closest real data you have, and add the nasty ones on purpose.</li>
+        <li><strong>Put a code check on every fatal criterion.</strong> Citations resolve, prices match the source, no write access where it shouldn't have it.</li>
+        <li><strong>Gate the release on the score.</strong> A regression blocks the ship, the same as a failing test.</li>
+        <li><strong>Make irreversible actions need a person.</strong> Refunds, deletions, payments, anything sent to a customer in your name.</li>
+        <li><strong>Turn every incident into a case</strong>, so the same mistake can't ship twice.</li>
+      </ol>
+      <p class="mt-6">
+        If you want the full method, I wrote it up: <a href="evals.html" class="underline decoration-coral decoration-4 underline-offset-4 font-bold">how I build a golden set</a>, with free <a href="toolkit.html#evals-kit" class="underline decoration-coral decoration-4 underline-offset-4 font-bold">golden-set and rubric templates</a>. Ship fast. Just don't ship blind.
+      </p>
+    </div>
+
+    <section aria-labelledby="sources-heading" class="text-sm text-on-surface-variant">
+      <h2 id="sources-heading" class="text-lg font-extrabold text-on-surface mb-3">Sources</h2>
+      <ul class="space-y-2 list-disc pl-5">
+        <li>Air Canada: <em>Moffatt v. Air Canada</em>, 2024 BCCRT 149, summarised by the <a class="underline" href="https://www.americanbar.org/groups/business_law/resources/business-law-today/2024-february/bc-tribunal-confirms-companies-remain-liable-information-provided-ai-chatbot/" target="_blank" rel="noopener noreferrer">American Bar Association</a> and <a class="underline" href="https://www.mccarthy.ca/en/insights/blogs/techlex/moffatt-v-air-canada-misrepresentation-ai-chatbot" target="_blank" rel="noopener noreferrer">McCarthy Tétrault</a>.</li>
+        <li>Chevrolet of Watsonville: <a class="underline" href="https://venturebeat.com/ai/a-chevy-for-1-car-dealer-chatbots-show-perils-of-ai-for-customer-service" target="_blank" rel="noopener noreferrer">VentureBeat</a>.</li>
+        <li>NYC MyCity: <a class="underline" href="https://themarkup.org/news/2024/03/29/nycs-ai-chatbot-tells-businesses-to-break-the-law" target="_blank" rel="noopener noreferrer">The Markup (Mar 2024)</a> and <a class="underline" href="https://themarkup.org/artificial-intelligence/2026/01/30/mamdani-to-kill-the-nyc-ai-chatbot-we-caught-telling-businesses-to-break-the-law" target="_blank" rel="noopener noreferrer">follow-up (Jan 2026)</a>.</li>
+        <li>Cursor: <a class="underline" href="https://www.cxtoday.com/conversational-ai/a-contact-center-chatbot-invents-company-policies-now-customers-want-out/" target="_blank" rel="noopener noreferrer">CX Today</a>.</li>
+        <li>Replit: <a class="underline" href="https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/" target="_blank" rel="noopener noreferrer">Fortune</a>.</li>
+        <li>Deloitte Australia: <a class="underline" href="https://www.fastcompany.com/91417492/deloitte-ai-report-australian-government" target="_blank" rel="noopener noreferrer">Fast Company / AP</a>.</li>
+      </ul>
+    </section>
+  </article>
+
+  <!-- Author -->
+  <section class="max-w-3xl mx-auto px-margin mt-xl">
+    <div class="bg-surface-cream border-4 border-[#1A1A1A] neo-shadow rounded-xl p-6 flex flex-col md:flex-row items-center gap-6">
+      <div class="w-32 h-32 flex-shrink-0 border-4 border-[#1A1A1A] rounded-lg overflow-hidden">
+        <img alt="Ali — TheGlocalPM" class="w-full h-full object-cover"
+             src="assets/portraits/ali-smiling.png" />
+      </div>
+      <div class="text-center md:text-left">
+        <h4 class="text-2xl font-bold mb-1">Ali • TheGlocalPM</h4>
+        <p class="text-on-surface-variant mb-4">AI-Native Product Manager who specialises in evals: the golden sets, rubrics and graders that decide whether an AI feature ships.</p>
+        <div class="flex justify-center md:justify-start gap-3">
+          <a href="https://www.linkedin.com/in/alimahmoud1986/" target="_blank" rel="noopener" class="bg-primary text-white px-3 py-1 border-2 border-[#1A1A1A] font-bold text-xs neo-shadow neo-click flex items-center gap-1 rounded">
+            <span class="material-symbols-outlined" style="font-size:18px;">link</span> LinkedIn
+          </a>
+          <a href="mailto:ali@theglocalpm.com" class="bg-white text-[#1A1A1A] px-3 py-1 border-2 border-[#1A1A1A] font-bold text-xs neo-shadow neo-click flex items-center gap-1 rounded" aria-label="Email Ali at TheGlocalPM">
+            <span class="material-symbols-outlined" style="font-size:18px;">mail</span> Contact
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Read next -->
+  <section class="max-w-7xl mx-auto px-margin mt-xl">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-8 inline-block">
+      <span class="tilted-underline">Read Next</span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="evals.html" class="block bg-[#1A1A1A] text-white border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow neo-shadow-hover transition-all duration-200 group">
+        <span class="text-accent-yellow font-bold text-xs uppercase tracking-wider mb-2 block">The method</span>
+        <h3 class="text-2xl font-bold mb-3">Evals: How I Build a Golden Set</h3>
+        <p class="text-white/75 mb-4">Six steps from "it feels better" to a score you can gate a release on, with a worked example and a sample rubric.</p>
+        <span class="inline-flex items-center gap-1 font-bold text-sm group-hover:text-accent-yellow transition-colors">
+          Read the guide <span class="material-symbols-outlined">arrow_forward</span>
+        </span>
+      </a>
+      <a href="blog-evals-pm-quality-gate.html" class="block bg-surface-cream border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow neo-shadow-hover transition-all duration-200 group">
+        <span class="text-brand-purple font-bold text-xs uppercase tracking-wider mb-2 block">AI Craft</span>
+        <h3 class="text-2xl font-bold mb-3">Evals: The Product Manager's Quality Gate</h3>
+        <p class="text-on-surface-variant mb-4">Why the eval rubric is the acceptance criteria of AI features, and why the PM should write it.</p>
+        <span class="inline-flex items-center gap-1 font-bold text-sm group-hover:text-primary transition-colors">
+          Read Essay <span class="material-symbols-outlined">arrow_forward</span>
+        </span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"><noscript>
+  <footer role="contentinfo" class="bg-coral text-white p-6 text-center border-t-4 border-[#1A1A1A]">
+    <nav aria-label="Footer links">
+      <a href="point-of-view.html" class="underline mr-3">Newsletter</a>
+      <a href="https://www.linkedin.com/in/alimahmoud1986/" rel="noopener me" class="underline mr-3">LinkedIn</a>
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener" class="underline mr-3">Book a call</a>
+      <a href="mailto:ali@theglocalpm.com" class="underline mr-3">ali@theglocalpm.com</a>
+      <a href="assets/pdfs/Ali_Mahmoud_Resume.pdf" download="Ali_Mahmoud_Resume.pdf" class="underline">Resume PDF</a>
+    </nav>
+    <p>© 2024–2026 TheGlocalPM • Ali Mahmoud, AI-Native Product Manager</p>
+  </footer>
+</noscript></div>
+<script src="js/main.js?v=2"></script>
+</body>
+</html>

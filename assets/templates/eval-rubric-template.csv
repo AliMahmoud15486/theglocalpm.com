@@ -1,0 +1,6 @@
+criterion,pass_if,fail_example,severity,grader,release_threshold,grader_validated_against_humans
+Valid output,"Value is from the allowed list, or unknown","Returns ""leathery""",Fatal,Code check,0 failures,n/a (deterministic)
+Grounded,The input text supports the answer,Material not mentioned anywhere in the listing,Fatal,LLM judge,0 failures on held-out,"yes / no + agreement rate"
+Right subject,"Describes the product, not an add-on, lining or the thing it is used with",Suede protector spray labelled Suede,Costly,LLM judge,>= 95% per slice,"yes / no + agreement rate"
+Honest when unsure,Says unknown instead of guessing,Guesses leather from the brand name,Costly,Golden label match,>= 95% on adversarial slice,n/a
+Edge-case judgement,A reviewer would accept the answer as-is,Technically right but useless to the user,Annoying,Human spot check,Read 20 per release,n/a

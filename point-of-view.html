@@ -111,11 +111,22 @@
     {
       "@type": "ItemList",
       "name": "Essays",
-      "numberOfItems": 8,
+      "numberOfItems": 9,
       "itemListElement": [
         {
           "@type": "ListItem",
           "position": 1,
+          "item": {
+            "@type": "BlogPosting",
+            "headline": "Everyone Is Shipping AI. Almost Nobody Is Checking It.",
+            "url": "https://theglocalpm.com/blog-shipping-ai-without-evals.html",
+            "description": "Support agents, AI accounting assistants, AI data analysts, apps written by coding agents: all going live, most without a harness or evals. What Air Canada, Cursor, Replit and others teach, and the minimum a fast team should do.",
+            "author": { "@type": "Person", "name": "Ali Mahmoud" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
           "item": {
             "@type": "BlogPosting",
             "headline": "18 Lessons from Enriching 697,000 Products for $31",
@@ -126,7 +137,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 2,
+          "position": 3,
           "item": {
             "@type": "BlogPosting",
             "headline": "The PM Wiki: Why I Built an LLM-Maintained Knowledge Base for Product Managers",
@@ -137,7 +148,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 3,
+          "position": 4,
           "item": {
             "@type": "BlogPosting",
             "headline": "Evals: The Product Manager's New Quality Gate",
@@ -148,7 +159,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 4,
+          "position": 5,
           "item": {
             "@type": "BlogPosting",
             "headline": "The Retention Problem in Quick Commerce: Why Subscriptions Beat Discounts",
@@ -159,7 +170,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 5,
+          "position": 6,
           "item": {
             "@type": "BlogPosting",
             "headline": "Why the Next E-Commerce Advantage Is Inventory Intelligence, Not Storefront UX",
@@ -170,7 +181,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 6,
+          "position": 7,
           "item": {
             "@type": "BlogPosting",
             "headline": "The Future of AI in Product Management",
@@ -181,7 +192,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 7,
+          "position": 8,
           "item": {
             "@type": "BlogPosting",
             "headline": "Scaling Marketplace Growth",
@@ -192,7 +203,7 @@
         },
         {
           "@type": "ListItem",
-          "position": 8,
+          "position": 9,
           "item": {
             "@type": "BlogPosting",
             "headline": "Building with Empathy",
@@ -210,9 +221,10 @@
 <body data-page="point-of-view" class="bg-background">
 <div id="site-header"><noscript>
   <header role="banner" class="bg-white border-b-4 border-[#1A1A1A] p-4">
-    <a href="index.html" class="font-extrabold">TheGlocalPM — Ali Mahmoud, Senior Product Manager</a>
+    <a href="index.html" class="font-extrabold">TheGlocalPM — Ali Mahmoud, AI-Native Product Manager</a>
     <nav aria-label="Main navigation">
       <a href="index.html">Work</a> ·
+      <a href="evals.html">Evals</a> ·
       <a href="case-studies.html">Case Studies</a> ·
       <a href="agent-lab.html">Agent Lab</a> ·
       <a href="skills.html">Skills</a> ·
@@ -262,7 +274,26 @@
        numberOfItems reflects the new count.
   -->
   <div class="flex flex-col gap-8 md:gap-lg">
-    <!-- Card 1 (featured / newest) — LLM Data Pipeline -->
+    <!-- Card 1 (featured / newest) — Shipping AI without evals -->
+    <a href="blog-shipping-ai-without-evals.html" class="block bg-accent-yellow border-4 border-[#1A1A1A] rounded-xl p-6 flex flex-col md:flex-row gap-6 md:gap-lg neo-shadow-lg transition-transform duration-300 hover:-translate-y-2 tilt-1-reverse hover-untilt">
+      <div class="w-full md:w-1/2 lg:w-2/5 shrink-0 overflow-hidden rounded-lg border-4 border-[#1A1A1A] bg-[#1A1A1A] flex flex-col items-center justify-center gap-3 h-[260px] text-center px-6"
+           style="background-image: radial-gradient(rgba(255,255,255,0.09) 1.5px, transparent 1.5px); background-size: 22px 22px;">
+        <span class="material-symbols-outlined text-accent-yellow text-5xl" style="font-variation-settings:'FILL' 1;" aria-hidden="true">warning</span>
+        <span class="text-white font-black text-3xl md:text-4xl tracking-tight">Live ≠ Checked</span>
+        <span class="text-white/70 font-bold text-[11px] uppercase tracking-widest">6 incidents · 1 missing eval</span>
+      </div>
+      <div class="flex flex-col justify-center gap-3">
+        <span class="text-secondary-container font-bold text-xs tracking-widest uppercase">Evals</span>
+        <span class="text-xs text-on-surface-variant opacity-60 font-bold">November 2026</span>
+        <h2 class="text-2xl md:text-3xl font-extrabold">Everyone Is Shipping AI. Almost Nobody Is Checking It.</h2>
+        <p class="text-on-surface-variant">Support agents, AI accounting assistants, AI data analysts, apps written by coding agents: all going live, most without a harness or evals. What Air Canada, Cursor, Replit and others teach, and the minimum a fast team should do.</p>
+        <span class="inline-flex items-center gap-1 text-secondary-container font-bold text-sm border-b-4 border-secondary-container w-max pb-1">
+          Read Essay <span class="material-symbols-outlined">arrow_forward</span>
+        </span>
+      </div>
+    </a>
+
+    <!-- Card 2 — LLM Data Pipeline -->
     <a href="blog-llm-data-pipeline.html" class="block bg-secondary-fixed border-4 border-[#1A1A1A] rounded-xl p-6 flex flex-col md:flex-row-reverse gap-6 md:gap-lg neo-shadow-lg transition-transform duration-300 hover:-translate-y-2 tilt-1 hover-untilt">
       <div class="w-full md:w-1/2 lg:w-2/5 shrink-0 overflow-hidden rounded-lg border-4 border-[#1A1A1A] bg-[#1A1A1A] flex flex-col items-center justify-center gap-3 h-[260px] text-center px-6"
            style="background-image: radial-gradient(rgba(255,255,255,0.09) 1.5px, transparent 1.5px); background-size: 22px 22px;">
@@ -281,7 +312,7 @@
       </div>
     </a>
 
-    <!-- Card 2 — PM Wiki -->
+    <!-- Card 3 — PM Wiki -->
     <a href="blog-pm-llm-wiki.html" class="block bg-primary-fixed border-4 border-[#1A1A1A] rounded-xl p-6 flex flex-col md:flex-row gap-6 md:gap-lg neo-shadow-lg transition-transform duration-300 hover:-translate-y-2 tilt-1-reverse hover-untilt">
       <div class="w-full md:w-1/2 lg:w-2/5 shrink-0 overflow-hidden rounded-lg border-4 border-[#1A1A1A]">
         <img class="grayscale-img w-full h-[260px] object-cover"
@@ -299,7 +330,7 @@
       </div>
     </a>
 
-    <!-- Card 3 — Evals -->
+    <!-- Card 4 — Evals -->
     <a href="blog-evals-pm-quality-gate.html" class="block bg-tertiary-fixed border-4 border-[#1A1A1A] rounded-xl p-6 flex flex-col md:flex-row-reverse gap-6 md:gap-lg neo-shadow-lg transition-transform duration-300 hover:-translate-y-2 tilt-1 hover-untilt">
       <div class="w-full md:w-1/2 lg:w-2/5 shrink-0 overflow-hidden rounded-lg border-4 border-[#1A1A1A] bg-[#1A1A1A] flex flex-col items-center justify-center gap-3 h-[260px] text-center px-6"
            style="background-image: radial-gradient(rgba(255,255,255,0.09) 1.5px, transparent 1.5px); background-size: 22px 22px;">
@@ -318,7 +349,7 @@
       </div>
     </a>
 
-    <!-- Card 4 — Q-Commerce -->
+    <!-- Card 5 — Q-Commerce -->
     <a href="blog-qcommerce-subscriptions-vs-discounts.html" class="block bg-secondary-fixed border-4 border-[#1A1A1A] rounded-xl p-6 flex flex-col md:flex-row gap-6 md:gap-lg neo-shadow-lg transition-transform duration-300 hover:-translate-y-2 tilt-1-reverse hover-untilt">
       <div class="w-full md:w-1/2 lg:w-2/5 shrink-0 overflow-hidden rounded-lg border-4 border-[#1A1A1A]">
         <img class="grayscale-img w-full h-[260px] object-cover"
@@ -335,7 +366,7 @@
       </div>
     </a>
 
-    <!-- Card 5 -->
+    <!-- Card 6 -->
     <a href="blog-inventory-intelligence.html" class="block bg-primary-fixed border-4 border-[#1A1A1A] rounded-xl p-6 flex flex-col md:flex-row-reverse gap-6 md:gap-lg neo-shadow-lg transition-transform duration-300 hover:-translate-y-2 tilt-1 hover-untilt">
       <div class="w-full md:w-1/2 lg:w-2/5 shrink-0 overflow-hidden rounded-lg border-4 border-[#1A1A1A]">
         <img class="grayscale-img w-full h-[260px] object-cover"
@@ -352,7 +383,7 @@
       </div>
     </a>
 
-    <!-- Card 6 -->
+    <!-- Card 7 -->
     <a href="blog-future-of-ai-in-pm.html" class="block bg-white border-4 border-[#1A1A1A] rounded-xl p-6 flex flex-col md:flex-row gap-6 md:gap-lg neo-shadow-lg transition-transform duration-300 hover:-translate-y-2 tilt-1-reverse hover-untilt">
       <div class="w-full md:w-1/2 lg:w-2/5 shrink-0 overflow-hidden rounded-lg border-4 border-[#1A1A1A]">
         <img class="grayscale-img w-full h-[260px] object-cover"
@@ -369,7 +400,7 @@
       </div>
     </a>
 
-    <!-- Card 7 -->
+    <!-- Card 8 -->
     <a href="blog-scaling-marketplace-growth.html" class="block bg-accent-yellow border-4 border-[#1A1A1A] rounded-xl p-6 flex flex-col md:flex-row-reverse gap-6 md:gap-lg neo-shadow-lg transition-transform duration-300 hover:-translate-y-2 tilt-1 hover-untilt">
       <div class="w-full md:w-1/2 lg:w-2/5 shrink-0 overflow-hidden rounded-lg border-4 border-[#1A1A1A]">
         <img class="grayscale-img w-full h-[260px] object-cover"
@@ -387,7 +418,7 @@
       </div>
     </a>
 
-    <!-- Card 8 -->
+    <!-- Card 9 -->
     <a href="blog-building-with-empathy.html" class="block bg-accent-rose border-4 border-[#1A1A1A] rounded-xl p-6 flex flex-col md:flex-row gap-6 md:gap-lg neo-shadow-lg transition-transform duration-300 hover:-translate-y-2 tilt-1-reverse hover-untilt">
       <div class="w-full md:w-1/2 lg:w-2/5 shrink-0 overflow-hidden rounded-lg border-4 border-[#1A1A1A]">
         <img class="grayscale-img w-full h-[260px] object-cover"
@@ -423,7 +454,7 @@
       <a href="mailto:ali@theglocalpm.com" class="underline mr-3">ali@theglocalpm.com</a>
       <a href="assets/pdfs/Ali_Mahmoud_Resume.pdf" download="Ali_Mahmoud_Resume.pdf" class="underline">Resume PDF</a>
     </nav>
-    <p>© 2024–2026 TheGlocalPM • Ali Mahmoud, Senior Product Manager</p>
+    <p>© 2024–2026 TheGlocalPM • Ali Mahmoud, AI-Native Product Manager</p>
   </footer>
 </noscript></div>
 <script src="js/main.js?v=2"></script>

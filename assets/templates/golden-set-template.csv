@@ -1,0 +1,6 @@
+case_id,input,slice,segment,accepted_answer,why_its_here,source,split,labeller_1,labeller_2,agreed,added_on
+GS-001,"Full-grain leather tote, cotton lining",happy-path,EU / bags,Leather,"Main material, not the lining",production sample,tune,,,,
+GS-002,"Suede protector spray, 200 ml",edge,EU / care,Unknown (not suede),"The suede is the shoe it protects; a keyword rule says Suede",audit finding,tune,,,,
+GS-003,"Phone case + free glass screen protector",edge,EU / accessories,Not glass,"An upsell, not the product",audit finding,held-out,,,,
+GS-004,"BLACK FRIDAY: canvas weekender, tan",regression,EU / bags,Canvas; colour tan,"A promo tag was once read as the colour black",reported failure,held-out,,,,
+GS-005,"Listing from a brand known for leather, no material stated",adversarial,EU / bags,Unknown,"Tests guessing from the brand instead of the text",designed case,held-out,,,,

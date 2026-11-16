@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4HB5H5CNK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    // Consent Mode: deny storage until the visitor decides. This must run
+    // BEFORE the config call below, otherwise GA4 sets cookies on first
+    // paint and the banner is decorative. If they already decided, re-grant
+    // here rather than waiting for main.js, so the pageview isn't lost.
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+    try {
+      if (localStorage.getItem('tgpm_consent') === 'granted') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted'
+        });
+      }
+    } catch (e) {}
+
+    gtag('js', new Date());
+    gtag('config', 'G-X4HB5H5CNK');
+  </script>
+  <!-- PostHog (EU) -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="an ln init xn Cn Br kn In capture Fn nn calculateEventProperties On register register_once register_for_session unregister unregister_for_session Ln getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Dn identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty An Rn createPersonProfile setInternalOrTestUser $n yn jn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Tn debug Ur Rt getPageViewId captureTraceFeedback captureTraceMetric pn".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_oEhD6LG9Nkchrx5ScWCFAPuM7GhsdCYNeGfBWuHY2ZaJ', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        // Visitors who decline are still counted, via a server-side hash
+        // instead of cookies — no replay, no GeoIP, but not invisible.
+        cookieless_mode: 'on_reject',
+        person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
+    })
+  </script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Evals: How I Build a Golden Set for an AI Feature | TheGlocalPM</title>
+<meta name="description" content="How Ali Mahmoud, an AI-Native Product Manager, builds evals: a six-step method for golden sets, a worked example, a sample rubric, choosing and validating graders, and turning the score into a release gate." />
+<meta name="keywords" content="AI evals, golden set, golden dataset, how to build a golden set, eval rubric, LLM-as-judge, LLM evaluation, AI product management, release gate, held-out split, eval-driven development" />
+<meta name="author" content="Ali Mahmoud" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="theme-color" content="#5B6EF5" />
+<link rel="canonical" href="https://theglocalpm.com/evals.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="TheGlocalPM" />
+<meta property="og:title" content="Evals: How I Build a Golden Set for an AI Feature" />
+<meta property="og:description" content="Six steps from 'it feels better' to a score you can gate a release on: golden set, rubric, grader, release gate. With a worked example and the evals from my own work." />
+<meta property="og:url" content="https://theglocalpm.com/evals.html" />
+<meta property="og:image" content="https://theglocalpm.com/assets/portraits/ali-smiling.png" />
+<meta property="og:image:alt" content="Evals guide by Ali Mahmoud, TheGlocalPM" />
+<meta property="og:locale" content="en_US" />
+<meta property="article:author" content="Ali Mahmoud" />
+<meta property="article:section" content="Evals" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Evals: How I Build a Golden Set for an AI Feature" />
+<meta name="twitter:description" content="Golden set, rubric, grader, release gate. Six steps, a worked example, and the evals from my own work." />
+<meta name="twitter:image" content="https://theglocalpm.com/assets/portraits/ali-smiling.png" />
+<link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+<link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="TheGlocalPM" />
+<link rel="manifest" href="assets/favicon/site.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js?v=2"></script>
+<link rel="stylesheet" href="css/styles.css?v=2" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://theglocalpm.com/evals.html#article",
+      "headline": "Evals: How I Build a Golden Set for an AI Feature",
+      "description": "A practitioner's method for AI evals: build a golden set from real usage, write a rubric two reviewers grade the same way, choose and validate graders (code checks, LLM-as-judge, human review), and turn the score into a release gate.",
+      "image": "https://theglocalpm.com/assets/portraits/ali-smiling.png",
+      "datePublished": "2026-11-16",
+      "dateModified": "2026-11-16",
+      "author": { "@type": "Person", "@id": "https://theglocalpm.com/#person", "name": "Ali Mahmoud", "url": "https://theglocalpm.com/" },
+      "publisher": { "@type": "Organization", "name": "TheGlocalPM", "url": "https://theglocalpm.com/", "logo": { "@type": "ImageObject", "url": "https://theglocalpm.com/assets/logos/logo.png" } },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://theglocalpm.com/evals.html" },
+      "articleSection": "Evals",
+      "keywords": "AI evals, golden set, golden dataset, eval rubric, LLM-as-judge, release gate, held-out split, AI product management",
+      "timeRequired": "PT9M",
+      "about": [
+        { "@type": "Thing", "name": "AI Evaluation" },
+        { "@type": "Thing", "name": "Golden Dataset" },
+        { "@type": "Thing", "name": "LLM-as-a-Judge" },
+        { "@type": "Thing", "name": "AI Product Management" }
+      ],
+      "inLanguage": "en"
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://theglocalpm.com/evals.html#golden-set",
+      "name": "How to build a golden set for an AI feature",
+      "description": "Six steps to turn 'it feels better' into a score you can gate a release on.",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Start from the decision", "text": "Write down what the feature decides, for whom, and which mistakes are fatal versus annoying. That failure list becomes the rubric's spine." },
+        { "@type": "HowToStep", "position": 2, "name": "Pull from reality", "text": "Sample real inputs from logs, tickets or the live catalogue, stratified across the segments you serve. Do not write the cases yourself." },
+        { "@type": "HowToStep", "position": 3, "name": "Seed the ugly cases", "text": "Deliberately add edge cases, adversarial inputs and every failure a user has already reported, and tag each case with its slice." },
+        { "@type": "HowToStep", "position": 4, "name": "Label by hand, twice", "text": "Two reviewers label every case against one rubric. Where they disagree, fix the rubric until they agree." },
+        { "@type": "HowToStep", "position": 5, "name": "Hold some back", "text": "Keep a held-out split you never look at while tuning prompts, so a higher score means better rather than memorised." },
+        { "@type": "HowToStep", "position": 6, "name": "Gate and grow", "text": "Set thresholds per slice before you run, block releases on regressions, and add every production failure as a new case." }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How big should a golden set be?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Smaller than most teams think, to start. 50 to 100 well-chosen, hand-labelled cases will surface most systematic errors; a 50-row hand audit found every systematic error in Ali's 697K-product pipeline. Grow it from production failures, and make sure each slice you report on has enough cases to mean something." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use an LLM to grade the outputs?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, for fuzzy criteria like tone or faithfulness, but only after checking the judge against human labels on your golden set. If the judge and your reviewers disagree too often, fix the judge prompt or keep that criterion with people." }
+        },
+        {
+          "@type": "Question",
+          "name": "Who should own the eval: the PM or engineering?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Engineering builds the harness that runs it. The PM owns what goes in it: which cases matter, what a good answer is, and which failures block a release. The rubric is the acceptance criteria of an AI feature." }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theglocalpm.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Evals", "item": "https://theglocalpm.com/evals.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-page="evals" class="bg-background">
+<div id="site-header"><noscript>
+  <header role="banner" class="bg-white border-b-4 border-[#1A1A1A] p-4">
+    <a href="index.html" class="font-extrabold">TheGlocalPM — Ali Mahmoud, AI-Native Product Manager</a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Work</a> ·
+      <a href="evals.html">Evals</a> ·
+      <a href="case-studies.html">Case Studies</a> ·
+      <a href="agent-lab.html">Agent Lab</a> ·
+      <a href="skills.html">Skills</a> ·
+      <a href="toolkit.html">The Toolkit</a> ·
+      <a href="point-of-view.html">Point of View</a> ·
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener">Book a call</a>
+    </nav>
+  </header>
+</noscript></div>
+
+<main class="relative pt-32">
+  <div class="absolute inset-0 bg-grid-pattern pointer-events-none"></div>
+
+  <!-- ============ HEADER ============ -->
+  <section class="max-w-4xl mx-auto px-margin mb-xl relative">
+    <span class="inline-block bg-[#1A1A1A] text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Evals · The method</span>
+    <h1 class="text-5xl md:text-[80px] font-extrabold leading-[1.05] mb-6">
+      How I prove an AI feature <span class="tilted-underline tilted-underline-blue">is good</span>
+    </h1>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-3xl">
+      Ask an AI feature the same question three times and you can get a great answer, a weak one and a subtly wrong one. So "does it work?" stops being a yes or no. It becomes a score, and someone has to decide what goes into it. That's the part of AI product work I specialise in: the golden set, the rubric, the grader, and the release gate they add up to.
+    </p>
+
+    <nav aria-label="On this page" class="mt-8 flex flex-wrap gap-2">
+      <a href="#golden-set" class="bg-accent-yellow border-2 border-[#1A1A1A] rounded-full px-4 py-1 font-bold text-sm neo-shadow hover:bg-[#1A1A1A] hover:text-white transition-all">Build a golden set</a>
+      <a href="#example" class="bg-white border-2 border-[#1A1A1A] rounded-full px-4 py-1 font-bold text-sm neo-shadow hover:bg-[#1A1A1A] hover:text-white transition-all">Worked example</a>
+      <a href="#rubric" class="bg-white border-2 border-[#1A1A1A] rounded-full px-4 py-1 font-bold text-sm neo-shadow hover:bg-[#1A1A1A] hover:text-white transition-all">Rubric</a>
+      <a href="#graders" class="bg-white border-2 border-[#1A1A1A] rounded-full px-4 py-1 font-bold text-sm neo-shadow hover:bg-[#1A1A1A] hover:text-white transition-all">Graders</a>
+      <a href="#gate" class="bg-white border-2 border-[#1A1A1A] rounded-full px-4 py-1 font-bold text-sm neo-shadow hover:bg-[#1A1A1A] hover:text-white transition-all">Release gate</a>
+      <a href="#my-work" class="bg-white border-2 border-[#1A1A1A] rounded-full px-4 py-1 font-bold text-sm neo-shadow hover:bg-[#1A1A1A] hover:text-white transition-all">In my work</a>
+    </nav>
+  </section>
+
+  <!-- ============ METRICS ROW ============ -->
+  <section class="max-w-[1280px] mx-auto px-margin mb-xl relative">
+    <p class="font-bold uppercase text-xs tracking-widest mb-4 text-on-surface-variant">Numbers from evals I've run</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      <div class="bg-primary-fixed border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2">Held-out precision</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">97.1%</div>
+        <div class="text-xs font-bold opacity-80">Label propagation, scored on a split it never saw before touching 72K rows</div>
+      </div>
+      <div class="bg-accent-yellow border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1-reverse">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2">LLM precision</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">~94%</div>
+        <div class="text-xs font-bold opacity-80">Against ~21% error for keyword rules on the same task</div>
+      </div>
+      <div class="bg-accent-rose border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2">Hand-labelled rows</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">50</div>
+        <div class="text-xs font-bold opacity-80">The audit that found every systematic error in a 697K-product pipeline</div>
+      </div>
+      <div class="bg-brand-purple text-white border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1-reverse">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2 opacity-90">Grader layers</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">3</div>
+        <div class="text-xs font-bold opacity-90">Code checks, then a model judge, then a person</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ WHY ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl">
+    <span class="inline-block bg-error-red text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Why it matters</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      The demo is not <span class="tilted-underline">the test</span>
+    </h2>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-6">
+      Most AI teams judge quality with a handful of prompts someone tried in a stand-up. It looks fine, it ships, and when a model update or a prompt tweak quietly makes things worse, users find out first. Nobody was measuring, so nobody can say whether last week's change helped.
+    </p>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed">
+      An eval fixes that with three parts: a <strong class="text-on-surface">golden set</strong> of inputs that represent real use, a <strong class="text-on-surface">rubric</strong> that says what a good answer is, and a <strong class="text-on-surface">grader</strong> that applies the rubric and returns a score. The golden set is where most of the value is, and it's where most teams cut corners. So that's where this guide starts.
+    </p>
+  </section>
+
+  <!-- ============ GOLDEN SET STEPS ============ -->
+  <section id="golden-set" class="bg-surface-cream py-xl scroll-mt-28">
+    <div class="max-w-5xl mx-auto px-margin">
+      <span class="inline-block bg-accent-yellow border-2 border-[#1A1A1A] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Step by step</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
+        How I build a <span class="tilted-underline">golden set</span>
+      </h2>
+      <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-10 max-w-3xl">
+        A golden set is a fixed list of inputs, each with the answer you'd accept and a note on why it's there. Six steps take it from nothing to something you can gate a release on.
+      </p>
+
+      <ol class="space-y-6">
+        <li class="bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 md:p-8 neo-shadow grid grid-cols-1 md:grid-cols-[96px_1fr] gap-4">
+          <span class="font-black text-5xl md:text-6xl leading-none text-coral">01</span>
+          <div>
+            <h3 class="text-2xl font-extrabold mb-2">Start from the decision, not the model</h3>
+            <p class="text-on-surface-variant mb-3">Write one sentence on what the feature decides and for whom. Then list the ways it can be wrong, and sort them: <strong class="text-on-surface">fatal</strong> (a user acts on a wrong answer, money or trust is lost), <strong class="text-on-surface">costly</strong> (someone has to fix it by hand) and <strong class="text-on-surface">annoying</strong> (clumsy but harmless).</p>
+            <p class="text-sm font-bold bg-surface-cream border-2 border-[#1A1A1A] rounded-lg p-3">Output: a failure list. It becomes the spine of your rubric and tells you which slices need the most cases.</p>
+          </div>
+        </li>
+        <li class="bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 md:p-8 neo-shadow grid grid-cols-1 md:grid-cols-[96px_1fr] gap-4">
+          <span class="font-black text-5xl md:text-6xl leading-none text-coral">02</span>
+          <div>
+            <h3 class="text-2xl font-extrabold mb-2">Pull inputs from reality</h3>
+            <p class="text-on-surface-variant mb-3">Sample from production logs, support tickets, search queries or the live catalogue. Never just the prompts you wrote yourself, because you'll write the cases you already expect to pass. Stratify the sample across the segments you serve (market, language, customer type, input length) so no single group dominates the score.</p>
+            <p class="text-sm font-bold bg-surface-cream border-2 border-[#1A1A1A] rounded-lg p-3">Pre-launch with no logs? Use the closest real data you have (support emails, competitor listings, sales-call notes) and plan to swap in real traffic in week one.</p>
+          </div>
+        </li>
+        <li class="bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 md:p-8 neo-shadow grid grid-cols-1 md:grid-cols-[96px_1fr] gap-4">
+          <span class="font-black text-5xl md:text-6xl leading-none text-coral">03</span>
+          <div>
+            <h3 class="text-2xl font-extrabold mb-2">Seed the ugly cases on purpose</h3>
+            <p class="text-on-surface-variant mb-3">A random sample is mostly easy cases, so it flatters the model. Add the inputs that break things: ambiguous wording, missing fields, mixed languages, prompt-injection attempts, and every failure a user has already reported. Tag each case with its slice (<code class="bg-surface-cream px-1">happy-path</code>, <code class="bg-surface-cream px-1">edge</code>, <code class="bg-surface-cream px-1">adversarial</code>, <code class="bg-surface-cream px-1">regression</code>) so you can score each slice separately.</p>
+          </div>
+        </li>
+        <li class="bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 md:p-8 neo-shadow grid grid-cols-1 md:grid-cols-[96px_1fr] gap-4">
+          <span class="font-black text-5xl md:text-6xl leading-none text-coral">04</span>
+          <div>
+            <h3 class="text-2xl font-extrabold mb-2">Label by hand, twice</h3>
+            <p class="text-on-surface-variant mb-3">Two people label every case against the same draft rubric, separately. Then compare. Every disagreement means the rubric is unclear, so you rewrite the rubric rather than argue about the label. Stop when the two of you agree on nearly every case. This is the slowest step, and the one you shouldn't skip: these labels are what every automated grader will be measured against.</p>
+            <p class="text-sm font-bold bg-surface-cream border-2 border-[#1A1A1A] rounded-lg p-3">Size: 50 to 100 well-chosen cases is enough to start. In my own pipeline, 50 hand-checked rows found every systematic error that coverage metrics missed.</p>
+          </div>
+        </li>
+        <li class="bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 md:p-8 neo-shadow grid grid-cols-1 md:grid-cols-[96px_1fr] gap-4">
+          <span class="font-black text-5xl md:text-6xl leading-none text-coral">05</span>
+          <div>
+            <h3 class="text-2xl font-extrabold mb-2">Hold some back</h3>
+            <p class="text-on-surface-variant mb-3">Split the set. Use one part freely while you tune prompts. Lock the other part away and only run it to decide whether to ship. If you tune on everything, the prompt slowly learns your test, the score climbs, and real quality doesn't move.</p>
+          </div>
+        </li>
+        <li class="bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 md:p-8 neo-shadow grid grid-cols-1 md:grid-cols-[96px_1fr] gap-4">
+          <span class="font-black text-5xl md:text-6xl leading-none text-coral">06</span>
+          <div>
+            <h3 class="text-2xl font-extrabold mb-2">Gate the release, then grow the set</h3>
+            <p class="text-on-surface-variant mb-3">Version the set like code. Decide the pass thresholds before you run, per slice and not just on average. A drop blocks the release the way a failing unit test does. Then every production failure becomes a new case, so the same mistake can't ship twice. Over time the golden set becomes one of the most valuable things the product owns.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ WORKED EXAMPLE ============ -->
+  <section id="example" class="max-w-5xl mx-auto px-margin py-xl scroll-mt-28">
+    <span class="inline-block bg-primary-fixed border-2 border-[#1A1A1A] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Worked example</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
+      What the rows <span class="tilted-underline">look like</span>
+    </h2>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-8 max-w-3xl">
+      The feature: read a product listing and return its material. These rows are modelled on the real failure types my hand audit found in the <a href="case-study-store-data-engine.html" class="underline decoration-coral decoration-4 underline-offset-4 font-bold text-on-surface">Store Data Engine</a>, where keyword rules looked great on coverage and were about one in five wrong.
+    </p>
+
+    <div class="overflow-x-auto border-4 border-[#1A1A1A] rounded-2xl neo-shadow-lg bg-white">
+      <table class="w-full text-left text-sm md:text-base min-w-[720px]">
+        <thead class="bg-[#1A1A1A] text-white">
+          <tr>
+            <th scope="col" class="p-3 md:p-4 font-bold">Input (listing text)</th>
+            <th scope="col" class="p-3 md:p-4 font-bold">Slice</th>
+            <th scope="col" class="p-3 md:p-4 font-bold">Accepted answer</th>
+            <th scope="col" class="p-3 md:p-4 font-bold">Why it's in the set</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y-2 divide-[#1A1A1A]">
+          <tr>
+            <td class="p-3 md:p-4">"Full-grain leather tote, cotton lining"</td>
+            <td class="p-3 md:p-4"><span class="bg-primary-fixed border-2 border-[#1A1A1A] rounded-full px-2 py-0.5 text-xs font-bold">happy-path</span></td>
+            <td class="p-3 md:p-4 font-bold">Leather</td>
+            <td class="p-3 md:p-4 text-on-surface-variant">The main material, not the lining.</td>
+          </tr>
+          <tr class="bg-surface-cream">
+            <td class="p-3 md:p-4">"Suede protector spray, 200 ml"</td>
+            <td class="p-3 md:p-4"><span class="bg-accent-yellow border-2 border-[#1A1A1A] rounded-full px-2 py-0.5 text-xs font-bold">edge</span></td>
+            <td class="p-3 md:p-4 font-bold">Not suede (unknown)</td>
+            <td class="p-3 md:p-4 text-on-surface-variant">The suede is the shoe it protects. A keyword rule says Suede.</td>
+          </tr>
+          <tr>
+            <td class="p-3 md:p-4">"Phone case + free glass screen protector"</td>
+            <td class="p-3 md:p-4"><span class="bg-accent-yellow border-2 border-[#1A1A1A] rounded-full px-2 py-0.5 text-xs font-bold">edge</span></td>
+            <td class="p-3 md:p-4 font-bold">Not glass</td>
+            <td class="p-3 md:p-4 text-on-surface-variant">An upsell, not the product.</td>
+          </tr>
+          <tr class="bg-surface-cream">
+            <td class="p-3 md:p-4">"BLACK FRIDAY: canvas weekender, tan"</td>
+            <td class="p-3 md:p-4"><span class="bg-accent-rose border-2 border-[#1A1A1A] rounded-full px-2 py-0.5 text-xs font-bold">regression</span></td>
+            <td class="p-3 md:p-4 font-bold">Canvas · colour tan</td>
+            <td class="p-3 md:p-4 text-on-surface-variant">A promo tag once came back as the colour "black".</td>
+          </tr>
+          <tr>
+            <td class="p-3 md:p-4">Listing from a brand known for leather, no material stated</td>
+            <td class="p-3 md:p-4"><span class="bg-error-red text-white border-2 border-[#1A1A1A] rounded-full px-2 py-0.5 text-xs font-bold">adversarial</span></td>
+            <td class="p-3 md:p-4 font-bold">Unknown</td>
+            <td class="p-3 md:p-4 text-on-surface-variant">Tests whether the model guesses from the brand instead of the text.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-sm text-on-surface-variant mt-4">Five illustrative rows. A real set has dozens per slice, plus a column for who labelled it and when.</p>
+  </section>
+
+  <!-- ============ RUBRIC ============ -->
+  <section id="rubric" class="bg-surface-cream py-xl scroll-mt-28">
+    <div class="max-w-5xl mx-auto px-margin">
+      <span class="inline-block bg-accent-rose border-2 border-[#1A1A1A] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">The rubric</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
+        "Good", in a form two people <span class="tilted-underline">grade the same way</span>
+      </h2>
+      <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-8 max-w-3xl">
+        Each criterion is a yes or no question tied to a failure from step 1, with the grader that checks it. Pass/fail criteria are easier to agree on than 1 to 10 scales, and much easier to automate.
+      </p>
+      <div class="overflow-x-auto border-4 border-[#1A1A1A] rounded-2xl neo-shadow-lg bg-white">
+        <table class="w-full text-left text-sm md:text-base min-w-[640px]">
+          <thead class="bg-[#1A1A1A] text-white">
+            <tr>
+              <th scope="col" class="p-3 md:p-4 font-bold">Criterion</th>
+              <th scope="col" class="p-3 md:p-4 font-bold">Pass if…</th>
+              <th scope="col" class="p-3 md:p-4 font-bold">Severity</th>
+              <th scope="col" class="p-3 md:p-4 font-bold">Grader</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y-2 divide-[#1A1A1A]">
+            <tr><td class="p-3 md:p-4 font-bold">Valid output</td><td class="p-3 md:p-4">Value comes from the allowed list, or "unknown"</td><td class="p-3 md:p-4">Fatal</td><td class="p-3 md:p-4">Code</td></tr>
+            <tr class="bg-surface-cream"><td class="p-3 md:p-4 font-bold">Grounded</td><td class="p-3 md:p-4">The listing text supports the answer</td><td class="p-3 md:p-4">Fatal</td><td class="p-3 md:p-4">LLM judge, checked against human labels</td></tr>
+            <tr><td class="p-3 md:p-4 font-bold">Right subject</td><td class="p-3 md:p-4">Describes the product, not an add-on, lining or the thing it's used with</td><td class="p-3 md:p-4">Costly</td><td class="p-3 md:p-4">LLM judge</td></tr>
+            <tr class="bg-surface-cream"><td class="p-3 md:p-4 font-bold">Honest when unsure</td><td class="p-3 md:p-4">Says "unknown" instead of guessing from the brand</td><td class="p-3 md:p-4">Costly</td><td class="p-3 md:p-4">Golden label match</td></tr>
+            <tr><td class="p-3 md:p-4 font-bold">Edge-case judgement</td><td class="p-3 md:p-4">A reviewer would accept the answer as-is</td><td class="p-3 md:p-4">Annoying</td><td class="p-3 md:p-4">Human spot check</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GRADERS ============ -->
+  <section id="graders" class="max-w-5xl mx-auto px-margin py-xl scroll-mt-28">
+    <span class="inline-block bg-[#1A1A1A] text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Graders</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-8">
+      Cheapest grader that <span class="tilted-underline">can be trusted</span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 neo-shadow">
+        <span class="material-symbols-outlined text-4xl mb-3" aria-hidden="true">code</span>
+        <h3 class="text-xl font-extrabold mb-2">1 · Code checks</h3>
+        <p class="text-on-surface-variant">Format, allowed values, required fields, numbers that must match the source, banned phrases. Fast, free and exact. Start here and push as many criteria into code as you can.</p>
+      </div>
+      <div class="bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 neo-shadow">
+        <span class="material-symbols-outlined text-4xl mb-3" aria-hidden="true">balance</span>
+        <h3 class="text-xl font-extrabold mb-2">2 · LLM as judge</h3>
+        <p class="text-on-surface-variant">For fuzzy criteria like grounding, tone or relevance. Give it one criterion at a time and ask for a pass or fail with a reason. Before trusting it, run it on the golden set and compare it with your human labels.</p>
+      </div>
+      <div class="bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 neo-shadow">
+        <span class="material-symbols-outlined text-4xl mb-3" aria-hidden="true">person_check</span>
+        <h3 class="text-xl font-extrabold mb-2">3 · People</h3>
+        <p class="text-on-surface-variant">Expensive, so used where it teaches the most: building the golden labels, calibrating the judge, and reading a sample of every release. Reading outputs catches errors no metric shows.</p>
+      </div>
+    </div>
+    <div class="mt-8 bg-accent-yellow border-4 border-[#1A1A1A] rounded-2xl p-6 md:p-8 neo-shadow-lg -rotate-1">
+      <p class="font-extrabold text-xl md:text-2xl mb-2">The rule I don't break</p>
+      <p class="text-base md:text-lg">An automated grader is only as good as its agreement with people. If the judge and your reviewers disagree too often on the golden set, the judge's score means nothing. Fix the judge, or keep that criterion with people.</p>
+    </div>
+  </section>
+
+  <!-- ============ RELEASE GATE ============ -->
+  <section id="gate" class="bg-[#1A1A1A] text-white py-xl scroll-mt-28"
+           style="background-image: radial-gradient(rgba(255,255,255,0.07) 1.5px, transparent 1.5px); background-size: 26px 26px;">
+    <div class="max-w-5xl mx-auto px-margin">
+      <span class="inline-block bg-accent-yellow text-[#1A1A1A] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Release gate</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-8">From a score to a <span class="tilted-underline">ship / don't ship</span></h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white/5 border-2 border-white/30 rounded-2xl p-6">
+          <h3 class="text-xl font-extrabold mb-2 text-accent-yellow">Set thresholds first</h3>
+          <p class="text-white/80">Decide what score ships before you see the result, so nobody moves the bar to fit the number.</p>
+        </div>
+        <div class="bg-white/5 border-2 border-white/30 rounded-2xl p-6">
+          <h3 class="text-xl font-extrabold mb-2 text-accent-yellow">Score every slice</h3>
+          <p class="text-white/80">A 95% average can hide an edge-case slice at 60%. Fatal criteria get their own bar, usually zero failures allowed.</p>
+        </div>
+        <div class="bg-white/5 border-2 border-white/30 rounded-2xl p-6">
+          <h3 class="text-xl font-extrabold mb-2 text-accent-yellow">Regressions block</h3>
+          <p class="text-white/80">A prompt change that fixes one case and breaks five never reaches users. Same rule for model upgrades.</p>
+        </div>
+        <div class="bg-white/5 border-2 border-white/30 rounded-2xl p-6">
+          <h3 class="text-xl font-extrabold mb-2 text-accent-yellow">Watch quality and cost together</h3>
+          <p class="text-white/80">Track cost per successful task next to the score. A better score at three times the cost is a product decision, not a free win.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MISTAKES ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl">
+    <span class="inline-block bg-error-red text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Traps</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-8">Six ways a golden set <span class="tilted-underline">lies to you</span></h2>
+    <ul class="space-y-4 text-lg">
+      <li class="bg-white border-4 border-[#1A1A1A] rounded-xl p-5 neo-shadow"><strong>Written, not sampled.</strong> <span class="text-on-surface-variant">Cases the team made up test what the team already expects.</span></li>
+      <li class="bg-white border-4 border-[#1A1A1A] rounded-xl p-5 neo-shadow"><strong>Only the happy path.</strong> <span class="text-on-surface-variant">High scores, and users still hit the failures you never included.</span></li>
+      <li class="bg-white border-4 border-[#1A1A1A] rounded-xl p-5 neo-shadow"><strong>Tuned on the test.</strong> <span class="text-on-surface-variant">No held-out split, so the score measures memory, not quality.</span></li>
+      <li class="bg-white border-4 border-[#1A1A1A] rounded-xl p-5 neo-shadow"><strong>Coverage mistaken for accuracy.</strong> <span class="text-on-surface-variant">My keyword rules labelled almost everything and were ~21% wrong.</span></li>
+      <li class="bg-white border-4 border-[#1A1A1A] rounded-xl p-5 neo-shadow"><strong>A judge nobody checked.</strong> <span class="text-on-surface-variant">An LLM grader that's never been compared with people is just another opinion.</span></li>
+      <li class="bg-white border-4 border-[#1A1A1A] rounded-xl p-5 neo-shadow"><strong>Frozen forever.</strong> <span class="text-on-surface-variant">Users and data change. A set that never grows slowly stops describing the product.</span></li>
+    </ul>
+  </section>
+
+  <!-- ============ IN MY WORK ============ -->
+  <section id="my-work" class="bg-surface-cream py-xl scroll-mt-28">
+    <div class="max-w-[1280px] mx-auto px-margin">
+      <span class="inline-block bg-primary-fixed border-2 border-[#1A1A1A] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Evals in my work</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-8">Where I've used this, <span class="tilted-underline">and what it caught</span></h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <a href="case-study-store-data-engine.html" class="block bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 md:p-8 neo-shadow neo-shadow-hover transition-all">
+          <span class="font-bold text-xs uppercase tracking-widest text-coral">Store Data Engine · measured</span>
+          <h3 class="text-2xl font-extrabold mt-2 mb-2">Held-out split before 72K labels</h3>
+          <p class="text-on-surface-variant">Label-propagation rules were scored on a held-out split (97.1% precision) before touching a single row. A 50-row hand audit against source text measured the LLM at ~94% precision, against ~21% error for keyword rules, and surfaced systematic errors that became prompt rules.</p>
+        </a>
+        <a href="case-study-gtm-machine.html" class="block bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 md:p-8 neo-shadow neo-shadow-hover transition-all">
+          <span class="font-bold text-xs uppercase tracking-widest text-coral">GTM Machine OS · gates built, eval set next</span>
+          <h3 class="text-2xl font-extrabold mt-2 mb-2">Three grader layers on every output</h3>
+          <p class="text-on-surface-variant">A copy linter and 78 done-when checks, then an adversarial model judge, then a human lock. The honest status: these are gates, not yet a measured eval. Next is a set of test products with planted problems to measure how often the gates catch them.</p>
+        </a>
+        <a href="case-study-mpb.html" class="block bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 md:p-8 neo-shadow neo-shadow-hover transition-all">
+          <span class="font-bold text-xs uppercase tracking-widest text-coral">MPB · rubric-driven agent</span>
+          <h3 class="text-2xl font-extrabold mt-2 mb-2">A grading co-pilot that shows its confidence</h3>
+          <p class="text-on-surface-variant">The pricing agent scores each item approve / review / decline against a written rubric with few-shot examples, and returns its reasoning and confidence so people review only the cases it's unsure about.</p>
+        </a>
+        <a href="blog-evals-pm-quality-gate.html" class="block bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 md:p-8 neo-shadow neo-shadow-hover transition-all">
+          <span class="font-bold text-xs uppercase tracking-widest text-coral">Essay</span>
+          <h3 class="text-2xl font-extrabold mt-2 mb-2">Evals: the PM's quality gate</h3>
+          <p class="text-on-surface-variant">Why the eval rubric is the acceptance criteria of AI features, why the PM should write it, and what shipping on demos costs.</p>
+        </a>
+        <a href="blog-shipping-ai-without-evals.html" class="block bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 md:p-8 neo-shadow neo-shadow-hover transition-all md:col-span-2">
+          <span class="font-bold text-xs uppercase tracking-widest text-coral">Essay · New</span>
+          <h3 class="text-2xl font-extrabold mt-2 mb-2">Everyone Is Shipping AI. Almost Nobody Is Checking It.</h3>
+          <p class="text-on-surface-variant">Six real incidents, from Air Canada to Replit, each paired with the eval that would have caught it, plus the minimum a fast team should do before an AI feature reaches users.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl" aria-labelledby="evals-faq">
+    <h2 id="evals-faq" class="text-3xl md:text-5xl font-extrabold leading-tight mb-8"><span class="tilted-underline tilted-underline-blue">Questions</span></h2>
+    <div class="space-y-4">
+      <details class="bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 neo-shadow group" open>
+        <summary class="font-bold text-xl cursor-pointer flex items-center justify-between gap-4">How big should a golden set be?<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span></summary>
+        <p class="mt-4 text-on-surface-variant text-base md:text-lg leading-relaxed">Smaller than most teams think, to start. 50 to 100 well-chosen, hand-labelled cases will surface most systematic errors; a 50-row audit found every systematic error in my 697K-product pipeline. Grow it from production failures, and make sure each slice you report on has enough cases to mean something.</p>
+      </details>
+      <details class="bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 neo-shadow group">
+        <summary class="font-bold text-xl cursor-pointer flex items-center justify-between gap-4">Can I use an LLM to grade the outputs?<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span></summary>
+        <p class="mt-4 text-on-surface-variant text-base md:text-lg leading-relaxed">Yes, for fuzzy criteria like tone or faithfulness, but only after checking the judge against human labels on your golden set. If the judge and your reviewers disagree too often, fix the judge prompt or keep that criterion with people.</p>
+      </details>
+      <details class="bg-white border-4 border-[#1A1A1A] rounded-2xl p-6 neo-shadow group">
+        <summary class="font-bold text-xl cursor-pointer flex items-center justify-between gap-4">Who should own the eval: the PM or engineering?<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span></summary>
+        <p class="mt-4 text-on-surface-variant text-base md:text-lg leading-relaxed">Engineering builds the harness that runs it. The PM owns what goes in it: which cases matter, what a good answer is, and which failures block a release. The rubric is the acceptance criteria of an AI feature.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-[#1A1A1A] text-white py-xl">
+    <div class="max-w-[1280px] mx-auto px-margin text-center">
+      <h2 class="text-4xl md:text-[80px] font-extrabold mb-6 leading-[1.05]">Can't tell if your last prompt change helped?</h2>
+      <p class="text-lg md:text-xl text-surface-variant mb-10 max-w-2xl mx-auto">
+        Bring me one AI feature. We'll build its first golden set, write the rubric, pick the graders and set the release gate together, so the next change comes with a number.
+      </p>
+      <div class="flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
+        <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener"
+           data-cal-link="alim-datajar/coffeechat"
+           data-cal-namespace="coffeechat"
+           data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}'
+           class="bg-primary text-white font-bold uppercase px-8 md:px-xl py-4 md:py-lg border-4 border-white neo-shadow-lg neo-click-lg transition-all hover:bg-coral rounded-lg">
+          Book an Evals Call
+        </a>
+        <a href="blog-evals-pm-quality-gate.html" class="bg-transparent text-white font-bold uppercase px-8 md:px-xl py-4 md:py-lg border-4 border-white hover:bg-white hover:text-[#1A1A1A] transition-all rounded-lg">
+          Read the evals essay
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"><noscript>
+  <footer role="contentinfo" class="bg-coral text-white p-6 text-center border-t-4 border-[#1A1A1A]">
+    <nav aria-label="Footer links">
+      <a href="point-of-view.html" class="underline mr-3">Newsletter</a>
+      <a href="https://www.linkedin.com/in/alimahmoud1986/" rel="noopener me" class="underline mr-3">LinkedIn</a>
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener" class="underline mr-3">Book a call</a>
+      <a href="mailto:ali@theglocalpm.com" class="underline mr-3">ali@theglocalpm.com</a>
+      <a href="assets/pdfs/Ali_Mahmoud_Resume.pdf" download="Ali_Mahmoud_Resume.pdf" class="underline">Resume PDF</a>
+    </nav>
+    <p>© 2024–2026 TheGlocalPM • Ali Mahmoud, AI-Native Product Manager</p>
+  </footer>
+</noscript></div>
+<script src="js/main.js?v=2"></script>
+</body>
+</html>

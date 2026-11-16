@@ -257,6 +257,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
   // -------------------------------------------------------------
   const NAV_ITEMS = [
     { key: 'home',          href: 'index.html',          label: 'Work' },
+    { key: 'evals',         href: 'evals.html',          label: 'Evals' },
     { key: 'case-studies',  href: 'case-studies.html',   label: 'Case Studies' },
     { key: 'agent-lab',     href: 'agent-lab.html',      label: 'Agent Lab' },
     { key: 'skills',        href: 'skills.html',         label: 'Skills' },
@@ -287,7 +288,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 <header class="fixed top-0 left-0 right-0 z-50 flex justify-center px-4" role="banner">
   <nav class="bg-white rounded-full border-2 border-[#1A1A1A] mx-auto mt-4 md:mt-6 flex items-center gap-2 md:gap-4 px-3 md:px-6 py-2 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] md:shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] w-auto max-w-[calc(100vw-2rem)]" aria-label="Main navigation">
     <a href="index.html" class="flex items-center shrink-0" aria-label="TheGlocalPM — Home">
-      <img alt="TheGlocalPM — Ali Mahmoud, Senior Product Manager" class="h-8 md:h-10 w-auto bg-transparent max-w-[140px]" src="assets/logos/logo.png" />
+      <img alt="TheGlocalPM — Ali Mahmoud, AI-Native Product Manager" class="h-8 md:h-10 w-auto bg-transparent max-w-[140px]" src="assets/logos/logo.png" />
     </a>
     <div class="hidden lg:flex items-center gap-1 font-['Plus_Jakarta_Sans'] font-bold uppercase tracking-tight text-[13px]">
       ${navLinks}
@@ -327,7 +328,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95" href="imprint.html">Imprint</a>
     <a class="text-white font-bold uppercase hover:underline hover:scale-105 transition-transform active:scale-95 cursor-pointer" href="#" data-consent-reopen>Cookies</a>
   </nav>
-  <p class="text-white font-medium">© 2024–${year} TheGlocalPM • Ali Mahmoud, Senior Product Manager • Built with Chaos &amp; Logic</p>
+  <p class="text-white font-medium">© 2024–${year} TheGlocalPM • Ali Mahmoud, AI-Native Product Manager • Built with Chaos &amp; Logic</p>
   <div class="flex gap-4" aria-hidden="true">
     <div class="w-6 h-6 border-2 border-[#1A1A1A] bg-white rounded-sm"></div>
     <div class="w-6 h-6 border-2 border-[#1A1A1A] bg-primary rounded-full"></div>
@@ -440,6 +441,7 @@ Cal.ns.coffeechat('ui', { hideEventTypeDetails: false, layout: 'month_view' });
 
     // Analytics: nav topic clicks (Agent Lab, The Toolkit, Case Studies, Point of View)
     const GA_NAV_TOPICS = {
+      'evals.html':        'evals',
       'agent-lab.html':    'agent_lab',
       'toolkit.html':      'the_toolkit',
       'case-studies.html': 'case_studies',
