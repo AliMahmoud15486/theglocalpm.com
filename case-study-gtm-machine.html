@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4HB5H5CNK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    // Consent Mode: deny storage until the visitor decides. This must run
+    // BEFORE the config call below, otherwise GA4 sets cookies on first
+    // paint and the banner is decorative. If they already decided, re-grant
+    // here rather than waiting for main.js, so the pageview isn't lost.
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+    try {
+      if (localStorage.getItem('tgpm_consent') === 'granted') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted'
+        });
+      }
+    } catch (e) {}
+
+    gtag('js', new Date());
+    gtag('config', 'G-X4HB5H5CNK');
+  </script>
+  <!-- PostHog (EU) -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="an ln init xn Cn Br kn In capture Fn nn calculateEventProperties On register register_once register_for_session unregister unregister_for_session Ln getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync Dn identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty An Rn createPersonProfile setInternalOrTestUser $n yn jn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Tn debug Ur Rt getPageViewId captureTraceFeedback captureTraceMetric pn".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_oEhD6LG9Nkchrx5ScWCFAPuM7GhsdCYNeGfBWuHY2ZaJ', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-05-30',
+        // Visitors who decline are still counted, via a server-side hash
+        // instead of cookies — no replay, no GeoIP, but not invisible.
+        cookieless_mode: 'on_reject',
+        person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
+    })
+  </script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GTM Machine — An AI GTM Strategist That Can't Invent a Customer | Case Study | TheGlocalPM</title>
+<meta name="description" content="How I built an AI go-to-market system that takes any B2B product from discovery to an audited strategy and an execution plan: 19 Claude Code skills across 12 pillars, every claim evidence-tagged, an adversarial auditor, two consistency gates, and a rule that only a human can lock a decision." />
+<meta name="keywords" content="GTM machine, AI go-to-market, Claude Code skills, AI agents, GTM strategy, ICP, positioning, evidence-based strategy, human in the loop, AI product management, B2B GTM playbook" />
+<meta name="author" content="Ali Mahmoud" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="theme-color" content="#5B6EF5" />
+<link rel="canonical" href="https://theglocalpm.com/case-study-gtm-machine.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="TheGlocalPM" />
+<meta property="og:title" content="GTM Machine — An AI GTM Strategist That Can't Invent a Customer" />
+<meta property="og:description" content="19 Claude Code skills, 12 pillars, two consistency gates. Every claim evidence-tagged, every decision locked by a human, nothing sent without approval." />
+<meta property="og:url" content="https://theglocalpm.com/case-study-gtm-machine.html" />
+<meta property="og:image" content="https://theglocalpm.com/assets/portraits/ali-smiling.png" />
+<meta property="og:image:alt" content="GTM Machine — case study by Ali Mahmoud" />
+<meta property="og:locale" content="en_US" />
+<meta property="article:author" content="Ali Mahmoud" />
+<meta property="article:section" content="Case Study" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="GTM Machine — An AI GTM Strategist That Can't Invent a Customer" />
+<meta name="twitter:description" content="19 skills across 12 GTM pillars. Evidence tags on every claim, an adversarial auditor, two consistency gates, and only a human can lock a decision." />
+<meta name="twitter:image" content="https://theglocalpm.com/assets/portraits/ali-smiling.png" />
+<link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+<link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="TheGlocalPM" />
+<link rel="manifest" href="assets/favicon/site.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/tailwind-config.js?v=2"></script>
+<link rel="stylesheet" href="css/styles.css?v=2" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://theglocalpm.com/case-study-gtm-machine.html#article",
+      "headline": "GTM Machine — An AI GTM Strategist That Can't Invent a Customer",
+      "alternativeHeadline": "Building an evidence-tagged, human-locked AI go-to-market system for any B2B product",
+      "description": "An AI go-to-market system built as 19 Claude Code skills across a 12-pillar playbook: discovery and a Business Profile first, six strategy pillars behind a coherence gate, six execution pillars behind a cross-check, and a metrics loop back to strategy. Every claim is tagged VALIDATED, RESEARCHED or ASSUMED; customer language is never invented; an adversarial auditor attacks drafts; the AI proposes and only a human locks; nothing is sent or spent without approval.",
+      "image": "https://theglocalpm.com/assets/portraits/ali-smiling.png",
+      "author": { "@type": "Person", "@id": "https://theglocalpm.com/#person", "name": "Ali Mahmoud", "url": "https://theglocalpm.com/" },
+      "publisher": { "@type": "Organization", "name": "TheGlocalPM", "url": "https://theglocalpm.com/", "logo": { "@type": "ImageObject", "url": "https://theglocalpm.com/assets/logos/logo.png" } },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://theglocalpm.com/case-study-gtm-machine.html" },
+      "articleSection": "Case Study",
+      "keywords": "AI go-to-market, Claude Code skills, AI agents, GTM strategy, evidence tagging, human in the loop, ICP, positioning, pricing, B2B GTM playbook",
+      "timeRequired": "PT7M",
+      "about": [
+        { "@type": "Thing", "name": "Go-to-Market Strategy" },
+        { "@type": "Thing", "name": "AI Agents" },
+        { "@type": "Thing", "name": "Human-in-the-loop AI" },
+        { "@type": "Thing", "name": "B2B Growth" }
+      ],
+      "citation": [
+        { "@type": "SoftwareSourceCode", "name": "GTM Machine OS (open-source repo)", "url": "https://github.com/AliMahmoud15486/gtm-machine-os" }
+      ],
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://theglocalpm.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://theglocalpm.com/case-studies.html" },
+        { "@type": "ListItem", "position": 3, "name": "GTM Machine", "item": "https://theglocalpm.com/case-study-gtm-machine.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body data-page="case-studies" class="bg-background">
+<div id="site-header"><noscript>
+  <header role="banner" class="bg-white border-b-4 border-[#1A1A1A] p-4">
+    <a href="index.html" class="font-extrabold">TheGlocalPM — Ali Mahmoud, Senior Product Manager</a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Work</a> ·
+      <a href="case-studies.html">Case Studies</a> ·
+      <a href="agent-lab.html">Agent Lab</a> ·
+      <a href="skills.html">Skills</a> ·
+      <a href="toolkit.html">The Toolkit</a> ·
+      <a href="point-of-view.html">Point of View</a> ·
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener">Book a call</a>
+    </nav>
+  </header>
+</noscript></div>
+
+<main class="relative pt-32">
+  <div class="absolute inset-0 bg-grid-pattern pointer-events-none"></div>
+
+  <!-- Back link -->
+  <div class="max-w-[1280px] mx-auto px-margin mb-6">
+    <a href="case-studies.html" class="inline-flex items-center gap-2 font-bold text-sm uppercase tracking-wider hover:text-coral transition-colors">
+      <span class="material-symbols-outlined">arrow_back</span> All Case Studies
+    </a>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <section class="max-w-4xl mx-auto px-margin mb-xl">
+    <span class="inline-block bg-[#1A1A1A] text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">Case Study · AI Systems &amp; GTM</span>
+    <h1 class="text-5xl md:text-[80px] font-extrabold leading-[1.05] mb-6">
+      An AI GTM strategist that <span class="tilted-underline tilted-underline-blue">can't invent a customer</span>
+    </h1>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-3xl">
+      AI can write a convincing go-to-market strategy in minutes. The problem is what happens a month later, when nobody can tell which parts were known and which were guessed. So I built a GTM system the other way round: every claim carries its evidence, an auditor attacks every draft, the documents must agree with each other before anything moves on, and only a human can lock a decision.
+    </p>
+
+    <div class="mt-8 bg-surface-cream border-l-8 border-[#1A1A1A] rounded-r-lg p-5 md:p-6 text-sm md:text-base text-on-surface-variant leading-relaxed">
+      <p><strong class="text-on-surface">About this project.</strong> Built as my own operating system for taking any B2B product to market, whether my own products or a client's. It runs as a set of Claude Code skills and sub-agents, follows a 12-pillar playbook I distilled from a B2B growth masterclass, Alex Hormozi's playbooks and Maja Voje's <em>Go-To-Market Strategist</em>, and can be exported to other agent platforms. The full method draws on licensed material, so it stays private. Its engine (skills, sub-agents, protocol, gates, templates and the Business Profile) is open source and MIT licensed as <a href="https://github.com/AliMahmoud15486/gtm-machine-os" target="_blank" rel="noopener noreferrer" class="underline decoration-coral decoration-4 underline-offset-4 font-bold text-on-surface">GTM Machine OS</a>. Each pillar's method is a slot for your own playbook.</p>
+    </div>
+  </section>
+
+  <!-- ============ METRICS ROW ============ -->
+  <section class="max-w-[1280px] mx-auto px-margin mb-xl">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      <div class="bg-accent-yellow border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2">Skills</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">19</div>
+        <div class="text-xs font-bold opacity-80">One per pillar, plus discovery, two orchestrators and two gates</div>
+      </div>
+      <div class="bg-accent-rose border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1-reverse">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2">Pillars</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">12</div>
+        <div class="text-xs font-bold opacity-80">From segmentation to metrics, after a Step 0 discovery</div>
+      </div>
+      <div class="bg-primary-fixed border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2">Done-when checks</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">78</div>
+        <div class="text-xs font-bold opacity-80">A pillar is done only when every box is ticked, with a pointer to the proof</div>
+      </div>
+      <div class="bg-brand-purple text-white border-4 border-[#1A1A1A] neo-shadow-lg p-5 md:p-6 rounded-lg tilt-1-reverse">
+        <div class="font-bold uppercase text-xs tracking-widest mb-2 opacity-90">Decisions the AI can lock</div>
+        <div class="text-3xl md:text-5xl font-black mb-1 leading-none">0</div>
+        <div class="text-xs font-bold opacity-90">It proposes with the alternatives that lost. A human locks.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 1: THE PROBLEM ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl">
+    <span class="inline-block bg-error-red text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">The Problem</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      Plausible is not the <span class="tilted-underline">same as true</span>
+    </h2>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-6">
+      Ask a model for an ICP, a positioning statement and a pricing page and you'll get all three, fluent and confident. Three things go wrong next. The "customer quotes" in the persona were never said by a customer. The positioning promises something the product can't do yet. And the pricing page contradicts the value proposition two documents earlier, because each was written in isolation.
+    </p>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed">
+      Strategy built like that fails quietly: the team acts on guesses dressed as findings, and nobody can trace which decision rested on which assumption. I wanted the speed of AI without losing the one thing a GTM strategy is for: knowing what you actually know.
+    </p>
+
+    <div class="bg-primary-fixed border-4 border-primary p-6 md:p-8 neo-shadow-lg rounded-lg tilt-1-reverse mt-10">
+      <div class="flex items-start gap-4">
+        <span class="material-symbols-outlined text-4xl text-primary flex-shrink-0" style="font-variation-settings:'FILL' 1;">gavel</span>
+        <div>
+          <p class="font-bold uppercase text-xs tracking-widest mb-3 text-primary">The one-line mandate</p>
+          <p class="text-lg md:text-xl font-bold leading-snug">
+            Every claim traceable, every document consistent with the others, every decision owned by a human.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 2: THE SYSTEM ============ -->
+  <section class="bg-surface-cream py-xl">
+    <div class="max-w-4xl mx-auto px-margin">
+      <span class="inline-block bg-secondary-container text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">The System</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+        Twelve pillars, <span class="tilted-underline tilted-underline-orange">two gates</span>, one loop
+      </h2>
+      <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-10">
+        Each pillar is its own skill with a method file, a template and a "done when" list. Each one reads what the earlier pillars decided, and re-running one marks everything after it stale, so nothing downstream rests on an answer that has changed.
+      </p>
+
+      <div class="flex flex-col items-center gap-0">
+        <div class="w-full md:w-4/5 bg-white border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 tilt-1">
+          <div class="flex items-center gap-4">
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-accent-yellow flex items-center justify-center font-extrabold text-lg border-4 border-[#1A1A1A]">0</span>
+            <div>
+              <h3 class="text-xl font-extrabold uppercase tracking-wide">Discovery</h3>
+              <p class="text-sm md:text-base text-on-surface-variant">What the product really does, every public claim checked against it, prices, risks, an exact count of customers and interviews, and the Business Profile that shapes everything after.</p>
+            </div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-4xl my-1" aria-hidden="true">south</span>
+        <div class="w-full md:w-4/5 bg-white border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 tilt-1-reverse">
+          <div class="flex items-center gap-4">
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-accent-rose flex items-center justify-center font-extrabold text-lg border-4 border-[#1A1A1A]">1–6</span>
+            <div>
+              <h3 class="text-xl font-extrabold uppercase tracking-wide">Strategy</h3>
+              <p class="text-sm md:text-base text-on-surface-variant">Segmentation, ICP and buying center, value proposition and positioning, messaging and channels, proof system, packaging and pricing.</p>
+            </div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-4xl my-1" aria-hidden="true">south</span>
+        <div class="w-full md:w-4/5 bg-accent-yellow border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 tilt-1">
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined flex-shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center text-2xl border-4 border-[#1A1A1A]" aria-hidden="true">rule</span>
+            <div>
+              <h3 class="text-xl font-extrabold uppercase tracking-wide">Gate 1 — Coherence audit</h3>
+              <p class="text-sm md:text-base text-on-surface-variant">Seven traces: does every message trace to a value driver, every proof to a message, every price to the category? PASS, PASS-WITH-GAPS or FAIL, with line-level fixes.</p>
+            </div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-4xl my-1" aria-hidden="true">south</span>
+        <div class="w-full md:w-4/5 bg-white border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 tilt-1-reverse">
+          <div class="flex items-center gap-4">
+            <span class="flex-shrink-0 w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center font-extrabold text-lg border-4 border-[#1A1A1A]">7–12</span>
+            <div>
+              <h3 class="text-xl font-extrabold uppercase tracking-wide">Execution</h3>
+              <p class="text-sm md:text-base text-on-surface-variant">GTM motion first, because it decides how much of the rest applies. Then revenue process and SLAs, demand generation, outbound, enablement and metrics.</p>
+            </div>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-4xl my-1" aria-hidden="true">south</span>
+        <div class="w-full md:w-4/5 bg-brand-purple text-white border-4 border-[#1A1A1A] neo-shadow rounded-xl p-5 tilt-1">
+          <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined flex-shrink-0 w-12 h-12 rounded-full bg-white text-[#1A1A1A] flex items-center justify-center text-2xl border-4 border-[#1A1A1A]" aria-hidden="true">sync</span>
+            <div>
+              <h3 class="text-xl font-extrabold uppercase tracking-wide">Gate 2 — Execution cross-check, then the loop</h3>
+              <p class="text-sm md:text-base text-white/90">Do the six plans fit together and fit the hours the team actually has? Then metrics with pre-set thresholds decide when the strategy goes back to pillars 1–3.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-sm md:text-base text-on-surface-variant leading-relaxed mt-8">
+        Each pillar runs in three roles by default: a <strong>researcher</strong> that finds external facts and never concludes, a <strong>strategist</strong> that makes the call and shows the alternatives that lost, and an <strong>evidence auditor</strong> that attacks the draft from a skeptical-CFO stance. Anything the auditor weakens is fixed or carried into open questions; it never quietly disappears.
+      </p>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 3: GUARDRAILS ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl">
+    <span class="inline-block bg-coral text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">The Guardrails</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      Six rules the AI <span class="tilted-underline">can't talk its way around</span>
+    </h2>
+    <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-8">
+      They live in one shared protocol every skill loads first, so improving a rule improves every run.
+    </p>
+
+    <ol class="space-y-5">
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-error-red leading-none">01</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Every claim is tagged</h3>
+          <p class="text-base md:text-lg leading-relaxed"><code class="font-bold">VALIDATED</code> (customer data or an interview, named), <code class="font-bold">RESEARCHED</code> (an external source, cited with a date) or <code class="font-bold">ASSUMED</code> (judgement). An untagged claim is a defect. When most of a document is assumed, its header says it's a hypothesis.</p>
+        </div>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-secondary-container leading-none">02</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Customer language is never invented</h3>
+          <p class="text-base md:text-lg leading-relaxed">No synthesised quotes, no "a typical buyer might say". If interviews haven't happened, the document says so and the system writes the interview script instead. Once fake quotes are in a file, nobody can tell which ones were real, so this is the one rule with no exceptions.</p>
+        </div>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-brand-purple leading-none">03</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">The AI proposes, a human locks</h3>
+          <p class="text-base md:text-lg leading-relaxed">Every decision ships as <code class="font-bold">PROPOSED</code>, with its reasoning and the options that lost. Only the owner marks anything <code class="font-bold">LOCKED</code>, and a fast run that skipped the audit can't be locked at all.</p>
+        </div>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-primary leading-none">04</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Numbers, not adjectives</h3>
+          <p class="text-base md:text-lg leading-relaxed">"Improves efficiency" fails review. A number without a source is written <code class="font-bold">UNKNOWN — needs measurement</code>, and that gap becomes an item in the measurement backlog instead of a hedge in the copy.</p>
+        </div>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-error-red leading-none">05</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Drafts only</h3>
+          <p class="text-base md:text-lg leading-relaxed">The system never sends an email, posts, spends a credit or changes a CRM. It writes the sequence, the spec and the plan, and lists the actions only the owner can take, in order. Paid lookups state their cost and wait for a yes.</p>
+        </div>
+      </li>
+      <li class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 flex items-start gap-5">
+        <span class="flex-shrink-0 text-5xl md:text-6xl font-black text-secondary-container leading-none">06</span>
+        <div class="pt-1">
+          <h3 class="text-xl md:text-2xl font-bold mb-2">Source gaps are declared, not filled</h3>
+          <p class="text-base md:text-lg leading-relaxed">Where no source covers a method (outreach law per country, marketplace take rates), the skill says <code class="font-bold">SOURCE-GAP</code> and marks the choice as assumed, rather than inventing a framework and presenting it with the authority of the sourced ones.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 4: BUSINESS PROFILE ============ -->
+  <section class="bg-surface-cream py-xl">
+    <div class="max-w-4xl mx-auto px-margin">
+      <span class="inline-block bg-brand-purple text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">One Engine, Any B2B Business</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+        A retainer agency is not a <span class="tilted-underline tilted-underline-purple">SaaS product</span>
+      </h2>
+      <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-10">
+        The first version gave every business the same advice. Now discovery records a nine-field Business Profile (type, revenue model, deal size, how buyers buy, stage, GTM maturity, markets, capacity and engagement) and no pillar runs until the first five are known. Each pillar applies the defaults the profile sets, and says why when it departs from one.
+      </p>
+
+      <div class="overflow-x-auto border-4 border-[#1A1A1A] rounded-2xl neo-shadow-lg">
+        <table class="w-full text-left border-collapse min-w-[640px]">
+          <thead class="bg-[#1A1A1A] text-white">
+            <tr>
+              <th class="px-5 md:px-6 py-4 font-bold uppercase text-xs tracking-widest">If the profile says…</th>
+              <th class="px-5 md:px-6 py-4 font-bold uppercase text-xs tracking-widest">The system defaults to…</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr class="border-t-2 border-[#1A1A1A]">
+              <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">Before product–market fit</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">An early customer profile instead of an ICP, a plan to collect proof instead of a proof library, PMF signals before funnel metrics</td>
+            </tr>
+            <tr class="border-t-2 border-[#1A1A1A] bg-surface-cream">
+              <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">Retainer or project revenue</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">A value ladder priced between a cost floor and a value ceiling</td>
+            </tr>
+            <tr class="border-t-2 border-[#1A1A1A]">
+              <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">Subscription or usage revenue</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">A value metric first, then tiers by usage or seats</td>
+            </tr>
+            <tr class="border-t-2 border-[#1A1A1A] bg-surface-cream">
+              <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">Deal size and how buyers decide</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">The motion: sales-led for large, complex deals, a marketing- and sales-led hybrid in the middle, product-led for small self-serve ones</td>
+            </tr>
+            <tr class="border-t-2 border-[#1A1A1A]">
+              <td class="px-5 md:px-6 py-4 align-top font-extrabold text-base md:text-lg">A one- or two-person team</td>
+              <td class="px-5 md:px-6 py-4 align-top text-base md:text-lg leading-relaxed">One funnel, two channels, the smallest tool stack, and outbound volume capped by the hours available</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 5: LESSONS ============ -->
+  <section class="max-w-4xl mx-auto px-margin py-xl">
+    <span class="inline-block bg-primary text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">What Building It Taught Me</span>
+    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+      The failures that <span class="tilted-underline tilted-underline-blue">became features</span>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 tilt-1">
+        <p class="font-bold uppercase text-xs tracking-widest mb-3 text-error-red">Six good documents can still be wrong together</p>
+        <p class="text-base text-on-surface-variant leading-relaxed">Each pillar can pass its own checks and still contradict the others on prices, names and thresholds, because each was written in isolation. Hence the coherence audit: a fact sweep across every file plus traces from segment to ICP to value driver to message to proof.</p>
+      </div>
+      <div class="bg-primary-fixed border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 tilt-1-reverse">
+        <p class="font-bold uppercase text-xs tracking-widest mb-3 text-primary">A plan is not a result</p>
+        <p class="text-base text-on-surface-variant leading-relaxed">Building the execution skills exposed a trap: a checklist box like "domains warmed" would tick as soon as a spec described warming them. Now any box that describes something real ("built", "live", "signed") ticks only on the owner's dated confirmation.</p>
+      </div>
+      <div class="bg-accent-yellow border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 tilt-1-reverse">
+        <p class="font-bold uppercase text-xs tracking-widest mb-3">The manual and the machine drifted</p>
+        <p class="text-base leading-relaxed">The human playbook and the skills numbered two pillars differently, and stale notes contradicted the shared protocol. One map now links each pillar to its method, skill and output, and an independent audit fixed 70 inconsistencies in one pass.</p>
+      </div>
+      <div class="bg-accent-rose border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 tilt-1">
+        <p class="font-bold uppercase text-xs tracking-widest mb-3">Unread sources look like coverage</p>
+        <p class="text-base leading-relaxed">Three outreach sessions had been extracted but never distilled, so the outbound method looked sourced when it wasn't. The rule now: new material is extracted, distilled into a method file and logged in a coverage table, or it doesn't count.</p>
+      </div>
+    </div>
+
+    <div class="bg-primary-fixed border-4 border-primary p-6 md:p-8 neo-shadow-lg rounded-lg tilt-1-reverse mt-10">
+      <div class="flex items-start gap-4">
+        <span class="material-symbols-outlined text-4xl text-primary flex-shrink-0" style="font-variation-settings:'FILL' 1;">hub</span>
+        <div>
+          <p class="font-bold uppercase text-xs tracking-widest mb-3 text-primary">Built to outlive one tool</p>
+          <p class="text-lg md:text-xl font-bold leading-snug">
+            The method is plain Markdown. The same system runs in Claude Code with parallel sub-agents, and exports to a Grok Bot as skills, scheduled routines and "ask first" approval rules, so an agent can run the weekly scorecard on its own but still can't send anything without a human.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-sm md:text-base text-on-surface-variant leading-relaxed mt-8">
+      <strong>Where it stands:</strong> the strategy pillars have run on two of my products, with decisions proposed and partly locked. The execution pillars are newly built and haven't run on a product yet. The first execution run is next.
+    </p>
+  </section>
+
+  <div class="border-b-8 border-[#1A1A1A] w-full"></div>
+
+  <!-- ============ SECTION 6: EVALS ============ -->
+  <section class="bg-surface-cream py-xl">
+    <div class="max-w-4xl mx-auto px-margin">
+      <span class="inline-block bg-[#1A1A1A] text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-6">How It Checks Its Own Work</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+        Three layers of <span class="tilted-underline tilted-underline-blue">quality gates</span>
+      </h2>
+      <p class="text-lg md:text-xl text-on-surface-variant leading-relaxed mb-10">
+        I've argued that <a href="blog-evals-pm-quality-gate.html" class="underline decoration-coral decoration-4 underline-offset-4 font-bold text-on-surface">evals are the product manager's new quality gate</a>. This system is built around that idea: every output passes cheap mechanical checks first, then a model whose only job is to disagree, then a person.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 tilt-1">
+          <span class="material-symbols-outlined text-4xl mb-3" aria-hidden="true">checklist</span>
+          <p class="font-bold uppercase text-xs tracking-widest mb-3 text-primary">1 · Deterministic</p>
+          <ul class="text-base text-on-surface-variant leading-relaxed space-y-2 list-disc pl-5">
+            <li>A copy linter tests every line against banned phrases and the register of approved claims</li>
+            <li>78 done-when checks, each tick pointing to the section that proves it</li>
+            <li>A fact sweep: every price, name and threshold must match across files</li>
+            <li>Staleness: change an upstream answer and everything downstream is flagged</li>
+          </ul>
+        </div>
+        <div class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 tilt-1-reverse">
+          <span class="material-symbols-outlined text-4xl mb-3" aria-hidden="true">balance</span>
+          <p class="font-bold uppercase text-xs tracking-widest mb-3 text-error-red">2 · Model-graded</p>
+          <ul class="text-base text-on-surface-variant leading-relaxed space-y-2 list-disc pl-5">
+            <li>An adversarial auditor returns <em>survives</em>, <em>weakened</em> or <em>refuted</em> for each claim, re-opening the sources</li>
+            <li>The coherence audit's seven traces across the strategy</li>
+            <li>The execution cross-check: hand-offs, capacity, offer and message fidelity, metric coverage</li>
+          </ul>
+        </div>
+        <div class="bg-white border-4 border-[#1A1A1A] neo-shadow-lg rounded-2xl p-6 tilt-1">
+          <span class="material-symbols-outlined text-4xl mb-3" aria-hidden="true">person_check</span>
+          <p class="font-bold uppercase text-xs tracking-widest mb-3 text-brand-purple">3 · Human</p>
+          <ul class="text-base text-on-surface-variant leading-relaxed space-y-2 list-disc pl-5">
+            <li>Only the owner locks a decision</li>
+            <li>Nothing is sent, spent or published by the system</li>
+            <li>Real-world steps ("built", "live", "signed") count only on a dated confirmation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-accent-yellow border-4 border-[#1A1A1A] p-6 md:p-8 neo-shadow-lg rounded-lg tilt-1-reverse mt-10">
+        <div class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-4xl flex-shrink-0" style="font-variation-settings:'FILL' 1;" aria-hidden="true">science</span>
+          <div>
+            <p class="font-bold uppercase text-xs tracking-widest mb-3">Honest status</p>
+            <p class="text-lg md:text-xl font-bold leading-snug">
+              These are gates, not yet measured evals. Next is a small eval set: test products with planted problems (a fabricated quote, a false public claim, a price that contradicts the value proposition) to measure how often the gates catch them. Until that exists, this page claims no catch rate.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAGS ============ -->
+  <section class="max-w-4xl mx-auto px-margin pb-xl">
+    <div class="border-t-4 border-[#1A1A1A] pt-8">
+      <p class="font-bold uppercase text-xs tracking-widest mb-4 text-on-surface-variant">Topics covered</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Go-to-Market Strategy</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">AI Agents</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Claude Code Skills</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Human in the Loop</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">ICP &amp; Positioning</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Pricing</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">Evidence-Based Strategy</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">AI Evals</span>
+        <span class="inline-block bg-white border-2 border-[#1A1A1A] px-3 py-1 rounded-full text-xs font-bold neo-shadow">B2B Growth</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Read next -->
+  <section class="max-w-[1280px] mx-auto px-margin pb-xl">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-8 inline-block">
+      <span class="tilted-underline">Read next</span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <a href="case-study-store-data-engine.html" class="block bg-surface-cream border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow neo-shadow-hover transition-all group">
+        <span class="font-bold text-xs uppercase tracking-widest text-coral">Data Engineering · AI · E-Commerce</span>
+        <h3 class="text-2xl font-bold mt-2 mb-2">Store Data Engine</h3>
+        <p class="text-on-surface-variant">697,299 products from 397 stores in about a week, ~110K enriched with LLMs for ~$31, and +72K more labels propagated free at 97.1% measured precision.</p>
+      </a>
+      <a href="case-study-mpb.html" class="block bg-surface-cream border-4 border-[#1A1A1A] rounded-xl p-6 neo-shadow neo-shadow-hover transition-all group">
+        <span class="font-bold text-xs uppercase tracking-widest text-coral">Marketplace Ops · AI · Discovery</span>
+        <h3 class="text-2xl font-bold mt-2 mb-2">MPB — Warehouse Discovery &amp; 3 Shipped AI Agents</h3>
+        <p class="text-on-surface-variant">An 11-day product discovery that named an invisible throughput constraint, framed four strategic bets, and shipped three working AI-agent prototypes.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-[#1A1A1A] text-white py-xl">
+    <div class="max-w-[1280px] mx-auto px-margin text-center">
+      <h2 class="text-4xl md:text-[80px] font-extrabold mb-6 leading-[1.05]">Want a GTM run for your product?</h2>
+      <p class="text-lg md:text-xl text-surface-variant mb-10 max-w-xl mx-auto">
+        Use the open-source GTM Machine OS with your own playbook, or have me run the full system with you: discovery first, then a strategy where you can see exactly what's known, what's assumed and what to test next.
+      </p>
+      <div class="flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
+        <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener"
+           data-cal-link="alim-datajar/coffeechat"
+           data-cal-namespace="coffeechat"
+           data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}'
+           class="bg-primary text-white font-bold uppercase px-8 md:px-xl py-4 md:py-lg border-4 border-white neo-shadow-lg neo-click-lg transition-all hover:bg-coral rounded-lg">
+          Book a GTM Call
+        </a>
+        <a href="https://github.com/AliMahmoud15486/gtm-machine-os" target="_blank" rel="noopener noreferrer" class="bg-transparent text-white font-bold uppercase px-8 md:px-xl py-4 md:py-lg border-4 border-white hover:bg-white hover:text-[#1A1A1A] transition-all rounded-lg">
+          Get GTM Machine OS on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"><noscript>
+  <footer role="contentinfo" class="bg-coral text-white p-6 text-center border-t-4 border-[#1A1A1A]">
+    <nav aria-label="Footer links">
+      <a href="point-of-view.html" class="underline mr-3">Newsletter</a>
+      <a href="https://www.linkedin.com/in/alimahmoud1986/" rel="noopener me" class="underline mr-3">LinkedIn</a>
+      <a href="https://cal.com/alim-datajar/coffeechat" rel="noopener" class="underline mr-3">Book a call</a>
+      <a href="mailto:ali@theglocalpm.com" class="underline mr-3">ali@theglocalpm.com</a>
+      <a href="assets/pdfs/Ali_Mahmoud_Resume.pdf" download="Ali_Mahmoud_Resume.pdf" class="underline">Resume PDF</a>
+    </nav>
+    <p>© 2024–2026 TheGlocalPM • Ali Mahmoud, Senior Product Manager</p>
+  </footer>
+</noscript></div>
+<script src="js/main.js?v=2"></script>
+</body>
+</html>
